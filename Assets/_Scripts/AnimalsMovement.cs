@@ -15,18 +15,20 @@ public class AnimalsMovement : MonoBehaviour
 
     private void Start()
     {
+        navMesh=GetComponent<NavMeshAgent>();
+    }
+
+    private void Update()
+    {
         MoveTo(testPos.position);
+        animator.SetFloat("Move", navMesh.velocity.magnitude);
     }
 
     private void MoveTo(Vector3 target)
     {
-
         navMesh.SetDestination(target);
-
     }
 
-
-    
 
 
 }
