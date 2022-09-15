@@ -6296,7 +6296,7 @@ Transform:
   - {fileID: 334227512}
   - {fileID: 551959432}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &787588864
 PrefabInstance:
@@ -12982,52 +12982,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4139386580268372, guid: cc6e90e397ca3864a88caa6b1b9cb015, type: 3}
   m_PrefabInstance: {fileID: 1929890315}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1602632370
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1602632372}
-  - component: {fileID: 1602632371}
-  m_Layer: 0
-  m_Name: Chicken
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1602632371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1602632370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23a8f15d126044d46af834016bae964d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  egg: {fileID: 2290779807773213761, guid: ad9e12b29c884c247929637997e15404, type: 3}
-  instantPosition: {fileID: 184294571}
---- !u!4 &1602632372
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1602632370}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.4305377, y: 3.2210598, z: -2.9917703}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1614587548
 GameObject:
   m_ObjectHideFlags: 0
@@ -16868,7 +16822,7 @@ Transform:
   - {fileID: 1457557344668942148}
   - {fileID: 184294571}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 121.52, z: 0}
 --- !u!195 &1453129805868423889
 NavMeshAgent:
@@ -16923,7 +16877,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72e132d0154eaa4fa1e020b8d66a1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chicken: {fileID: 1602632371}
   animalNav: {fileID: 1453129805868423889}
   range: 5
   TestPos: {fileID: 1509460734}
@@ -16931,6 +16884,7 @@ MonoBehaviour:
   animal: {fileID: 1453129805868423888}
   chasingRange: 5
   eatingRange: 0.5
+  eggPrefab: {fileID: 7595119527927397872, guid: ad9e12b29c884c247929637997e15404, type: 3}
 --- !u!65 &1453129805868423893
 BoxCollider:
   m_ObjectHideFlags: 0

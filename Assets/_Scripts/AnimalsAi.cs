@@ -17,8 +17,8 @@ public class AnimalsAi : MonoBehaviour
     [SerializeField] private Transform TestPos;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform animal;
-    [SerializeField] private float chasingRange = 5;
-    [SerializeField] private float eatingRange = 0.5f;
+    [SerializeField] private Transform eggPrefab;
+
     private Grass currentGrass = null;
 
 
@@ -141,8 +141,7 @@ public class AnimalsAi : MonoBehaviour
     }
 
 
-    [SerializeField] private Transform eggPrefab;
-
+   
 
     private void Creating()
     {
