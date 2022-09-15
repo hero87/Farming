@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,10 +22,9 @@ public class AnimalsAi : MonoBehaviour
     [SerializeField] private float chasingRange = 5;
     [SerializeField] private float eatingRange = 0.5f;
 
+    [SerializeField] private GameObject[] grass; // New
+    private int grassIndex; // New
 
-    private Grass currentGrass = null;
-    
-    
     void Start()
     {
         animalNav = GetComponent<NavMeshAgent>();
@@ -34,7 +34,12 @@ public class AnimalsAi : MonoBehaviour
 
     void Update()
     {
-    //  distance = Vector3.Distance(grass.position, animal.transform.position);
+        grass = GameObject.FindGameObjectsWithTag("Grass");
+        for (grassIndex = 0; grassIndex == grass.Length; ++grassIndex)      // New
+        {
+            distance = Vector3.Distance(grass[grassIndex].transform.position, animal.transform.position); // add grassIndex
+        }
+        
         animator.SetFloat("Move", animalSpeed);
 
 
@@ -57,9 +62,8 @@ public class AnimalsAi : MonoBehaviour
 
     private void Patrolling()
     {
-
-        if (currentGrass != null) { return; }
-
+        
+        if (distance > chasingRange)
         {
             SetState(State.patrolling);
             if (animalNav.remainingDistance <= animalNav.stoppingDistance)
@@ -71,10 +75,9 @@ public class AnimalsAi : MonoBehaviour
                     animalNav.SetDestination(point);
                 }
             }
-        }
             animalNav.speed = 1;
             animalSpeed = animalNav.velocity.magnitude;
-       
+        }
     }
 
 
@@ -86,7 +89,7 @@ public class AnimalsAi : MonoBehaviour
         if (distance < chasingRange)
         {
             SetState(State.chasing);
-         //   animalNav.SetDestination(grass[0 & 1 & 2 & 3 & 4 & 5].transform.position);
+            animalNav.SetDestination(grass[grassIndex].transform.position); // add grassIndex New
             animalNav.speed = 5;
             animalSpeed = animalNav.velocity.magnitude;
         }

@@ -20,17 +20,14 @@ public class GrassController : MonoBehaviour
     private void Update()
     {
         timeLeft -= Time.deltaTime;
-        if(timeLeft <= 0)
+        if (timeLeft <= 0)
         {
             if (grassIndex == grassList.Count) { grassIndex = 0; return; }
-            grassList[grassIndex].gameObject.SetActive(true);  
+            grassList[grassIndex].gameObject.SetActive(true);
             grassIndex++;
-            timeLeft=timeToCreate;
-            
+            timeLeft = timeToCreate;
+
 
         }
     }
-   
-
-    
 }

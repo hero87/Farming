@@ -16828,6 +16828,13 @@ MonoBehaviour:
   animal: {fileID: 1453129805868423888}
   chasingRange: 5
   eatingRange: 0.5
+  grass:
+  - {fileID: 404957217}
+  - {fileID: 644863383}
+  - {fileID: 1848254874}
+  - {fileID: 2068006515}
+  - {fileID: 334227509}
+  - {fileID: 551959429}
 --- !u!1 &1453601968443971352
 GameObject:
   m_ObjectHideFlags: 0
