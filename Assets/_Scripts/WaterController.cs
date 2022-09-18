@@ -2,33 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AddGrass : MonoBehaviour
+public class WaterController : MonoBehaviour
 {
-    [SerializeField] private Vector3 place;
-    [SerializeField] private GameObject grass;
 
-    private RaycastHit _hit;
-    public bool addNow;
+    [SerializeField] private Grass grassPrefab;
+    [SerializeField] private LayerMask layerMask;
+
+
+
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)&& addNow== true)
+        if (!Input.GetMouseButtonDown(0)) { return; }
+
+
+        RaycastHit _hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out _hit, layerMask))
         {
-            if(Physics.Raycast (Camera.main.ScreenPointToRay(Input.mousePosition),out _hit))
-            {
-                if (_hit.transform.tag == "Ground")
-                {
-                    place = new Vector3 (_hit.point.x, _hit.point.y, _hit.point.z);
-                    Instantiate(grass, place, Quaternion.identity);
-                    addNow = false;
-                }
-            }
+
+            var place = new Vector3(_hit.point.x, 0.5f, _hit.point.z);
+            Grass grass = Instantiate(grassPrefab, place, Quaternion.identity);
+
+
         }
+
     }
 
-    public void PlaceGrass()
-    {
-        addNow = true;
-    }
 
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3298837756145624897}
   - component: {fileID: 3298837756145624894}
   - component: {fileID: 3298837756145624892}
+  - component: {fileID: 1292745069439953745}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Grass
@@ -63,6 +64,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1292745069439953745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3298837756145624893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cc265599f022e644909e86d33754459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3298837757516328311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104,15 +117,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4445123275070158, guid: 7ea6c767c13a093489de65e27dfd7aca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.6877084
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4445123275070158, guid: 7ea6c767c13a093489de65e27dfd7aca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.41293275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4445123275070158, guid: 7ea6c767c13a093489de65e27dfd7aca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.16933203
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4445123275070158, guid: 7ea6c767c13a093489de65e27dfd7aca, type: 3}
       propertyPath: m_LocalRotation.w
