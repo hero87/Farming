@@ -79,7 +79,7 @@ public class AnimalsAi : MonoBehaviour
 
     private void Patrolling()
     {
-
+        animalNav.isStopped = false;
 
         if (currentGrass != null) { return; }
 
@@ -111,6 +111,8 @@ public class AnimalsAi : MonoBehaviour
 
         if (!animalNav.pathPending && animalNav.remainingDistance <= animalNav.stoppingDistance)
         {
+            animalNav.isStopped = true;
+            animalNav.velocity = Vector3.zero;
             SetState(State.eating);
             Eating();
         }
@@ -127,7 +129,7 @@ public class AnimalsAi : MonoBehaviour
     {
         animalSpeed = -1;
 
-       
+
 
         await Task.Delay(7000);
         currentGrass.gameObject.SetActive(false);
