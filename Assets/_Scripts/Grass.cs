@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Grass : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
+            if (other.TryGetComponent(out AnimalsAi animalsAi))
+            {
+                
+                animalsAi.SetGrassTarget(this);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            }
     }
 }

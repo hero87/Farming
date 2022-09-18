@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3298837756145624897}
-  - component: {fileID: 3298837756145624894}
-  - component: {fileID: 3298837756145624892}
   - component: {fileID: 1292745069439953745}
+  - component: {fileID: 2912073068493745076}
+  - component: {fileID: 5978970057234846198}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Grass
@@ -35,7 +35,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &3298837756145624894
+--- !u!114 &1292745069439953745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3298837756145624893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cc265599f022e644909e86d33754459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &2912073068493745076
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,9 +58,9 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &3298837756145624892
+  m_Radius: 4.5991583
+  m_Center: {x: 0, y: 0.16322708, z: 0}
+--- !u!54 &5978970057234846198
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,18 +76,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1292745069439953745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3298837756145624893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cc265599f022e644909e86d33754459, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3298837757516328311
 PrefabInstance:
   m_ObjectHideFlags: 0
