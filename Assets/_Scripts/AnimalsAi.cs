@@ -14,7 +14,7 @@ public class AnimalsAi : MonoBehaviour
 
     [SerializeField] private NavMeshAgent animalNav;
     [SerializeField] private float range;
-    [SerializeField] private Transform TestPos;
+    [SerializeField] private Transform patrollingPos;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform animal;
     [SerializeField] private Transform eggPrefab;
@@ -86,7 +86,7 @@ public class AnimalsAi : MonoBehaviour
         if (animalNav.remainingDistance <= animalNav.stoppingDistance)
         {
             Vector3 point;
-            if (RandomPoint(TestPos.position, range, out point))
+            if (RandomPoint(patrollingPos.position, range, out point))
             {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
                 animalNav.SetDestination(point);
@@ -105,7 +105,7 @@ public class AnimalsAi : MonoBehaviour
     {
 
 
-        animalNav.SetDestination(currentGrass.transform.position); // add grassIndex New
+        animalNav.SetDestination(currentGrass.transform.position);
         animalNav.speed = 5;
         animalSpeed = animalNav.velocity.magnitude;
 
@@ -132,7 +132,6 @@ public class AnimalsAi : MonoBehaviour
         await Task.Delay(7000);
         currentGrass.gameObject.SetActive(false);
         currentGrass = null;
-
         SetState(State.creating);
 
 
@@ -147,9 +146,6 @@ public class AnimalsAi : MonoBehaviour
     {
         SetState(State.patrolling);
         var egg = Instantiate(eggPrefab, transform.position, Quaternion.identity);
-
-       
-
 
     }
 

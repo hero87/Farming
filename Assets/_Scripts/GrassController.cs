@@ -13,7 +13,7 @@ public class GrassController : MonoBehaviour
 
     private void Awake()
     {
-        grassList.ForEach(m => m.gameObject.SetActive(false)); // set active false for all grass
+        grassList.ForEach(m => m.gameObject.SetActive(false));
         timeLeft = timeToCreate;
     }
 

@@ -6,6 +6,7 @@ public class Grass : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.TryGetComponent(out AnimalsAi animalsAi))
         {
            
