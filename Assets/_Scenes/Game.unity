@@ -10901,7 +10901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1338309358
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10997,10 +10997,10 @@ GameObject:
   - component: {fileID: 1347979242}
   - component: {fileID: 1347979245}
   - component: {fileID: 1347979244}
-  - component: {fileID: 1347979243}
+  - component: {fileID: 1347979246}
   m_Layer: 6
   m_Name: Ground
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -11020,20 +11020,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -0.294, y: -169.609, z: 0}
---- !u!64 &1347979243
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347979241}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: b27badcb1cb76a04792139d749e5c4eb, type: 3}
 --- !u!23 &1347979244
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11084,6 +11070,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1347979241}
   m_Mesh: {fileID: 4300000, guid: b27badcb1cb76a04792139d749e5c4eb, type: 3}
+--- !u!65 &1347979246
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347979241}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.526026, y: 0.2575343, z: 5.677136}
+  m_Center: {x: -1.7763568e-15, y: 0.12876713, z: -0.00000011921306}
 --- !u!1001 &1355461643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17659,9 +17658,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grassPrefab: {fileID: 1292745069439953745, guid: c4bbe803143993e43b95fc6f2e06951a, type: 3}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
   grassParent: {fileID: 981522709}
   maxWater: 5
   waterBar: {fileID: 842677473}
@@ -19402,14 +19398,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6446926814594905650}
-  m_LocalRotation: {x: -0, y: -0.99959826, z: -0, w: -0.028341439}
-  m_LocalPosition: {x: -2.32922, y: 0.045370687, z: 2.5338}
+  m_LocalRotation: {x: -0, y: -0.95131516, z: -0, w: 0.30821985}
+  m_LocalPosition: {x: -2.3323, y: 0.045370687, z: 2.5171}
   m_LocalScale: {x: 0.014345651, y: 0.028691297, z: 0.014345651}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3826821688166015830}
   m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: -109.684, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -144.096, z: 0}
 --- !u!4 &6444952564817453312
 Transform:
   m_ObjectHideFlags: 0
