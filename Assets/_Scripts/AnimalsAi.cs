@@ -6,152 +6,103 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Threading.Tasks;
 
+
+public enum AnimalState { Patrolling, Chasing, Eating, Creating }
+
+
 public class AnimalsAi : MonoBehaviour
 {
-    public enum State { patrolling, chasing, eating, creating }
-    private State state;
-    private float animalSpeed;
+    [SerializeField] private float patrollingRange;
 
-    [SerializeField] private NavMeshAgent animalNav;
-    [SerializeField] private float range;
-    [SerializeField] private Transform patrollingPos;
+    [SerializeField] private NavMeshAgent navAgent;
     [SerializeField] private Animator animator;
-    [SerializeField] private Transform animal;
-    [SerializeField] private Transform eggPrefab;
 
-    private Grass currentGrass = null;
+    [SerializeField] private Transform animalsProductPrefab;
 
 
+    private AnimalState animalState;
+    private Grass currentGrass;
 
 
-    void Start()
+    private void Start() => animalState = AnimalState.Patrolling;
+
+
+    private void Update()
     {
-        animalNav = GetComponent<NavMeshAgent>();
-       
-
-        SetState(State.patrolling);
-    }
-
-
-    void Update()
-    {
-
-
-
-        animator.SetFloat("Move", animalSpeed);
-
-
-        switch (state)
+        switch (animalState)
         {
-            case State.patrolling:
+            case AnimalState.Patrolling:
                 Patrolling();
                 break;
-            case State.chasing:
+
+            case AnimalState.Chasing:
                 Chasing();
                 break;
-          
-            case State.creating:
+
+            case AnimalState.Creating:
                 Creating();
                 break;
-            default:
-                break;
         }
-
-
     }
 
-
-
-    public void SetState(State state)
+    public void SetGrassTarget(Grass grass)
     {
-        this.state = state;
-    }
+        if (animalState != AnimalState.Patrolling) return;
 
-    internal void SetGrassTarget(Grass grass)
-    {
-        if (state != State.patrolling) { return; }
         currentGrass = grass;
-        SetState(State.chasing);
+        animalState = AnimalState.Chasing;
     }
-
-
-
 
     private void Patrolling()
     {
-        animalNav.isStopped = false;
+        navAgent.isStopped = false;
+        animator.SetFloat("Move", navAgent.velocity.magnitude);
+        navAgent.speed = 3;
 
-        if (currentGrass != null) { return; }
 
-        if (animalNav.remainingDistance <= animalNav.stoppingDistance)
+        //if (currentGrass != null) return;
+
+        if (navAgent.remainingDistance <= navAgent.stoppingDistance)
         {
-            Vector3 point;
-            if (RandomPoint(patrollingPos.position, range, out point))
+            if (RandomPoint(transform.position, patrollingRange, out Vector3 point))
             {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-                animalNav.SetDestination(point);
+                navAgent.SetDestination(point);
             }
         }
-        animalNav.speed = 1;
-        animalSpeed = animalNav.velocity.magnitude;
 
+        navAgent.speed = 1;
     }
-
-
-
-
 
     private void Chasing()
     {
+        navAgent.SetDestination(currentGrass.transform.position);
+        navAgent.speed = 5;
+        animator.SetFloat("Move", navAgent.velocity.magnitude);
 
-
-        animalNav.SetDestination(currentGrass.transform.position);
-        animalNav.speed = 5;
-        animalSpeed = animalNav.velocity.magnitude;
-
-        if (!animalNav.pathPending && animalNav.remainingDistance <= animalNav.stoppingDistance)
+        if (!navAgent.pathPending && navAgent.remainingDistance <= navAgent.stoppingDistance)
         {
-            animalNav.isStopped = true;
-            animalNav.velocity = Vector3.zero;
-            SetState(State.eating);
+            navAgent.isStopped = true;
+            navAgent.velocity = Vector3.zero;
+            animalState = AnimalState.Eating;
             Eating();
         }
-
-
     }
-
-
-
-
-
 
     private async void Eating()
     {
-        animalSpeed = -1;
-
-
-
+        animator.SetFloat("Move", -1);
         await Task.Delay(7000);
-        currentGrass.gameObject.SetActive(false);
+        Destroy(currentGrass.gameObject);
         currentGrass = null;
-        SetState(State.creating);
-
-
-
-
+        animalState = AnimalState.Creating;
     }
-
-
-   
 
     private void Creating()
     {
-        SetState(State.patrolling);
-        var egg = Instantiate(eggPrefab, transform.position, Quaternion.identity);
-
+        animalState = AnimalState.Patrolling;
+        Instantiate(animalsProductPrefab, transform.position, Quaternion.identity);
     }
-
-
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
