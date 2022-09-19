@@ -7,6 +7,8 @@ public class Well : MonoBehaviour
 {
     [SerializeField] private int wellCapacity;
     [SerializeField] private Image waterBar;
+    [SerializeField] private float fillingSpeed;
+    [SerializeField] private Animator animator;
 
     private int currentWater;
 
@@ -19,12 +21,24 @@ public class Well : MonoBehaviour
         currentWater = wellCapacity;
     }
 
-    public void FillWater()
-    {
-        if (currentWater >= wellCapacity) return;
 
-        currentWater = wellCapacity;
-        waterBar.fillAmount = currentWater / (float)wellCapacity;
+    public void FillWater() => StartCoroutine(FillWaterCoroutine());
+
+    private IEnumerator FillWaterCoroutine()
+    {
+        if (currentWater >= wellCapacity) yield break;
+        animator.SetBool("ShouldFill", true);
+        float value = currentWater;
+        while (currentWater <= wellCapacity)
+        {
+            value += fillingSpeed * Time.deltaTime;
+            waterBar.fillAmount = value / wellCapacity;
+            currentWater = (int)value;
+            yield return null;
+            
+        }
+        animator.SetBool("ShouldFill", false);
+
     }
 
     public bool UseWater()
