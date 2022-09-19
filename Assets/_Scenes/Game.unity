@@ -9805,10 +9805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8284579601846d848afc404b7eb46ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grassPrefab: {fileID: 1292745069439953745, guid: c4bbe803143993e43b95fc6f2e06951a, type: 3}
-  grassParent: {fileID: 981522709}
-  maxWellCapacity: 5
-  waterBar: {fileID: 842677473}
 --- !u!1001 &1211580541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11046,6 +11042,7 @@ GameObject:
   - component: {fileID: 1347979245}
   - component: {fileID: 1347979244}
   - component: {fileID: 1347979246}
+  - component: {fileID: 1347979247}
   m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
@@ -11131,6 +11128,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.526026, y: 0.2575343, z: 5.677136}
   m_Center: {x: -1.7763568e-15, y: 0.12876713, z: -0.00000011921306}
+--- !u!114 &1347979247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347979241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b85c395bef9d1c59691352f461c86e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grassPrefab: {fileID: 1292745069439953745, guid: c4bbe803143993e43b95fc6f2e06951a, type: 3}
+  grassParent: {fileID: 981522709}
 --- !u!1001 &1355461643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17483,6 +17494,7 @@ GameObject:
   - component: {fileID: 3523374867216378184}
   - component: {fileID: 3514653225399246092}
   - component: {fileID: 3523374867216378186}
+  - component: {fileID: 3523374867216378187}
   m_Layer: 8
   m_Name: Well
   m_TagString: Untagged
@@ -17645,6 +17657,20 @@ CapsuleCollider:
   m_Height: 2.9831462
   m_Direction: 1
   m_Center: {x: 0.0000071049385, y: -0.081823625, z: -0.000002828818}
+--- !u!114 &3523374867216378187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3499788593151722626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abde6456f3fd4902d959977648298eaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wellCapacity: 5
+  waterBar: {fileID: 842677473}
 --- !u!33 &3523441791858592546
 MeshFilter:
   m_ObjectHideFlags: 0

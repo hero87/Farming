@@ -20,7 +20,7 @@ public class AnimalsAi : MonoBehaviour
     [SerializeField] private Transform animalsProductPrefab;
 
 
-    private AnimalState animalState;
+    public AnimalState animalState { get; private set; }
     private Grass currentGrass;
 
 
@@ -47,8 +47,6 @@ public class AnimalsAi : MonoBehaviour
 
     public void SetGrassTarget(Grass grass)
     {
-        if (animalState != AnimalState.Patrolling) return;
-
         currentGrass = grass;
         animalState = AnimalState.Chasing;
     }

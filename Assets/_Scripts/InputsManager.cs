@@ -5,21 +5,11 @@ using UnityEngine.UI;
 
 public class InputsManager : MonoBehaviour
 {
-    [SerializeField] private Grass grassPrefab;
-    [SerializeField] private Transform grassParent;
-
-    [SerializeField] private int maxWellCapacity;
-    [SerializeField] private Image waterBar;
-
-
-    private int currentWater;
     private int LayersToHit;
 
 
     private void Awake()
     {
-        currentWater = maxWellCapacity;
-
         var groundLayer = 1 << LayerMask.NameToLayer("Ground");
         var wellLayer = 1 << LayerMask.NameToLayer("Well");
         var eggsLayer = 1 << LayerMask.NameToLayer("Eggs");
@@ -35,16 +25,13 @@ public class InputsManager : MonoBehaviour
         if (!Input.GetMouseButtonDown(0)) return;
         if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, float.MaxValue, LayersToHit)) return;
 
-        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground") && currentWater > 0)
+        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            Instantiate(grassPrefab, hit.point, Quaternion.identity, grassParent);
-            currentWater -= 1;
-            waterBar.fillAmount = currentWater / (float)maxWellCapacity;
+            Ground.Instance.PlantGrass(hit.point);
         }
-        else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Well") && currentWater < maxWellCapacity)
+        else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Well"))
         {
-            currentWater = maxWellCapacity;
-            waterBar.fillAmount = currentWater / (float)maxWellCapacity;
+            Well.Instance.FillWater();
         }
         else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Eggs"))
         {
