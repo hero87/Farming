@@ -55,7 +55,7 @@ public class AnimalsAi : MonoBehaviour
     {
         navAgent.isStopped = false;
         animator.SetFloat("Move", navAgent.velocity.magnitude);
-        navAgent.speed = 3;
+        navAgent.speed = 2;
 
 
         //if (currentGrass != null) return;
@@ -69,7 +69,7 @@ public class AnimalsAi : MonoBehaviour
             }
         }
 
-        navAgent.speed = 1;
+        
     }
 
     private void Chasing()
