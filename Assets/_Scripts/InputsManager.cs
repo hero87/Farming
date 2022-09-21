@@ -31,7 +31,7 @@ public class InputsManager : MonoBehaviour
         }
         else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Well"))
         {
-            Well.Instance.FillWater();
+            LevelManager.Instance.FillWell();
         }
         else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Eggs"))
         {
