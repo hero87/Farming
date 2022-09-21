@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class Well : MonoBehaviour
 {
-    [SerializeField] private int wellCapacity;
     [SerializeField] private Image waterBar;
     [SerializeField] private float fillingSpeed;
     [SerializeField] private Animator animator;
 
+    private int capacity;
     private int currentWater;
 
     public static Well Instance { get; private set; }
@@ -17,28 +17,29 @@ public class Well : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else throw new System.Exception("There is already a Well object!");
-
-        currentWater = wellCapacity;
     }
 
 
-    public void FillWater() => StartCoroutine(FillWaterCoroutine());
+    public bool Fill()
+    {
+        if (currentWater >= capacity) return false;
+        StartCoroutine(FillWaterCoroutine());
+        return true;
+    }
 
     private IEnumerator FillWaterCoroutine()
     {
-        if (currentWater >= wellCapacity) yield break;
-        animator.SetBool("ShouldFill", true);
         float value = currentWater;
-        while (currentWater <= wellCapacity)
+        animator.SetBool("ShouldFill", true);
+        while (currentWater <= capacity)
         {
             value += fillingSpeed * Time.deltaTime;
-            waterBar.fillAmount = value / wellCapacity;
+            waterBar.fillAmount = value / capacity;
             currentWater = (int)value;
             yield return null;
-            
+
         }
         animator.SetBool("ShouldFill", false);
-
     }
 
     public bool UseWater()
@@ -46,8 +47,17 @@ public class Well : MonoBehaviour
         if (currentWater <= 0) return false;
 
         currentWater -= 1;
-        waterBar.fillAmount = currentWater / (float)wellCapacity;
+        waterBar.fillAmount = currentWater / (float)capacity;
         return true;
     }
 
+    public int Capacity
+    {
+        set
+        {
+            capacity = value;
+            currentWater = capacity;
+        }
+        get => currentWater;
+    }
 }
