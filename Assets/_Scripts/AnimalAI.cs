@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 public enum AnimalState { Patrolling, Chasing, Eating, Creating }
 
 
-public class AnimalsAi : MonoBehaviour
+public class AnimalAI : MonoBehaviour
 {
     [SerializeField] private float patrollingRange;
 
     [SerializeField] private NavMeshAgent navAgent;
     [SerializeField] private Animator animator;
 
-    [SerializeField] private Transform animalsProductPrefab;
+    [SerializeField] private GameObject animalsProductPrefab;
 
 
     public AnimalState animalState { get; private set; }
@@ -57,12 +57,11 @@ public class AnimalsAi : MonoBehaviour
         animator.SetFloat("Move", navAgent.velocity.magnitude);
         navAgent.speed = 2;
 
-
         //if (currentGrass != null) return;
 
         if (navAgent.remainingDistance <= navAgent.stoppingDistance)
         {
-            if (RandomPoint(transform.position, patrollingRange, out Vector3 point))
+            if (Extensions.GetRandomPoint(transform.position, patrollingRange, out Vector3 point))
             {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
                 navAgent.SetDestination(point);
@@ -102,17 +101,4 @@ public class AnimalsAi : MonoBehaviour
         Instantiate(animalsProductPrefab, transform.position, Quaternion.identity);
     }
 
-    bool RandomPoint(Vector3 center, float range, out Vector3 result)
-    {
-        Vector3 randomPoint = center + Random.insideUnitSphere * range;
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
-        {
-            result = hit.position;
-            return true;
-        }
-
-        result = Vector3.zero;
-        return false;
-    }
 }
