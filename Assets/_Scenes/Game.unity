@@ -6717,7 +6717,11 @@ MonoBehaviour:
   meatFactory: {fileID: 7820924655796753399}
   milkFactory: {fileID: 208095100066329117}
   burgerResturant: {fileID: 97947615}
+<<<<<<< HEAD
   instantiationRange: 1
+=======
+  instantiationRange: 2
+>>>>>>> 48b65ad372c308f9cd50abbfc5b67825ed1f7f44
   chickensParent: {fileID: 24762334}
   sheepsParent: {fileID: 676139764}
   cowsParent: {fileID: 622385778}

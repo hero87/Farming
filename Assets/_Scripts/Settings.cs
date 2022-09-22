@@ -47,12 +47,11 @@ public class Settings : ScriptableObject
         new KeyValue(Key.SheepPrice, 250),
     };
 
-    public int GetValue(Key _key)
+    public int GetValue(Key key)
     {
-        var keyBalue = keyValueList.FirstOrDefault(m => m.key == _key);
-        if (keyBalue == null) { throw new Exception($"ERROR | key {keyBalue} not found in the settings list"); }
-        return keyBalue.value;
-
+        var keyValue = keyValueList.FirstOrDefault(m => m.key == key);
+        if (keyValue == null) throw new Exception($"ERROR | key {keyValue} not found in the settings list");
+        return keyValue.value;
     }
 
 }
