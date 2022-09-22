@@ -20,6 +20,8 @@ public class Level : ScriptableObject
     {
         var mission = missions.FirstOrDefault(m => m.GetKey == key);
         if (mission == null) throw new Exception($"ERROR | key {key} not found in the missions list");
+        // TODO allow the player to save new animals & items into inventory
+        if (mission.Completed) return;
         mission.AddProgress();
         if (mission.Completed) completedMissionsCount++;
     }
