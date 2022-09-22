@@ -84,7 +84,6 @@ public class LevelManager : MonoBehaviour
         CurrentCoinsCount -= price;
         InstantiateAnimal(chickenPrefab, chickensParent);
 
-        CurrentLevel.AddProgressTo(Mission.Key.ChickensCount);
         try { CurrentLevel.AddProgressTo(Mission.Key.ChickensCount); }
         catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.EggsCount)) throw exception; }
     }

@@ -19,20 +19,16 @@ public class Level : ScriptableObject
     public void AddProgressTo(Mission.Key key)
     {
         var mission = missions.FirstOrDefault(m => m.GetKey == key);
-        if (mission == null) { throw new Exception($"ERROR | key {key} not found in the missions list"); }
+        if (mission == null) throw new Exception($"ERROR | key {key} not found in the missions list");
         mission.AddProgress();
-        if (mission.Completed) { completedMissionsCount++; }
-
-
-
+        if (mission.Completed) completedMissionsCount++;
     }
 
     public int GetCurrentValueOf(Mission.Key key)
     {
         var mission = missions.FirstOrDefault(m => m.GetKey == key);
-        if (mission == null) { throw new Exception($"ERROR | key {key} not found in the missions list"); }
+        if (mission == null) throw new Exception($"ERROR | key {key} not found in the missions list");
         return mission.GetCurrentValue;
-
     }
 
     public bool Contains(Mission.Key key)
