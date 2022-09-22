@@ -14,14 +14,12 @@ public class AnimalAI : MonoBehaviour
 {
 
     [SerializeField] private float patrollingRange;
-
-    [SerializeField] private NavMeshAgent navAgent;
-    [SerializeField] private Animator animator;
     [SerializeField] private float lifetime;
 
     [SerializeField] private GameObject animalsProductPrefab;
 
-
+    public Animator animator;
+    public NavMeshAgent navAgent;
 
     public AnimalState animalState { get; private set; }
     private Grass currentGrass;
