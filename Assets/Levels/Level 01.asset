@@ -12,23 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba274035b57702540a5089e15029053f, type: 3}
   m_Name: Level 01
   m_EditorClassIdentifier: 
-  coinsCount: 500
-  wellCapacity: 10
-  allowChicknsCreating: 1
-  allowCowsCreating: 1
-  allowSheepsCreating: 1
-  activateMilkFactory: 0
-  activateMeatFactory: 0
-  activateBurgerResturant: 0
-  activateBreadBakery: 0
-  activateCakeBeakery: 0
-  goldTime: 5
-  maximumTime: 10
-  eggsCount: 1
-  milkCount: 1
-  meatCount: 1
-  breadCount: 1
-  cakeCount: 1
-  chickensCount: 1
-  cowsCount: 1
-  sheepsCount: 1
+  settings: {fileID: 11400000, guid: 1c390c0b979d8ee47af540715848e19c, type: 2}
+  missions:
+  - {fileID: 11400000, guid: fd8d9bb725b5db14899c9dab4d097c3e, type: 2}
+  - {fileID: 11400000, guid: 7871a2315ca6269408fcfbf9a75e8964, type: 2}

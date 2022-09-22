@@ -225,7 +225,7 @@ RectTransform:
   - {fileID: 1018209988}
   - {fileID: 1238323090}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -242,7 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 24762334}
   m_Layer: 0
-  m_Name: ChicknsInstantiationPoint
+  m_Name: ChicknsParent
   m_TagString: Untagged
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -255,12 +255,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24762333}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.25, y: 0.25, z: -2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 111531652}
+  m_Father: {fileID: 875132011}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &40919614
@@ -724,40 +724,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1240621034265527963, guid: 848b41f3b147d4c4bbfb0a94456d7e40, type: 3}
   m_PrefabInstance: {fileID: 788437400}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &111531651
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 111531652}
-  m_Layer: 0
-  m_Name: InstantiationPoints
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &111531652
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 111531651}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 24762334}
-  - {fileID: 676139764}
-  - {fileID: 622385778}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &115458741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2945,7 +2911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 622385778}
   m_Layer: 0
-  m_Name: CowsInstantiationPoint
+  m_Name: CowsParent
   m_TagString: Untagged
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2958,12 +2924,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622385777}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -12.5, y: 0.25, z: -3.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 111531652}
+  m_Father: {fileID: 875132011}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &639754337 stripped
@@ -3215,7 +3181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 676139764}
   m_Layer: 0
-  m_Name: SheepsInstantiationPoint
+  m_Name: SheepsParent
   m_TagString: Untagged
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3228,12 +3194,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676139763}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -11, y: 0.25, z: 4.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 111531652}
+  m_Father: {fileID: 875132011}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &676537658 stripped
@@ -4307,7 +4273,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &838105241
 GameObject:
@@ -4561,9 +4527,12 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 24762334}
+  - {fileID: 676139764}
+  - {fileID: 622385778}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &875391299
 PrefabInstance:
@@ -5690,7 +5659,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &990103689 stripped
 Transform:
@@ -6484,7 +6453,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1209747884
 MonoBehaviour:
@@ -6511,20 +6480,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 11400000, guid: c8afdd6a5dac04144ae8f17f2e97b3d8, type: 2}
+  - {fileID: 11400000, guid: a7ca4f5bf45285d44be56ede7f459737, type: 2}
   chickenPrefab: {fileID: 3393226351045160432, guid: 6336c477ea16d3d41ac5989445e60614, type: 3}
   sheepPrefab: {fileID: 7823615927036701152, guid: 17e8131ffbce4324e979e07e8432b28d, type: 3}
   cowPrefab: {fileID: 8942419569566653295, guid: 6ba32a67a5cb4fa448b1b98df31cccaa, type: 3}
-  buildingsParent: {fileID: 0}
-  milkAndMeatFactory: {fileID: 1300913356}
-  burgerResturant: {fileID: 97947615}
   cakeBakery: {fileID: 2070102363}
   breadBakery: {fileID: 1969642309}
-  animalsInstantiationRange: 1
-  animalsParaent: {fileID: 875132011}
-  chickenInstantiationPoint: {fileID: 24762334}
-  sheepInstantiationPoint: {fileID: 676139764}
-  cowInstantiationPoint: {fileID: 622385778}
+  meatFactory: {fileID: 1300913356}
+  milkFactory: {fileID: 1300913356}
+  burgerResturant: {fileID: 97947615}
+  instantiationRange: 0
+  chickensParent: {fileID: 24762334}
+  sheepsParent: {fileID: 676139764}
+  cowsParent: {fileID: 622385778}
   coinsCountText: {fileID: 591862118}
   creatNewChickenButton: {fileID: 49603098}
   creatNewCowButton: {fileID: 1018209991}
@@ -9253,7 +9221,7 @@ Transform:
   - {fileID: 2061538901}
   - {fileID: 580892540}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2006823909
 PrefabInstance:
@@ -10199,7 +10167,7 @@ Transform:
   - {fileID: 2136201296}
   - {fileID: 561206792}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &3837239517811585352
 MeshRenderer:
