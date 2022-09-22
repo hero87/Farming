@@ -12,19 +12,26 @@ public enum AnimalState { Patrolling, Chasing, Eating, Creating }
 
 public class AnimalAI : MonoBehaviour
 {
-    [SerializeField] private float patrollingRange;
 
-    [SerializeField] private NavMeshAgent navAgent;
-    [SerializeField] private Animator animator;
+    [SerializeField] private float patrollingRange;
+    [SerializeField] private float lifetime;
 
     [SerializeField] private GameObject animalsProductPrefab;
 
+    public Animator animator;
+    public NavMeshAgent navAgent;
 
     public AnimalState animalState { get; private set; }
     private Grass currentGrass;
 
 
-    private void Start() => animalState = AnimalState.Patrolling;
+
+
+    private void Start()
+    {
+        animalState = AnimalState.Patrolling;
+        Destroy(gameObject, lifetime);
+    }
 
 
     private void Update()
@@ -43,6 +50,7 @@ public class AnimalAI : MonoBehaviour
                 Creating();
                 break;
         }
+
     }
 
     public void SetGrassTarget(Grass grass)
@@ -67,6 +75,7 @@ public class AnimalAI : MonoBehaviour
                 navAgent.SetDestination(point);
             }
         }
+        
 
         
     }
@@ -100,5 +109,6 @@ public class AnimalAI : MonoBehaviour
         animalState = AnimalState.Patrolling;
         Instantiate(animalsProductPrefab, transform.position, Quaternion.identity);
     }
+
 
 }
