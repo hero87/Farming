@@ -14,7 +14,7 @@ public class AnimalAI : MonoBehaviour
 {
 
     [SerializeField] private float patrollingRange;
-    [SerializeField] private float lifetime;
+    [SerializeField] private float lifTime;
 
     [SerializeField] private GameObject animalsProductPrefab;
 
@@ -27,15 +27,16 @@ public class AnimalAI : MonoBehaviour
 
 
 
-    private void Start()
+    private void Awake()
     {
         animalState = AnimalState.Patrolling;
-        Destroy(gameObject, lifetime);
+        currentLifeLime = lifTime;
     }
 
 
     private void Update()
     {
+        ManageLifeTime();
         switch (animalState)
         {
             case AnimalState.Patrolling:
@@ -50,7 +51,16 @@ public class AnimalAI : MonoBehaviour
                 Creating();
                 break;
         }
+    }
 
+
+    private float currentLifeLime;
+    private void ManageLifeTime()
+    {
+        if (animalState == AnimalState.Patrolling || animalState == AnimalState.Chasing) currentLifeLime -= Time.deltaTime;
+        else currentLifeLime = lifTime;
+
+        if (currentLifeLime <= 0) Destroy(gameObject);
     }
 
     public void SetGrassTarget(Grass grass)
@@ -75,9 +85,6 @@ public class AnimalAI : MonoBehaviour
                 navAgent.SetDestination(point);
             }
         }
-        
-
-        
     }
 
     private void Chasing()

@@ -820,10 +820,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrollingRange: 5
-  navAgent: {fileID: 3393226351045160434}
-  animator: {fileID: 3393226350134104455}
-  lifetime: 50
+  lifTime: 5
   animalsProductPrefab: {fileID: 1276258051581163783, guid: 460b4c22bb17a854a961f43e55fe0a19, type: 3}
+  animator: {fileID: 3393226350134104455}
+  navAgent: {fileID: 3393226351045160434}
 --- !u!54 &1842010910
 Rigidbody:
   m_ObjectHideFlags: 0

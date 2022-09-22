@@ -16,8 +16,7 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] private NavMeshAgent navAgent;
     [SerializeField] private Animator animator;
-    private AnimalAI animalAI;
-    private float animalDestroyTime=1.2f;
+     private float animalDestroyTime=1.2f;
     
 
     public EnemyState enemyState { get; private set; }

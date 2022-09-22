@@ -41,10 +41,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7823615927036701155}
   - component: {fileID: 7823615927036701154}
-  - component: {fileID: 7823615927036701158}
-  - component: {fileID: 7823615927036701159}
   - component: {fileID: 1486995563}
+  - component: {fileID: 7823615927036701158}
   - component: {fileID: 6051310384904967814}
+  - component: {fileID: 7823615927036701159}
   m_Layer: 0
   m_Name: Sheep
   m_TagString: Untagged
@@ -90,36 +90,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &7823615927036701158
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7823615927036701152}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7624472, y: 1.071111, z: 1.7369119}
-  m_Center: {x: 0.040275652, y: 0.69899404, z: 0.12345828}
---- !u!114 &7823615927036701159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7823615927036701152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72e132d0154eaa4fa1e020b8d66a1bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrollingRange: 5
-  navAgent: {fileID: 7823615927036701154}
-  animator: {fileID: 7909161850027351019}
-  lifetime: 50
-  animalsProductPrefab: {fileID: 0}
 --- !u!54 &1486995563
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -136,6 +106,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &7823615927036701158
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7823615927036701152}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7624472, y: 1.071111, z: 1.7369119}
+  m_Center: {x: 0.040275652, y: 0.69899404, z: 0.12345828}
 --- !u!65 &6051310384904967814
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -149,6 +132,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.76716846, y: 1.341495, z: 1.9436959}
   m_Center: {x: 0.03308969, y: 0.6816759, z: 0.21765655}
+--- !u!114 &7823615927036701159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7823615927036701152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72e132d0154eaa4fa1e020b8d66a1bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patrollingRange: 5
+  lifTime: 5
+  animalsProductPrefab: {fileID: 0}
+  animator: {fileID: 7909161850027351019}
+  navAgent: {fileID: 7823615927036701154}
 --- !u!1 &7823899958774321983
 GameObject:
   m_ObjectHideFlags: 0
