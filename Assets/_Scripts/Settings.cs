@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 
@@ -32,30 +33,26 @@ public class Settings : ScriptableObject
         }
     }
 
-    [SerializeField] private KeyValue[] keyValueList = new KeyValue[]
+    [SerializeField]
+    private KeyValue[] keyValueList = new KeyValue[]
     {
         new KeyValue(Key.CoinsCount, 300),
         new KeyValue(Key.WellCapacity, 5),
         new KeyValue(Key.WellFillPrice, 100),
         new KeyValue(Key.GoldTime, 60),
         new KeyValue(Key.MaximumTime, 120),
-
         new KeyValue(Key.CollectableLifeTime, 20),
-
         new KeyValue(Key.ChicknPrice, 100),
         new KeyValue(Key.CowPrice, 200),
         new KeyValue(Key.SheepPrice, 250),
     };
 
-    public int GetValue(Key key)
+    public int GetValue(Key _key)
     {
-        foreach (var kv in keyValueList)
-        {
-            if (kv.key == key)
-                return kv.value;
-        }
+        var keyBalue = keyValueList.FirstOrDefault(m => m.key == _key);
+        if (keyBalue == null) { throw new Exception($"ERROR | key {keyBalue} not found in the settings list"); }
+        return keyBalue.value;
 
-        throw new Exception($"ERROR | key {key} not found in the settings list");
     }
 
 }

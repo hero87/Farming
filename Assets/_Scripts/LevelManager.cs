@@ -85,8 +85,8 @@ public class LevelManager : MonoBehaviour
         InstantiateAnimal(chickenPrefab, chickensParent);
 
         CurrentLevel.AddProgressTo(Mission.Key.ChickensCount);
-        //try { CurrentLevel.AddProgressTo(Mission.Key.ChickensCount); }
-        //catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.EggsCount)) throw exception; }
+        try { CurrentLevel.AddProgressTo(Mission.Key.ChickensCount); }
+        catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.EggsCount)) throw exception; }
     }
 
     public void CreateNewCow()
