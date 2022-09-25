@@ -11,6 +11,7 @@ public class Level : ScriptableObject
 {
     [SerializeField] private Settings settings;
     [SerializeField] private List<Mission> missions;
+    public List<Mission> GetMissions => missions;
 
     public int GetSetting(Settings.Key key) => settings.GetValue(key);
 

@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 7236514758159922467}
   - component: {fileID: 6528248194080858988}
   m_Layer: 5
-  m_Name: MissionCard
+  m_Name: MissionItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

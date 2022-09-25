@@ -152,8 +152,9 @@ GameObject:
   - component: {fileID: 4046624961519784061}
   - component: {fileID: 4046624961519784060}
   - component: {fileID: 4046624961519784062}
+  - component: {fileID: -6612331608726086977}
   m_Layer: 5
-  m_Name: InstantiateButton
+  m_Name: ButtonItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -274,3 +275,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &-6612331608726086977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046624961519784050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 104adf01e71a9c340bb8fb6247d51af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

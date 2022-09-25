@@ -31,17 +31,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform sheepsParent;
     [SerializeField] private Transform cowsParent;
 
-    [Header("GUI")]
-    [SerializeField] private TextMeshProUGUI coinsCountText;
-    [SerializeField] private Button viewMissionListButton;
-    [SerializeField] private RectTransform missionList;
-    [SerializeField] private RectTransform instantiateList;
+   
 
 
-    #region Loaded From Resources
-    public GameObject MissionCardPrefab { get; private set; }
-    public GameObject InstantiateButtonPrefab { get; private set; }
-    #endregion
+  
 
     public int CurrentLevelNumber => PlayerPrefs.GetInt("CURRENT_LEVEL_NUMBER");
     public Level CurrentLevel => levels[CurrentLevelNumber];
@@ -50,12 +43,11 @@ public class LevelManager : MonoBehaviour
     private int currentCoinsCount;
     public int CurrentCoinsCount
     {
-        set { currentCoinsCount = value; coinsCountText.text = $"{currentCoinsCount}"; }
+        set { currentCoinsCount = value;  }
         get => currentCoinsCount;
     }
 
-    public RectTransform MissionListContent => missionList.GetComponentInChildren<ScrollRect>().content;
-    public RectTransform InstantiateListContent => instantiateList;
+   
 
     public static LevelManager Instance { get; private set; }
     private void Awake()
@@ -63,8 +55,6 @@ public class LevelManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else throw new Exception("There is already a LevelManager object!");
 
-        MissionCardPrefab = Resources.Load<GameObject>("MissionCard");
-        InstantiateButtonPrefab = Resources.Load<GameObject>("InstantiateButton");
     }
 
     private void Update() => CheckLevelProgress();
@@ -163,16 +153,6 @@ public class LevelManager : MonoBehaviour
             CurrentCoinsCount -= fillPrice;
     }
 
-    public void ViewMissionList()
-    {
-        missionList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, -75, 0), 1.0f);
-        viewMissionListButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, 150, 0), 1.0f);
-    }
-
-    public void HideMissionList()
-    {
-        missionList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(600, -75, 0), 1.0f);
-        viewMissionListButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-75, -75, 0), 1.0f);
-    }
+   
     #endregion
 }
