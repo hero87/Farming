@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &810972794621190705
 RectTransform:
@@ -129,7 +129,7 @@ Transform:
   m_GameObject: {fileID: 5085597054108557079}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5088782850788851879}
@@ -305,7 +305,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &8503381850576004981
 RectTransform:
@@ -381,7 +381,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &8503381851612703786
 RectTransform:
@@ -453,12 +453,13 @@ GameObject:
   - component: {fileID: 8503381852136465953}
   - component: {fileID: 8503381852136465958}
   - component: {fileID: 8503381852136465959}
+  - component: {fileID: 504324018}
   m_Layer: 8
   m_Name: Well
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8503381852136465953
 Transform:
@@ -489,7 +490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abde6456f3fd4902d959977648298eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wellCapacity: 5
   waterBar: {fileID: 8503381850576004980}
   fillingSpeed: 5
   animator: {fileID: 5109226555974136540}
@@ -506,3 +506,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.808117, y: 6.458869, z: 4.0600114}
   m_Center: {x: -0.13740778, y: 1.8447967, z: -0.10024381}
+--- !u!208 &504324018
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8503381852136465956}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.9040585, y: 3.2294345, z: 2.0300055}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.1374078, y: 1.844797, z: -0.1002438}
+  m_TimeToStationary: 0.5

@@ -115,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrollingRange: 7
   lifTime: 5
-  animalsProductPrefab: {fileID: 0}
+  animalsProductPrefab: {fileID: 8593997793688530191, guid: 94a68af926f53484c83306159006843c, type: 3}
   animator: {fileID: 9029148283710346599}
   navAgent: {fileID: 8942419569566653265}
 --- !u!1 &8942469516265005197
