@@ -21,5 +21,5 @@ public class MissionItem : MonoBehaviour
 
     private void UpdateText() => text.text = $"Êã ÊÌãíÚ {mission.CurrentValue} ãä {mission.TargetValue}";
 
-    private void OnDestroy() => mission.OnAddProgress -= UpdateText;
+    private void OnDisable() => mission.OnAddProgress -= UpdateText;
 }

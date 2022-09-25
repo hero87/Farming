@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
 
     public void Initiate()
     {
+        // TODO refactor
         var buttonItemsSet = new HashSet<ButtonItem.Key>();
         foreach (var mission in LevelManager.Instance.CurrentLevel.Missions)
         {
