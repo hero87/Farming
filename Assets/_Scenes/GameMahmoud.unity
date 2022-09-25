@@ -2214,6 +2214,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8503381850576004981, guid: c5ad8d3505530c244b5cf5e40ff66d6c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8503381851612703787, guid: c5ad8d3505530c244b5cf5e40ff66d6c, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -6225,6 +6229,7 @@ GameObject:
   - component: {fileID: 1209747883}
   - component: {fileID: 1209747884}
   - component: {fileID: 1209747885}
+  - component: {fileID: 1209747886}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -6273,9 +6278,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - {fileID: 11400000, guid: a7ca4f5bf45285d44be56ede7f459737, type: 2}
-  chickenPrefab: {fileID: 3393226351045160432, guid: 6336c477ea16d3d41ac5989445e60614, type: 3}
-  sheepPrefab: {fileID: 7823615927036701152, guid: 17e8131ffbce4324e979e07e8432b28d, type: 3}
-  cowPrefab: {fileID: 8942419569566653295, guid: 6ba32a67a5cb4fa448b1b98df31cccaa, type: 3}
   cakeBakery: {fileID: 2070102363}
   breadBakery: {fileID: 1969642309}
   meatFactory: {fileID: 7820924655796753399}
@@ -6284,10 +6286,24 @@ MonoBehaviour:
   chickensParent: {fileID: 24762334}
   sheepsParent: {fileID: 676139764}
   cowsParent: {fileID: 622385778}
+--- !u!114 &1209747886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209747881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0792e02fdb9be0f44a2ae0605f944d6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonItemPrefab: {fileID: -6612331608726086977, guid: 19a3c85cb042753428fa64321ec4ee34, type: 3}
+  missionItemPrefab: {fileID: 5524649745619635988, guid: 166b87b40e080654ca06b045a7417192, type: 3}
   coinsCountText: {fileID: 591862118}
   viewMissionListButton: {fileID: 1590986831}
   missionList: {fileID: 262403897866681642}
-  instantiateList: {fileID: 1552801856}
+  buttonList: {fileID: 1552801856}
 --- !u!1001 &1211580541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7850,7 +7866,7 @@ GameObject:
   - component: {fileID: 1552801856}
   - component: {fileID: 1552801857}
   m_Layer: 5
-  m_Name: InstantiateList
+  m_Name: ButtonList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7994,8 +8010,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1209747885}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+      - m_Target: {fileID: 1209747886}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: ViewMissionList
         m_Mode: 1
         m_Arguments:
@@ -9797,7 +9813,7 @@ PrefabInstance:
     - target: {fileID: 2111026737614041660, guid: b6a664ca008e0824986100ad22e02670, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1209747885}
+      objectReference: {fileID: 1209747886}
     - target: {fileID: 2111026737614041660, guid: b6a664ca008e0824986100ad22e02670, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -9808,7 +9824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2111026737614041660, guid: b6a664ca008e0824986100ad22e02670, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LevelManager, Assembly-CSharp
+      value: UIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2111026737614041660, guid: b6a664ca008e0824986100ad22e02670, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

@@ -11,39 +11,43 @@ public class Level : ScriptableObject
 {
     [SerializeField] private Settings settings;
     [SerializeField] private List<Mission> missions;
-    public List<Mission> GetMissions => missions;
+
+
+    private HashSet<Mission.Key> completedMissions = new HashSet<Mission.Key>();
+
+
+    public List<Mission> Missions => missions;
+    public bool Completed => missions.Count == completedMissions.Count;
+
 
     public int GetSetting(Settings.Key key) => settings.GetValue(key);
 
-    private int completedMissionsCount;
-
     public void AddProgressTo(Mission.Key key)
     {
-        var mission = missions.FirstOrDefault(m => m.GetKey == key);
+        var mission = missions.FirstOrDefault(m => m.Objective == key);
         if (mission == null) throw new Exception($"ERROR | key {key} not found in the missions list");
-        // TODO allow the player to save new animals & items into inventory
-        if (mission.Completed) return;
+
         mission.AddProgress();
-        if (mission.Completed) completedMissionsCount++;
+
+        if (mission.Completed && !completedMissions.Contains(mission.Objective))
+            completedMissions.Add(mission.Objective);
     }
 
     public int GetCurrentValueOf(Mission.Key key)
     {
-        var mission = missions.FirstOrDefault(m => m.GetKey == key);
+        var mission = missions.FirstOrDefault(m => m.Objective == key);
         if (mission == null) throw new Exception($"ERROR | key {key} not found in the missions list");
-        return mission.GetCurrentValue;
+        return mission.CurrentValue;
     }
 
     public bool Contains(Mission.Key key)
     {
-        return missions.Any(m => m.GetKey == key);
+        return missions.Any(m => m.Objective == key);
     }
-
-    public bool Completed => missions.Count == completedMissionsCount;
 
     public void Initiate()
     {
-        completedMissionsCount = 0;
+        completedMissions.Clear();
         missions.ForEach(m => m.Initiate());
     }
 }
