@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using RTLTMPro;
+using Unity.VisualScripting;
 
 public class MissionItem : MonoBehaviour
 {
@@ -14,9 +15,11 @@ public class MissionItem : MonoBehaviour
     {
         this.mission = mission;
         this.mission.OnAddProgress += UpdateText;
-        image.sprite = Resources.Load<Sprite>($"Sprites/{nameof(mission.Objective)}");
+        image.sprite = Resources.Load<Sprite>($"Sprites/{Enum.GetName(typeof(Mission.Key), mission.Objective)}");
         text.text = $"Êã ÊÌãíÚ {mission.CurrentValue} ãä {mission.TargetValue}";
     }
 
     private void UpdateText() => text.text = $"Êã ÊÌãíÚ {mission.CurrentValue} ãä {mission.TargetValue}";
+
+    private void OnDestroy() => mission.OnAddProgress -= UpdateText;
 }
