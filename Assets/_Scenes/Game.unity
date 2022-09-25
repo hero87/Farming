@@ -2199,6 +2199,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1994623984}
     m_Modifications:
+    - target: {fileID: 8503381850576004981, guid: c5ad8d3505530c244b5cf5e40ff66d6c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8503381851612703786, guid: c5ad8d3505530c244b5cf5e40ff66d6c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -6516,16 +6520,11 @@ MonoBehaviour:
   cakeBakery: {fileID: 2070102363}
   breadBakery: {fileID: 1969642309}
   meatFactory: {fileID: 0}
-  milkFactory: {fileID: 0}
   burgerResturant: {fileID: 97947615}
   instantiationRange: 1
   chickensParent: {fileID: 24762334}
   sheepsParent: {fileID: 676139764}
   cowsParent: {fileID: 622385778}
-  coinsCountText: {fileID: 591862118}
-  creatNewChickenButton: {fileID: 49603098}
-  creatNewCowButton: {fileID: 1018209991}
-  creatNewSheepButton: {fileID: 1238323087}
 --- !u!1001 &1211580541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26194,18 +26193,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4805542088995832, guid: 9f951889d571d8d43a9afdc8caf44225, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805542088995832, guid: 9f951889d571d8d43a9afdc8caf44225, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805542088995832, guid: 9f951889d571d8d43a9afdc8caf44225, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805542088995832, guid: 9f951889d571d8d43a9afdc8caf44225, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -26244,10 +26231,6 @@ PrefabInstance:
     - target: {fileID: 4805542088995832, guid: 9f951889d571d8d43a9afdc8caf44225, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805542088995832, guid: 9f951889d571d8d43a9afdc8caf44225, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f951889d571d8d43a9afdc8caf44225, type: 3}
