@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
+using RTLTMPro;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Mission 01", menuName = "Create New Mission")]
 public class Mission : ScriptableObject
@@ -10,18 +11,21 @@ public class Mission : ScriptableObject
     public enum Key
     {
         EggsCount,
-        MilkCount,
-        MeatCount,
-        BurgerCount,
-        BreadCount,
-        CakeCount,
+        MilksCount,
+        MeatsCount,
+        BurgersCount,
+        BreadsCount,
+        CakesCount,
         ChickensCount,
         CowsCount,
         SheepsCount,
     }
 
+
     [SerializeField] private Key key;
     [SerializeField] private int targetValue;
+    [SerializeField] private Sprite sprite;
+
 
     public Key GetKey => key;
     public int GetTargetValue => targetValue;
@@ -30,7 +34,58 @@ public class Mission : ScriptableObject
 
 
     private int currentValue;
-    public void AddProgress() => currentValue++;
+    private GameObject missionCard;
+    private RTLTextMeshPro info;
+    private Image image;
 
-    public void Reset() => currentValue = 0;
+
+    public void AddProgress()
+    {
+        currentValue++;
+        info.text = $" „  Ã„Ì⁄ {currentValue} „‰ {targetValue}";
+    }
+
+    public void Initiate()
+    {
+        currentValue = 0;
+        InitiateMissionCard();
+        InitiateMissionButton();
+    }
+
+    private void InitiateMissionCard()
+    {
+        missionCard = Instantiate(LevelManager.Instance.MissionCardPrefab, LevelManager.Instance.MissionListContent);
+        info = missionCard.GetComponentInChildren<RTLTextMeshPro>();
+        image = missionCard.GetComponentInChildren<Image>();
+        info.text = $" „  Ã„Ì⁄ {currentValue} „‰ {targetValue}";
+        image.sprite = sprite;
+    }
+
+    private void InitiateMissionButton()
+    {
+        var button = Instantiate(LevelManager.Instance.InstantiateButtonPrefab, LevelManager.Instance.InstantiateListContent);
+
+        switch (key)
+        {
+            case Key.EggsCount:
+            case Key.ChickensCount:
+                button.GetComponent<Button>().onClick.AddListener(LevelManager.Instance.InstantiateNewChicken);
+                button.GetComponentInChildren<RTLTextMeshPro>().text = "√÷› œÃ«Ã…";
+                break;
+
+            case Key.MilksCount:
+            case Key.CowsCount:
+                button.GetComponent<Button>().onClick.AddListener(LevelManager.Instance.InstantiateNewCow);
+                button.GetComponentInChildren<RTLTextMeshPro>().text = "√÷› »ﬁ—…";
+                break;
+
+            case Key.MeatsCount:
+            case Key.SheepsCount:;
+                button.GetComponent<Button>().onClick.AddListener(LevelManager.Instance.InstantiateNewSheep);
+                button.GetComponentInChildren<RTLTextMeshPro>().text = "√÷› €‰„…";
+                break;
+        }
+    }
 }
+
+

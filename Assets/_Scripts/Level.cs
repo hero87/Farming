@@ -15,7 +15,7 @@ public class Level : ScriptableObject
     public int GetSetting(Settings.Key key) => settings.GetValue(key);
 
     private int completedMissionsCount;
-  
+
     public void AddProgressTo(Mission.Key key)
     {
         var mission = missions.FirstOrDefault(m => m.GetKey == key);
@@ -40,10 +40,9 @@ public class Level : ScriptableObject
 
     public bool Completed => missions.Count == completedMissionsCount;
 
-    public void Reset()
+    public void Initiate()
     {
         completedMissionsCount = 0;
-        missions.ForEach(m => m.Reset());   
-       
+        missions.ForEach(m => m.Initiate());
     }
 }
