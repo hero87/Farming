@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG;
+using DG.Tweening;
 
 public class Well : MonoBehaviour
 {
@@ -17,6 +19,9 @@ public class Well : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else throw new System.Exception("There is already a Well object!");
+
+
+
     }
 
 
