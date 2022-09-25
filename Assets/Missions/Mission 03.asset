@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6090f2a50ca6b6442bf3871d4eae6e9c, type: 3}
   m_Name: Mission 03
   m_EditorClassIdentifier: 
-  key: 7
-  targetValue: 2
+  key: 8
+  targetValue: 4
+  sprite: {fileID: 21300000, guid: bacf2ed2ccff1e44f9d240cd7af926bb, type: 3}

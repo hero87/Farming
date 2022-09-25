@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG;
+using DG.Tweening;
 
 public class LevelManager : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Level[] levels;
 
     [Header("Animals")]
+    // TODO load prefabs from resources
     [SerializeField] private GameObject chickenPrefab;
     [SerializeField] private GameObject sheepPrefab;
     [SerializeField] private GameObject cowPrefab;
@@ -19,7 +22,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject cakeBakery;
     [SerializeField] private GameObject breadBakery;
     [SerializeField] private GameObject meatFactory;
-    [SerializeField] private GameObject milkFactory;
+    //[SerializeField] private GameObject milkFactory;
     [SerializeField] private GameObject burgerResturant;
 
     [Header("Instantiation Points")]
@@ -28,12 +31,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform sheepsParent;
     [SerializeField] private Transform cowsParent;
 
-    [Header("GUI")]
-    [SerializeField] private TextMeshProUGUI coinsCountText;
-    [SerializeField] private Button creatNewChickenButton;
-    [SerializeField] private Button creatNewCowButton;
-    [SerializeField] private Button creatNewSheepButton;
+   
 
+
+  
 
     public int CurrentLevelNumber => PlayerPrefs.GetInt("CURRENT_LEVEL_NUMBER");
     public Level CurrentLevel => levels[CurrentLevelNumber];
@@ -42,81 +43,34 @@ public class LevelManager : MonoBehaviour
     private int currentCoinsCount;
     public int CurrentCoinsCount
     {
-        set { currentCoinsCount = value; coinsCountText.text = $"{currentCoinsCount}"; }
+        set { currentCoinsCount = value;  }
         get => currentCoinsCount;
     }
+
+   
 
     public static LevelManager Instance { get; private set; }
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else throw new Exception("There is already a LevelManager object!");
-        InitiateLevel();
+
     }
 
     private void Update() => CheckLevelProgress();
 
-    private void InitiateLevel()
+    private void Start()
     {
+        CurrentLevel.Initiate();
+
         CurrentCoinsCount = CurrentLevel.GetSetting(Settings.Key.CoinsCount);
         Well.Instance.Capacity = CurrentLevel.GetSetting(Settings.Key.WellCapacity);
 
-        milkFactory.SetActive(CurrentLevel.Contains(Mission.Key.MilkCount));
-        meatFactory.SetActive(CurrentLevel.Contains(Mission.Key.MeatCount));
-        cakeBakery.SetActive(CurrentLevel.Contains(Mission.Key.CakeCount));
-        breadBakery.SetActive(CurrentLevel.Contains(Mission.Key.BreadCount));
-        burgerResturant.SetActive(CurrentLevel.Contains(Mission.Key.BurgerCount));
-
-        var activateCowButton = CurrentLevel.Contains(Mission.Key.CowsCount) | CurrentLevel.Contains(Mission.Key.MilkCount);
-        var activateSheepButton = CurrentLevel.Contains(Mission.Key.SheepsCount) | CurrentLevel.Contains(Mission.Key.MeatCount);
-        var activateChicknButton = CurrentLevel.Contains(Mission.Key.ChickensCount) | CurrentLevel.Contains(Mission.Key.EggsCount);
-
-        creatNewCowButton.gameObject.SetActive(activateCowButton);
-        creatNewSheepButton.gameObject.SetActive(activateSheepButton);
-        creatNewChickenButton.gameObject.SetActive(activateChicknButton);
-    }
-
-    public void CreateNewChicken()
-    {
-        var price = CurrentLevel.GetSetting(Settings.Key.ChicknPrice);
-
-        if (CurrentCoinsCount < price) return;
-        CurrentCoinsCount -= price;
-        InstantiateAnimal(chickenPrefab, chickensParent);
-
-        try { CurrentLevel.AddProgressTo(Mission.Key.ChickensCount); }
-        catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.EggsCount)) throw exception; }
-    }
-
-    public void CreateNewCow()
-    {
-        var price = CurrentLevel.GetSetting(Settings.Key.CowPrice);
-
-        if (CurrentCoinsCount < price) return;
-        CurrentCoinsCount -= price;
-        InstantiateAnimal(cowPrefab, cowsParent);
-
-        try { CurrentLevel.AddProgressTo(Mission.Key.CowsCount); }
-        catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.MilkCount)) throw exception; }
-    }
-
-    public void CreateNewSheep()
-    {
-        var price = CurrentLevel.GetSetting(Settings.Key.SheepPrice);
-
-        if (CurrentCoinsCount < price) return;
-        CurrentCoinsCount -= price;
-        InstantiateAnimal(sheepPrefab, sheepsParent);
-
-        try { CurrentLevel.AddProgressTo(Mission.Key.SheepsCount); }
-        catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.MeatCount)) throw exception; }
-    }
-
-    public void FillWell()
-    {
-        var fillPrice = CurrentLevel.GetSetting(Settings.Key.WellFillPrice);
-        if (CurrentCoinsCount >= fillPrice && Well.Instance.Fill())
-            CurrentCoinsCount -= fillPrice;
+        //milkFactory.SetActive(CurrentLevel.Contains(Mission.Key.MilkCount));
+        meatFactory.SetActive(CurrentLevel.Contains(Mission.Key.MeatsCount));
+        cakeBakery.SetActive(CurrentLevel.Contains(Mission.Key.CakesCount));
+        breadBakery.SetActive(CurrentLevel.Contains(Mission.Key.BreadsCount));
+        burgerResturant.SetActive(CurrentLevel.Contains(Mission.Key.BurgersCount));
     }
 
     private void InstantiateAnimal(GameObject animal, Transform instantiationPoint)
@@ -136,14 +90,69 @@ public class LevelManager : MonoBehaviour
         if (CurrentLevel.Completed)
         {
             if (Time.time <= CurrentLevel.GetSetting(Settings.Key.GoldTime))
+            {
+                Time.timeScale = 0.0f;
                 throw new Exception("Gold Time Winning");
+            }
             else
+            {
+                Time.timeScale = 0.0f;
                 throw new Exception("Normal Time Wining");
+            }
         }
 
         if (Time.time >= CurrentLevel.GetSetting(Settings.Key.MaximumTime))
+        {
+            Time.timeScale = 0.0f;
             throw new Exception("Game Over");
+        }
     }
 
-    private void OnDestroy() => CurrentLevel.Reset();
+
+    #region Events
+    public void InstantiateNewChicken()
+    {
+        var price = CurrentLevel.GetSetting(Settings.Key.ChicknPrice);
+
+        if (CurrentCoinsCount < price) return;
+        CurrentCoinsCount -= price;
+        InstantiateAnimal(chickenPrefab, chickensParent);
+
+        try { CurrentLevel.AddProgressTo(Mission.Key.ChickensCount); }
+        catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.EggsCount)) throw exception; }
+    }
+
+    public void InstantiateNewCow()
+    {
+        var price = CurrentLevel.GetSetting(Settings.Key.CowPrice);
+
+        if (CurrentCoinsCount < price) return;
+        CurrentCoinsCount -= price;
+        InstantiateAnimal(cowPrefab, cowsParent);
+
+        try { CurrentLevel.AddProgressTo(Mission.Key.CowsCount); }
+        catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.MilksCount)) throw exception; }
+    }
+
+    public void InstantiateNewSheep()
+    {
+        var price = CurrentLevel.GetSetting(Settings.Key.SheepPrice);
+
+        if (CurrentCoinsCount < price) return;
+        CurrentCoinsCount -= price;
+        InstantiateAnimal(sheepPrefab, sheepsParent);
+
+        try { CurrentLevel.AddProgressTo(Mission.Key.SheepsCount); }
+        catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.MeatsCount)) throw exception; }
+    }
+
+    public void FillWell()
+    {
+        var fillPrice = CurrentLevel.GetSetting(Settings.Key.WellFillPrice);
+        if (CurrentCoinsCount >= fillPrice && Well.Instance.Fill())
+            CurrentCoinsCount -= fillPrice;
+    }
+
+   
+    #endregion
 }
