@@ -40,11 +40,19 @@ public class UIManager : MonoBehaviour
             var missionItem = Instantiate(missionItemPrefab, MissionListContent);
             missionItem.Initiate(mission);
 
-            var storageItem = Instantiate(storageItemPrefab, storage);
-            storageItem.Initiate(mission);
+            // TODO Refactor
+            if (!(mission.Key == TrackableType.ChickensCount ||
+                mission.Key == TrackableType.CowsCount ||
+                mission.Key == TrackableType.SheepsCount || 
+                mission.Key == TrackableType.CoinsCount))
+            {
+                var storageItem = Instantiate(storageItemPrefab, storage);
+                storageItem.Initiate(mission);
 
-            var truckItem = Instantiate(truckItemPrefab, TruckContent);
-            truckItem.Initiate(mission);
+                var truckItem = Instantiate(truckItemPrefab, TruckContent);
+                truckItem.Initiate(mission);
+            }
+
 
             if (ButtonItem.GetFunction(mission.Key) == ButtonItem.Key.None) continue;
             if (buttonItemsSet.Contains(ButtonItem.GetFunction(mission.Key))) continue;
@@ -61,12 +69,16 @@ public class UIManager : MonoBehaviour
     {
         viewMissionListButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, 300, 0), 1.0f);
         viewTrackButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, 200, 0), 1.0f);
+        buttonsList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-1800, 0, 0), 1.0f);
+        storage.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, -300, 0), 1.0f);
     }
 
     private void ViewButtons()
     {
         viewMissionListButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, -38, 0), 1.0f);
         viewTrackButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, -138, 0), 1.0f);
+        buttonsList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, 0, 0), 1.0f);
+        storage.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, 15, 0), 1.0f);
     }
 
     public void ViewMissionList()

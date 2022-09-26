@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c63209dbb94174a9ddad3d4c9a9e9c, type: 3}
   m_Name: Mission 02
   m_EditorClassIdentifier: 
-  key: 7
+  key: 2
   targetValue: 2

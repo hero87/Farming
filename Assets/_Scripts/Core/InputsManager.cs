@@ -35,7 +35,13 @@ public class InputsManager : MonoBehaviour
         }
         else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Eggs"))
         {
-            //
+            LevelManager.Instance.CurrentLevel.AddProgressTo(TrackableType.EggsCount);
+            Destroy(hit.collider.gameObject);
+        }
+        else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Milks"))
+        {
+            LevelManager.Instance.CurrentLevel.AddProgressTo(TrackableType.MilksCount);
+            Destroy(hit.collider.gameObject);
         }
     }
 }

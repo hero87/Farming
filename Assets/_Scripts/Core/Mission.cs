@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RTLTMPro;
 using UnityEngine.UI;
+using System.Reflection;
 
 
 [CreateAssetMenu(fileName = "Mission 01", menuName = "Create New Mission")]
@@ -22,6 +23,8 @@ public class Mission : ScriptableObject
     public void Initiate()
     {
         CurrentValue = 0;
+        if (Key == TrackableType.ChickensCount || Key == TrackableType.CowsCount || Key == TrackableType.SheepsCount || key == TrackableType.CoinsCount)
+            return;
         Storage.Instance.AddToStorage(key);
         Truck.Instance.AddToStorage(key);
     }
