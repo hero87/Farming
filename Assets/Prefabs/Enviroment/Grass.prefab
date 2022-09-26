@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2912073068493745076}
   - component: {fileID: 5978970057234846198}
   - component: {fileID: 1292745069439953745}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Grass
   m_TagString: Grass
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1520855454511682, guid: 7ea6c767c13a093489de65e27dfd7aca, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1520855454511682, guid: 7ea6c767c13a093489de65e27dfd7aca, type: 3}
       propertyPath: m_NavMeshLayer
