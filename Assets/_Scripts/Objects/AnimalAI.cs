@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 
 
 public enum AnimalState { Patrolling, Chasing, Eating, Creating }
@@ -23,6 +24,9 @@ public class AnimalAI : MonoBehaviour
 
     public AnimalState animalState { get; private set; }
     private Grass currentGrass;
+
+    [SerializeField] private Image healthBar;
+    private float currentLifeLime;
 
 
 
@@ -54,13 +58,15 @@ public class AnimalAI : MonoBehaviour
     }
 
 
-    private float currentLifeLime;
+    
     private void ManageLifeTime()
     {
         if (animalState == AnimalState.Patrolling || animalState == AnimalState.Chasing) currentLifeLime -= Time.deltaTime;
         else currentLifeLime = lifTime;
 
         if (currentLifeLime <= 0) Destroy(gameObject);
+
+        healthBar.fillAmount = currentLifeLime/lifTime;
     }
 
     public void SetGrassTarget(Grass grass)
