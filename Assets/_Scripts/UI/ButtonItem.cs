@@ -12,11 +12,12 @@ public class ButtonItem : MonoBehaviour
         AddChickn,
         AddCow,
         AddSheep,
+        None,
     }
 
     public Key Function { get; private set; }
 
-    public void Initiate(Mission.Key key)
+    public void Initiate(TrackableType key)
     {
         Function = GetFunction(key);
         switch (Function)
@@ -41,23 +42,24 @@ public class ButtonItem : MonoBehaviour
         }
     }
 
-    public static Key GetFunction(Mission.Key key)
+    public static Key GetFunction(TrackableType key)
     {
         switch (key)
         {
-            case Mission.Key.EggsCount:
-            case Mission.Key.ChickensCount:
+            case TrackableType.EggsCount:
+            case TrackableType.ChickensCount:
                 return Key.AddChickn;
 
-            case Mission.Key.MilksCount:
-            case Mission.Key.CowsCount:
+            case TrackableType.MilksCount:
+            case TrackableType.CowsCount:
                 return Key.AddCow;
 
-            case Mission.Key.MeatsCount:
-            case Mission.Key.SheepsCount:
+            case TrackableType.MeatsCount:
+            case TrackableType.SheepsCount:
                 return Key.AddSheep;
         }
 
-        throw new System.Exception($"ERROR | No proper Function for key {key} exists");
+        //throw new System.Exception($"ERROR | No proper Function for key {key} exists");
+        return Key.None;
     }
 }

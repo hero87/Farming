@@ -14,12 +14,12 @@ public class MissionItem : MonoBehaviour
     public void Initiate(Mission mission)
     {
         this.mission = mission;
-        this.mission.OnAddProgress += UpdateText;
-        image.sprite = Resources.Load<Sprite>($"Sprites/{Enum.GetName(typeof(Mission.Key), mission.Objective)}");
+        this.mission.onAddProgress += UpdateText;
+        image.sprite = Resources.Load<Sprite>($"Sprites/{Enum.GetName(typeof(TrackableType), mission.Key)}");
         text.text = $"تم تجميع {mission.CurrentValue} من {mission.TargetValue}";
     }
 
     private void UpdateText() => text.text = $"تم تجميع {mission.CurrentValue} من {mission.TargetValue}";
 
-    private void OnDisable() => mission.OnAddProgress -= UpdateText;
+    private void OnDisable() => mission.onAddProgress -= UpdateText;
 }

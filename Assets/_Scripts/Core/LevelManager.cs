@@ -31,9 +31,9 @@ public class LevelManager : MonoBehaviour
 
 
     private int currentCoinsCount;
-    public int CurrentCoinsCount
+    public int CurrentCoinsCount    
     {
-        set { currentCoinsCount = value; }
+        set { currentCoinsCount = value; UIManager.Instance.UpdateCoinText(value); }
         get => currentCoinsCount;
     }
 
@@ -65,10 +65,10 @@ public class LevelManager : MonoBehaviour
         Well.Instance.Capacity = CurrentLevel.GetSetting(Settings.Key.WellCapacity);
 
         //milkFactory.SetActive(CurrentLevel.Contains(Mission.Key.MilkCount));
-        meatFactory.SetActive(CurrentLevel.Contains(Mission.Key.MeatsCount));
-        cakeBakery.SetActive(CurrentLevel.Contains(Mission.Key.CakesCount));
-        breadBakery.SetActive(CurrentLevel.Contains(Mission.Key.BreadsCount));
-        burgerResturant.SetActive(CurrentLevel.Contains(Mission.Key.BurgersCount));
+        meatFactory.SetActive(CurrentLevel.Contains(TrackableType.MeatsCount));
+        cakeBakery.SetActive(CurrentLevel.Contains(TrackableType.CakesCount));
+        breadBakery.SetActive(CurrentLevel.Contains(TrackableType.BreadsCount));
+        burgerResturant.SetActive(CurrentLevel.Contains(TrackableType.BurgersCount));
     }
 
     private void InstantiateAnimal(AnimalAI animal, Transform instantiationPoint)
@@ -117,8 +117,8 @@ public class LevelManager : MonoBehaviour
         CurrentCoinsCount -= price;
         InstantiateAnimal(ChickenPrefab, chickensParent);
 
-        try { CurrentLevel.AddProgressTo(Mission.Key.ChickensCount); }
-        catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.EggsCount)) throw exception; }
+        try { CurrentLevel.AddProgressTo(TrackableType.ChickensCount); }
+        catch (Exception exception) { if (!CurrentLevel.Contains(TrackableType.EggsCount)) throw exception; }
     }
 
     public void InstantiateNewCow()
@@ -129,8 +129,8 @@ public class LevelManager : MonoBehaviour
         CurrentCoinsCount -= price;
         InstantiateAnimal(CowPrefab, cowsParent);
 
-        try { CurrentLevel.AddProgressTo(Mission.Key.CowsCount); }
-        catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.MilksCount)) throw exception; }
+        try { CurrentLevel.AddProgressTo(TrackableType.CowsCount); }
+        catch (Exception exception) { if (!CurrentLevel.Contains(TrackableType.MilksCount)) throw exception; }
     }
 
     public void InstantiateNewSheep()
@@ -141,8 +141,8 @@ public class LevelManager : MonoBehaviour
         CurrentCoinsCount -= price;
         InstantiateAnimal(SheepPrefab, sheepsParent);
 
-        try { CurrentLevel.AddProgressTo(Mission.Key.SheepsCount); }
-        catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.MeatsCount)) throw exception; }
+        try { CurrentLevel.AddProgressTo(TrackableType.SheepsCount); }
+        catch (Exception exception) { if (!CurrentLevel.Contains(TrackableType.MeatsCount)) throw exception; }
     }
 
     public void FillWell()

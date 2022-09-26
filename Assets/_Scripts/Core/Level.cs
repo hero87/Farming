@@ -13,7 +13,7 @@ public class Level : ScriptableObject
     [SerializeField] private List<Mission> missions;
 
 
-    private HashSet<Mission.Key> completedMissions = new HashSet<Mission.Key>();
+    private HashSet<TrackableType> completedMissions = new HashSet<TrackableType>();
 
 
     public List<Mission> Missions => missions;
@@ -22,27 +22,27 @@ public class Level : ScriptableObject
 
     public int GetSetting(Settings.Key key) => settings.GetValue(key);
 
-    public void AddProgressTo(Mission.Key key)
+    public void AddProgressTo(TrackableType key)
     {
-        var mission = missions.FirstOrDefault(m => m.Objective == key);
+        var mission = missions.FirstOrDefault(m => m.Key == key);
         if (mission == null) throw new Exception($"ERROR | key {key} not found in the missions list");
 
         mission.AddProgress();
 
-        if (mission.Completed && !completedMissions.Contains(mission.Objective))
-            completedMissions.Add(mission.Objective);
+        if (mission.Completed && !completedMissions.Contains(mission.Key))
+            completedMissions.Add(mission.Key);
     }
 
-    public int GetCurrentValueOf(Mission.Key key)
+    public int GetCurrentValueOf(TrackableType key)
     {
-        var mission = missions.FirstOrDefault(m => m.Objective == key);
+        var mission = missions.FirstOrDefault(m => m.Key == key);
         if (mission == null) throw new Exception($"ERROR | key {key} not found in the missions list");
         return mission.CurrentValue;
     }
 
-    public bool Contains(Mission.Key key)
+    public bool Contains(TrackableType key)
     {
-        return missions.Any(m => m.Objective == key);
+        return missions.Any(m => m.Key == key);
     }
 
     public void Initiate()

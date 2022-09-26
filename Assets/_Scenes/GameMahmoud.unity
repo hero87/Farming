@@ -3204,6 +3204,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4833749935746722, guid: 77ca586a68388d14e82de484a13f2ff1, type: 3}
   m_PrefabInstance: {fileID: 1507920545}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &797088255 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 797088255, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+  m_PrefabInstance: {fileID: 6377978234180626030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &799348663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5565,6 +5570,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1209747883}
   - component: {fileID: 1209747884}
+  - component: {fileID: 1209747888}
+  - component: {fileID: 1209747887}
   - component: {fileID: 1209747885}
   - component: {fileID: 1209747886}
   m_Layer: 0
@@ -5638,13 +5645,38 @@ MonoBehaviour:
   buttonItemPrefab: {fileID: -6612331608726086977, guid: 19a3c85cb042753428fa64321ec4ee34, type: 3}
   missionItemPrefab: {fileID: 5524649745619635988, guid: 166b87b40e080654ca06b045a7417192, type: 3}
   storageItemPrefab: {fileID: 3246319001932455694, guid: fbcf8629a60570744b925726d6861d4f, type: 3}
-  truckItemPrefab: {fileID: 0}
+  truckItemPrefab: {fileID: 3982626579905540064, guid: 41171bf6e2a170d44957dea09791f4df, type: 3}
   coinsCountText: {fileID: 591862118}
   viewMissionListButton: {fileID: 1590986831}
+  viewTrackButton: {fileID: 1484712167}
   missionsList: {fileID: 4436799985015353929}
-  storage: {fileID: 1492426529}
-  truck: {fileID: 0}
   buttonsList: {fileID: 1552801856}
+  storage: {fileID: 1492426529}
+  truck: {fileID: 797088255}
+--- !u!114 &1209747887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209747881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623cd73f86d58354e91986d297bd0d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1209747888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209747881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52510c54f43a554aac6294a4c22fc93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1211580541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6819,6 +6851,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4509296424702836, guid: cfcb6ecbdafd1c940b4dccdc2a3ae3ac, type: 3}
   m_PrefabInstance: {fileID: 320614336}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1484712167 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1484712167, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+  m_PrefabInstance: {fileID: 6377978234180626030}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1492426529 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6377978232703482191, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
@@ -10088,26 +10131,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5074642257480591739, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1209747886}
-    - target: {fileID: 5074642257480591739, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HideMissionList
+    - target: {fileID: 797088254, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6377978232802045473, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1209747886}
-    - target: {fileID: 6377978232802045473, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ViewMissionList
-      objectReference: {fileID: 0}
-    - target: {fileID: 6377978233016181548, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+    - target: {fileID: 1283464215, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
       propertyPath: m_Name
-      value: Text
+      value: Content
       objectReference: {fileID: 0}
+    - target: {fileID: 1311914948, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1209747886}
+    - target: {fileID: 1484712167, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1209747886}
+    - target: {fileID: 5074642257480591739, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1209747886}
+    - target: {fileID: 6377978232802045473, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1209747886}
     - target: {fileID: 6377978233963959634, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0

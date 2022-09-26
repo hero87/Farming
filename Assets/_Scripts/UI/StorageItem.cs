@@ -15,12 +15,12 @@ public class StorageItem : MonoBehaviour
     public void Initiate(Mission mission)
     {
         this.mission = mission;
-        this.mission.OnAddProgress += UpdateText;
-        image.sprite = Resources.Load<Sprite>($"Sprites/{Enum.GetName(typeof(Mission.Key), mission.Objective)}");
+        this.mission.onAddProgress += UpdateText;
+        image.sprite = Resources.Load<Sprite>($"Sprites/{Enum.GetName(typeof(TrackableType), mission.Key)}");
         number.text = $"X0";
     }
 
     private void UpdateText() => number.text = $"X{mission.CurrentValue}";
 
-    private void OnDisable() => mission.OnAddProgress -= UpdateText;
+    private void OnDisable() => mission.onAddProgress -= UpdateText;
 }
