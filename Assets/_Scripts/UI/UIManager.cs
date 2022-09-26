@@ -9,14 +9,18 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private ButtonItem buttonItemPrefab;
     [SerializeField] private MissionItem missionItemPrefab;
+    [SerializeField] private StorageItem storageItemPrefab;
+    [SerializeField] private TruckItem truckItemPrefab;
 
     [SerializeField] private TextMeshProUGUI coinsCountText;
     [SerializeField] private Button viewMissionListButton;
 
-    [SerializeField] private RectTransform missionList;
-    [SerializeField] private RectTransform buttonList;
+    [SerializeField] private RectTransform missionsList;
+    [SerializeField] private RectTransform storage;
+    [SerializeField] private RectTransform truck;
+    [SerializeField] private RectTransform buttonsList;
 
-    public RectTransform MissionListContent => missionList.GetComponentInChildren<ScrollRect>().content;
+    public RectTransform MissionListContent => missionsList.GetComponentInChildren<ScrollRect>().content;
 
 
     public static UIManager Instance { get; private set; }
@@ -34,9 +38,12 @@ public class UIManager : MonoBehaviour
             var missionItem = Instantiate(missionItemPrefab, MissionListContent);
             missionItem.Initiate(mission);
 
+            var storageItem = Instantiate(storageItemPrefab, storage);
+            storageItem.Initiate(mission);
+
             if (buttonItemsSet.Contains(ButtonItem.GetFunction(mission.Objective))) continue;
 
-            var buttonItem = Instantiate(buttonItemPrefab, buttonList);
+            var buttonItem = Instantiate(buttonItemPrefab, buttonsList);
             buttonItem.Initiate(mission.Objective);
             buttonItemsSet.Add(ButtonItem.GetFunction(mission.Objective));
         }
@@ -44,13 +51,13 @@ public class UIManager : MonoBehaviour
 
     public void ViewMissionList()
     {
-        missionList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, -75, 0), 1.0f);
+        missionsList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, -75, 0), 1.0f);
         viewMissionListButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, 150, 0), 1.0f);
     }
 
     public void HideMissionList()
     {
-        missionList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(600, -75, 0), 1.0f);
+        missionsList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(600, -75, 0), 1.0f);
         viewMissionListButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-75, -75, 0), 1.0f);
     }
 }
