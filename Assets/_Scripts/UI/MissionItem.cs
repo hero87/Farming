@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 using UnityEngine.UI;
 using RTLTMPro;
@@ -16,10 +16,10 @@ public class MissionItem : MonoBehaviour
         this.mission = mission;
         this.mission.OnAddProgress += UpdateText;
         image.sprite = Resources.Load<Sprite>($"Sprites/{Enum.GetName(typeof(Mission.Key), mission.Objective)}");
-        text.text = $"Êã ÊÌãíÚ {mission.CurrentValue} ãä {mission.TargetValue}";
+        text.text = $"ØªÙ… ØªØ¬Ù…ÙŠØ¹ {mission.CurrentValue} Ù…Ù† {mission.TargetValue}";
     }
 
-    private void UpdateText() => text.text = $"Êã ÊÌãíÚ {mission.CurrentValue} ãä {mission.TargetValue}";
+    private void UpdateText() => text.text = $"ØªÙ… ØªØ¬Ù…ÙŠØ¹ {mission.CurrentValue} Ù…Ù† {mission.TargetValue}";
 
     private void OnDisable() => mission.OnAddProgress -= UpdateText;
 }

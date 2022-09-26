@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using UnityEngine.UI;
 using RTLTMPro;
 
@@ -22,19 +22,19 @@ public class ButtonItem : MonoBehaviour
         switch (Function)
         {
             case Key.AddChickn:
-                text.text = @"≈÷«›… œÃ«Ã…";
+                text.text = @"ÿ£ÿ∂ŸÅ ÿØÿ¨ÿßÿ¨ÿ©";
                 button.onClick.AddListener(LevelManager.Instance.InstantiateNewChicken);
                 Function = Key.AddChickn;
                 break;
 
             case Key.AddCow:
-                text.text = @"≈÷«›… »ﬁ—…";
+                text.text = @"ÿ£ÿ∂ŸÅ ÿ®ŸÇÿ±ÿ©";
                 button.onClick.AddListener(LevelManager.Instance.InstantiateNewCow);
                 Function = Key.AddCow;
                 break;
 
             case Key.AddSheep:
-                text.text = @"≈÷«›… ‘«…";
+                text.text = @"ÿ£ÿ∂ŸÅ ÿ¥ÿßÿ©";
                 button.onClick.AddListener(LevelManager.Instance.InstantiateNewSheep);
                 Function = Key.AddSheep;
                 break;
