@@ -110,12 +110,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8942419569566653295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72e132d0154eaa4fa1e020b8d66a1bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e136fb732bbcfe41a281afd8128c41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrollingRange: 7
-  lifTime: 5
-  animalsProductPrefab: {fileID: 8593997793688530191, guid: 94a68af926f53484c83306159006843c, type: 3}
+  patrollingRange: 5
+  lifTime: 10
+  animalsProductPrefab: {fileID: 0}
   animator: {fileID: 9029148283710346599}
   navAgent: {fileID: 8942419569566653265}
 --- !u!1 &8942469516265005197
