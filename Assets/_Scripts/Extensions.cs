@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Reflection;
+using UnityEngine;
 using UnityEngine.AI;
 
 public static class Extensions
@@ -16,4 +17,14 @@ public static class Extensions
     }
 
     public static Quaternion GetRandomRotation() => Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up);
+
+    public static bool IsCollectable(TrackableType trackableType)
+    {
+        return !(
+            trackableType == TrackableType.ChickensCount ||
+            trackableType == TrackableType.CowsCount ||
+            trackableType == TrackableType.SheepsCount ||
+            trackableType == TrackableType.CoinsCount
+                 );
+    }
 }

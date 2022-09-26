@@ -7,41 +7,40 @@ using UnityEngine.AI;
 using System.Threading.Tasks;
 using UnityEngine.UI;
 
-
 public enum AnimalState { Patrolling, Chasing, Eating, Creating }
-
 
 public class AnimalAI : MonoBehaviour
 {
-
-    [SerializeField] private float patrollingRange;
     [SerializeField] private float lifTime;
-
-    [SerializeField] private GameObject animalsProductPrefab;
-
-    public Animator animator;
-    public NavMeshAgent navAgent;
-
-    public AnimalState animalState { get; private set; }
-    private Grass currentGrass;
-
+    [SerializeField] private float productImpulse;
+    [SerializeField] private float patrollingRange;
     [SerializeField] private Image healthBar;
+    [SerializeField] private Animator animator;
+    [SerializeField] private NavMeshAgent navAgent;
+    [SerializeField] private GameObject productPrefab;
+    [SerializeField] private Transform productInstantiationPoint;
+
+    private Grass currentGrass;
     private float currentLifeLime;
 
-
+    public AnimalState State { get; private set; }
 
 
     private void Awake()
     {
-        animalState = AnimalState.Patrolling;
+        State = AnimalState.Patrolling;
         currentLifeLime = lifTime;
     }
 
-
     private void Update()
     {
+        ManageState();
         ManageLifeTime();
-        switch (animalState)
+    }
+
+    private void ManageState()
+    {
+        switch (State)
         {
             case AnimalState.Patrolling:
                 Patrolling();
@@ -57,11 +56,9 @@ public class AnimalAI : MonoBehaviour
         }
     }
 
-
-    
     private void ManageLifeTime()
     {
-        if (animalState == AnimalState.Patrolling || animalState == AnimalState.Chasing) currentLifeLime -= Time.deltaTime;
+        if (State == AnimalState.Patrolling || State == AnimalState.Chasing) currentLifeLime -= Time.deltaTime;
         else currentLifeLime = lifTime;
 
         if (currentLifeLime <= 0) Destroy(gameObject);
@@ -72,16 +69,16 @@ public class AnimalAI : MonoBehaviour
     public void SetGrassTarget(Grass grass)
     {
         currentGrass = grass;
-        animalState = AnimalState.Chasing;
+        State = AnimalState.Chasing;
     }
+
+    #region States
 
     private void Patrolling()
     {
         navAgent.isStopped = false;
         animator.SetFloat("Move", navAgent.velocity.magnitude);
         navAgent.speed = 2;
-
-        //if (currentGrass != null) return;
 
         if (navAgent.remainingDistance <= navAgent.stoppingDistance)
         {
@@ -103,7 +100,7 @@ public class AnimalAI : MonoBehaviour
         {
             navAgent.isStopped = true;
             navAgent.velocity = Vector3.zero;
-            animalState = AnimalState.Eating;
+            State = AnimalState.Eating;
             Eating();
         }
     }
@@ -114,14 +111,15 @@ public class AnimalAI : MonoBehaviour
         await Task.Delay(7000);
         Destroy(currentGrass.gameObject);
         currentGrass = null;
-        animalState = AnimalState.Creating;
+        State = AnimalState.Creating;
     }
 
     private void Creating()
     {
-        animalState = AnimalState.Patrolling;
-        Instantiate(animalsProductPrefab, transform.position, Quaternion.identity);
+        State = AnimalState.Patrolling;
+        var product = Instantiate(productPrefab, productInstantiationPoint.position, Quaternion.identity);
+        product.GetComponent<Rigidbody>().AddForce(productInstantiationPoint.up * productImpulse);
     }
 
-
+    #endregion
 }

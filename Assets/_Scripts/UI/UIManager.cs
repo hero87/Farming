@@ -40,11 +40,7 @@ public class UIManager : MonoBehaviour
             var missionItem = Instantiate(missionItemPrefab, MissionListContent);
             missionItem.Initiate(mission);
 
-            // TODO Refactor
-            if (!(mission.Key == TrackableType.ChickensCount ||
-                mission.Key == TrackableType.CowsCount ||
-                mission.Key == TrackableType.SheepsCount || 
-                mission.Key == TrackableType.CoinsCount))
+            if (Extensions.IsCollectable(mission.Key))
             {
                 var storageItem = Instantiate(storageItemPrefab, storage);
                 storageItem.Initiate(mission);
@@ -52,7 +48,6 @@ public class UIManager : MonoBehaviour
                 var truckItem = Instantiate(truckItemPrefab, TruckContent);
                 truckItem.Initiate(mission);
             }
-
 
             if (ButtonItem.GetFunction(mission.Key) == ButtonItem.Key.None) continue;
             if (buttonItemsSet.Contains(ButtonItem.GetFunction(mission.Key))) continue;

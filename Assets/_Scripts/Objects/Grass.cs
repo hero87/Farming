@@ -11,7 +11,7 @@ public class Grass : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out AnimalAI animalsAi) && animalsAi.animalState == AnimalState.Patrolling && !isTakenByAnimal)
+        if (other.TryGetComponent(out AnimalAI animalsAi) && animalsAi.State == AnimalState.Patrolling && !isTakenByAnimal)
         {
             animalsAi.SetGrassTarget(this);
             isTakenByAnimal = true;
