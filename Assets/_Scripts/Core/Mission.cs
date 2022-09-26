@@ -22,29 +22,19 @@ public class Mission : ScriptableObject
     }
 
 
-    [SerializeField] private Key key;
+    [SerializeField] private Key objective;
     [SerializeField] private int targetValue;
-    [SerializeField] private Sprite sprite;
 
 
-    public Key GetKey => key;
-    public int GetTargetValue => targetValue;
-    public int GetCurrentValue => currentValue;
-    public bool Completed => currentValue >= targetValue;
+    public Key Objective => objective;
+    public int TargetValue => targetValue;
+    public bool Completed => CurrentValue >= targetValue;
+    public int CurrentValue { get; private set; }
 
-    private int currentValue;
+    public Action OnAddProgress;
 
-    public void Initiate()
-    {
-        currentValue = 0;
-
-    }
-    public void AddProgress()
-    {
-        currentValue++;
-        
-    }
-
+    public void Initiate() => CurrentValue = 0;
+    public void AddProgress() { CurrentValue++; OnAddProgress(); }
 }
 
 

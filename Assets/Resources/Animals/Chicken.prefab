@@ -816,10 +816,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3393226351045160432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72e132d0154eaa4fa1e020b8d66a1bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e136fb732bbcfe41a281afd8128c41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrollingRange: 5
+  patrollingRange: 2.5
   lifTime: 5
   animalsProductPrefab: {fileID: 7139002750274032540, guid: 460b4c22bb17a854a961f43e55fe0a19, type: 3}
   animator: {fileID: 3393226350134104455}

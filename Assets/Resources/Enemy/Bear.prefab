@@ -357,10 +357,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3027428837587109306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b4d645d7d4427148b02fbb1df2e6755, type: 3}
+  m_Script: {fileID: 11500000, guid: f63f6909cd57b0640b8e2a45c65b7117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrollingRange: 5
+  patrollingRange: 0
   navAgent: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &3065530928255844466

@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba274035b57702540a5089e15029053f, type: 3}
+  m_Script: {fileID: 11500000, guid: 127694d8104b60c42a5d2a6173af72ef, type: 3}
   m_Name: Level 01
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 1c390c0b979d8ee47af540715848e19c, type: 2}
   missions:
   - {fileID: 11400000, guid: fd8d9bb725b5db14899c9dab4d097c3e, type: 2}
-  - {fileID: 11400000, guid: 0c7fd3998a909a144afa1a5468e6ebf0, type: 2}
-  - {fileID: 11400000, guid: 7871a2315ca6269408fcfbf9a75e8964, type: 2}
   - {fileID: 11400000, guid: 7871a2315ca6269408fcfbf9a75e8964, type: 2}
   - {fileID: 11400000, guid: 0c7fd3998a909a144afa1a5468e6ebf0, type: 2}

@@ -12,12 +12,6 @@ public class LevelManager : MonoBehaviour
     [Header("Levels List")]
     [SerializeField] private Level[] levels;
 
-    [Header("Animals")]
-    // TODO load prefabs from resources
-    [SerializeField] private GameObject chickenPrefab;
-    [SerializeField] private GameObject sheepPrefab;
-    [SerializeField] private GameObject cowPrefab;
-
     [Header("Buildings")]
     [SerializeField] private GameObject cakeBakery;
     [SerializeField] private GameObject breadBakery;
@@ -31,10 +25,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform sheepsParent;
     [SerializeField] private Transform cowsParent;
 
-   
-
-
-  
 
     public int CurrentLevelNumber => PlayerPrefs.GetInt("CURRENT_LEVEL_NUMBER");
     public Level CurrentLevel => levels[CurrentLevelNumber];
@@ -43,11 +33,15 @@ public class LevelManager : MonoBehaviour
     private int currentCoinsCount;
     public int CurrentCoinsCount
     {
-        set { currentCoinsCount = value;  }
+        set { currentCoinsCount = value; }
         get => currentCoinsCount;
     }
 
-   
+
+    public AnimalAI CowPrefab { get; private set; }
+    public AnimalAI SheepPrefab { get; private set; }
+    public AnimalAI ChickenPrefab { get; private set; }
+
 
     public static LevelManager Instance { get; private set; }
     private void Awake()
@@ -55,6 +49,9 @@ public class LevelManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else throw new Exception("There is already a LevelManager object!");
 
+        CowPrefab = Resources.Load<AnimalAI>("Animals/Cow");
+        SheepPrefab = Resources.Load<AnimalAI>("Animals/Sheep");
+        ChickenPrefab = Resources.Load<AnimalAI>("Animals/Chicken");
     }
 
     private void Update() => CheckLevelProgress();
@@ -62,6 +59,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         CurrentLevel.Initiate();
+        UIManager.Instance.Initiate();
 
         CurrentCoinsCount = CurrentLevel.GetSetting(Settings.Key.CoinsCount);
         Well.Instance.Capacity = CurrentLevel.GetSetting(Settings.Key.WellCapacity);
@@ -73,7 +71,7 @@ public class LevelManager : MonoBehaviour
         burgerResturant.SetActive(CurrentLevel.Contains(Mission.Key.BurgersCount));
     }
 
-    private void InstantiateAnimal(GameObject animal, Transform instantiationPoint)
+    private void InstantiateAnimal(AnimalAI animal, Transform instantiationPoint)
     {
         if (Extensions.GetRandomPoint(instantiationPoint.position, instantiationRange, out var position))
         {
@@ -110,13 +108,14 @@ public class LevelManager : MonoBehaviour
 
 
     #region Events
+
     public void InstantiateNewChicken()
     {
         var price = CurrentLevel.GetSetting(Settings.Key.ChicknPrice);
 
         if (CurrentCoinsCount < price) return;
         CurrentCoinsCount -= price;
-        InstantiateAnimal(chickenPrefab, chickensParent);
+        InstantiateAnimal(ChickenPrefab, chickensParent);
 
         try { CurrentLevel.AddProgressTo(Mission.Key.ChickensCount); }
         catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.EggsCount)) throw exception; }
@@ -128,7 +127,7 @@ public class LevelManager : MonoBehaviour
 
         if (CurrentCoinsCount < price) return;
         CurrentCoinsCount -= price;
-        InstantiateAnimal(cowPrefab, cowsParent);
+        InstantiateAnimal(CowPrefab, cowsParent);
 
         try { CurrentLevel.AddProgressTo(Mission.Key.CowsCount); }
         catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.MilksCount)) throw exception; }
@@ -140,7 +139,7 @@ public class LevelManager : MonoBehaviour
 
         if (CurrentCoinsCount < price) return;
         CurrentCoinsCount -= price;
-        InstantiateAnimal(sheepPrefab, sheepsParent);
+        InstantiateAnimal(SheepPrefab, sheepsParent);
 
         try { CurrentLevel.AddProgressTo(Mission.Key.SheepsCount); }
         catch (Exception exception) { if (!CurrentLevel.Contains(Mission.Key.MeatsCount)) throw exception; }
@@ -153,6 +152,5 @@ public class LevelManager : MonoBehaviour
             CurrentCoinsCount -= fillPrice;
     }
 
-   
     #endregion
 }

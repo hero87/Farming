@@ -1,41 +1,45 @@
 using DG.Tweening;
-using RTLTMPro;
-using System.Collections;
 using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-  
     [SerializeField] private ButtonItem buttonItemPrefab;
     [SerializeField] private MissionItem missionItemPrefab;
+
     [SerializeField] private TextMeshProUGUI coinsCountText;
     [SerializeField] private Button viewMissionListButton;
+
     [SerializeField] private RectTransform missionList;
     [SerializeField] private RectTransform buttonList;
+
     public RectTransform MissionListContent => missionList.GetComponentInChildren<ScrollRect>().content;
 
 
-    private void Set()
+    public static UIManager Instance { get; private set; }
+    private void Awake()
     {
+        if (Instance == null) Instance = this;
+        else throw new Exception("ERROR | There is already an UIManager object!");
+    }
 
-
-        foreach (var item in LevelManager.Instance.CurrentLevel.GetMissions)
+    public void Initiate()
+    {
+        var buttonItemsSet = new HashSet<ButtonItem.Key>();
+        foreach (var mission in LevelManager.Instance.CurrentLevel.Missions)
         {
-            var missionItem = Instantiate(missionItemPrefab, missionList);
-            missionItem.Set(item);
-        }
+            var missionItem = Instantiate(missionItemPrefab, MissionListContent);
+            missionItem.Initiate(mission);
 
+            if (buttonItemsSet.Contains(ButtonItem.GetFunction(mission.Objective))) continue;
 
-        foreach (var item in LevelManager.Instance.CurrentLevel.GetMissions)
-        {
             var buttonItem = Instantiate(buttonItemPrefab, buttonList);
-            buttonItem.Set(item);
+            buttonItem.Initiate(mission.Objective);
+            buttonItemsSet.Add(ButtonItem.GetFunction(mission.Objective));
         }
-
-
     }
 
     public void ViewMissionList()
