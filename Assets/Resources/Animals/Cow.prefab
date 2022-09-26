@@ -113,8 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e136fb732bbcfe41a281afd8128c41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrollingRange: 5
-  lifTime: 10
+  patrollingRange: 8
+  lifTime: 50
   animalsProductPrefab: {fileID: 0}
   animator: {fileID: 9029148283710346599}
   navAgent: {fileID: 8942419569566653265}
