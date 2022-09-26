@@ -7157,14 +7157,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 797088254, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1283464215, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-      propertyPath: m_Name
-      value: Content
-      objectReference: {fileID: 0}
     - target: {fileID: 1311914948, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -7181,10 +7173,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1673020200}
-    - target: {fileID: 6377978233963959634, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6377978234180108482, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
