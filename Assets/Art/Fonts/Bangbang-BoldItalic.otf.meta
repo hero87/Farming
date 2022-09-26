@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 72cde44324b25a0438b173d205294209
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Bangbang
+  fontNames:
+  - Bangbang
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 3c010049407dbf447be1a572fed48198, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
