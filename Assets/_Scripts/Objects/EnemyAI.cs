@@ -1,11 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine;
 using UnityEngine.AI;
-using System.Threading.Tasks;
-using System;
-using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public enum EnemyState { Patrolling, Attacking }
 
@@ -17,6 +13,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private NavMeshAgent navAgent;
     [SerializeField] private Animator animator;
 
+    [SerializeField] private int maxHealth;
+    [SerializeField] private Image healthBar;
+    [SerializeField] private Gradient gradient;
+
 
     public EnemyState enemyState { get; private set; }
 
@@ -25,8 +25,16 @@ public class EnemyAI : MonoBehaviour
     {
         enemyState = EnemyState.Patrolling;
         LevelManager.Instance.NumberOfActiveEnemies++;
+        currentHealth = maxHealth;  
     }
 
+
+    int currentHealth;
+    public void AcceptDamage(int value)
+    {
+        currentHealth -= value;
+        if (currentHealth <= 0) Destroy(gameObject);
+    }
     private void Update()
     {
         switch (enemyState)
@@ -39,6 +47,11 @@ public class EnemyAI : MonoBehaviour
                 Attacking();
                 break;
         }
+
+        //Update Health Bar
+        var helthPercentage = (float)currentHealth / maxHealth;
+        healthBar.fillAmount = helthPercentage;
+        healthBar.color = gradient.Evaluate(helthPercentage);
     }
 
 

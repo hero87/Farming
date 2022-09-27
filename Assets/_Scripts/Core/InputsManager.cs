@@ -72,6 +72,10 @@ public class InputsManager : MonoBehaviour
             LevelManager.Instance.CurrentLevel.AddProgressTo(TrackableType.MilksCount);
             Destroy(hit.collider.gameObject);
         }
+        else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            hit.collider.GetComponent<EnemyAI>().AcceptDamage(2);
+        }
     }
 
 
@@ -85,8 +89,9 @@ public class InputsManager : MonoBehaviour
         var eggsLayer = 1 << LayerMask.NameToLayer("Eggs");
         var meatsLayer = 1 << LayerMask.NameToLayer("Meats");
         var milksLayer = 1 << LayerMask.NameToLayer("Milks");
+        var enemyLayer = 1 << LayerMask.NameToLayer("Enemy");
 
-        LayersToHit = groundLayer | wellLayer | eggsLayer | meatsLayer | milksLayer;
+        LayersToHit = groundLayer | wellLayer | eggsLayer | meatsLayer | milksLayer |enemyLayer;
     }
 
 
