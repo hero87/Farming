@@ -11,12 +11,20 @@ public class Settings : ScriptableObject
         CoinsCount,
         WellCapacity,
         WellFillPrice,
+
         GoldTime,
         MaximumTime,
+
         CollectableLifeTime,
+
         ChicknPrice,
         CowPrice,
         SheepPrice,
+        EggPrice,
+        MilkPrice,
+        MeatPrice,
+
+        TradeSpeed,
     }
 
 

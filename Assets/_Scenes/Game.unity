@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 6ad650b44c6081c459404357ff9979c0, type: 2}
+--- !u!223 &4319784 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 6377978234180108485, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+  m_PrefabInstance: {fileID: 1357594557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8855424 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4093052832137234, guid: 33c7ef22276c69f4693a6f0fa2810aa9, type: 3}
@@ -3843,9 +3848,9 @@ GameObject:
   - component: {fileID: 810891322}
   - component: {fileID: 810891321}
   - component: {fileID: 810891320}
+  - component: {fileID: 810891324}
   - component: {fileID: 810891319}
   - component: {fileID: 810891318}
-  - component: {fileID: 810891324}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -3969,7 +3974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b68db338cb9e141b86129564ccfbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expertModeEnabled: 0
+  expertModeEnabled: 1
   clickDurationThreshold: 0.7
   doubleclickDurationThreshold: 0.5
   tiltMoveDotTreshold: 0.7
@@ -7173,6 +7178,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1673020200}
+    - target: {fileID: 6377978233963959634, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6377978234180108482, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -8483,6 +8492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8284579601846d848afc404b7eb46ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 4319784}
+  holdTime: 0.2
 --- !u!4 &1673020205
 Transform:
   m_ObjectHideFlags: 0
