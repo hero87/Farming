@@ -94,7 +94,8 @@ public class LevelManager : MonoBehaviour
 
     private void CheckLevelProgress()
     {
-        var time = $"{(int)Time.time}:{CurrentLevel.GetSetting(Settings.Key.MaximumTime) / 1000}";
+        var timeInt = CurrentLevel.GetSetting(Settings.Key.MaximumTime) / 1000 - (int)Time.time;
+        var time = $"{timeInt}";
 
         if (CurrentLevel.Completed)
         {

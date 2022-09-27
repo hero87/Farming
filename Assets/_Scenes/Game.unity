@@ -10406,6 +10406,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1773838436426036377, guid: c07244071dc3ec848ab523ff89db93bd, type: 3}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773838436426036377, guid: c07244071dc3ec848ab523ff89db93bd, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773838436426036377, guid: c07244071dc3ec848ab523ff89db93bd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1773838436426036382, guid: c07244071dc3ec848ab523ff89db93bd, type: 3}
       propertyPath: m_Name
       value: Car

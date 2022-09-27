@@ -128,7 +128,7 @@ public class UIManager : MonoBehaviour
 
     public void ViewLosePanel()
     {
-        winPanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime).OnComplete(() => Time.timeScale = 0);
+        losePanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime).OnComplete(() => Time.timeScale = 0);
         HideMainUI();
     }
 
