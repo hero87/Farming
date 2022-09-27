@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -16,8 +17,6 @@ public class Truck : MonoBehaviour
     public Action<TrackableType, int> onValueChanged;
     private List<Item> truck = new List<Item>();
 
-    public int GetValueOf(TrackableType key) => truck.Find(kv => kv.key == key).value;
-
     public void AddToTruck(TrackableType key)
     {
         var item = truck.Find(temp => temp.key == key);
@@ -32,8 +31,7 @@ public class Truck : MonoBehaviour
             truck.Add(item);
         }
 
-        if (onValueChanged != null)
-            onValueChanged(key, item.value);
+        onValueChanged?.Invoke(key, item.value);
     }
 
     public void MoveToStorage(TrackableType key)
@@ -46,4 +44,11 @@ public class Truck : MonoBehaviour
         onValueChanged(key, item.value);
     }
 
+    public int TotalPrice => truck.Sum(item => item.value);
+
+    public void ConfirmTrade()
+    {
+        LevelManager.Instance.CurrentCoinsCount += TotalPrice;
+        truck.Clear();
+    }
 }

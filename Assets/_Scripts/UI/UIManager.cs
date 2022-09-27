@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private float animationTime;
+
     [SerializeField] private ButtonItem buttonItemPrefab;
     [SerializeField] private MissionItem missionItemPrefab;
     [SerializeField] private StorageItem storageItemPrefab;
@@ -60,43 +62,52 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCoinText(int value) => coinsCountText.text = $"{value}";
 
-    private void HideButtons()
+    private void HideMainUI()
     {
-        viewMissionListButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, 300, 0), 1.0f);
-        viewTrackButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, 200, 0), 1.0f);
-        buttonsList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-1800, 0, 0), 1.0f);
-        storage.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, -300, 0), 1.0f);
+        viewMissionListButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, 300, 0), animationTime);
+        viewTrackButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, 200, 0), animationTime);
+        buttonsList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-1800, 0, 0), animationTime);
+        storage.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, -300, 0), animationTime);
     }
 
-    private void ViewButtons()
+    private void ViewMainUI()
     {
-        viewMissionListButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, -38, 0), 1.0f);
-        viewTrackButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, -138, 0), 1.0f);
-        buttonsList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, 0, 0), 1.0f);
-        storage.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, 15, 0), 1.0f);
+        viewMissionListButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, -38, 0), animationTime);
+        viewTrackButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, -138, 0), animationTime);
+        buttonsList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, 0, 0), animationTime);
+        storage.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, 15, 0), animationTime);
     }
+
+
 
     public void ViewMissionList()
     {
         missionsList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, -75, 0), 1.0f);
-        HideButtons();
+        HideMainUI();
     }
 
     public void HideMissionList()
     {
         missionsList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(600, -75, 0), 1.0f);
-        ViewButtons();
+        ViewMainUI();
     }
 
     public void ViewTruck()
     {
+        if (TruckLine.Instance.Active) return;
         truck.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, -55, 0), 1.0f);
-        HideButtons();
+        HideMainUI();
     }
 
     public void HideTruck()
     {
         truck.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, 855, 0), 1.0f);
-        ViewButtons();
+        ViewMainUI();
+    }
+
+    public void Trade()
+    {
+        TruckLine.Instance.ActivateAnimation();
+        HideTruck();
     }
 }
