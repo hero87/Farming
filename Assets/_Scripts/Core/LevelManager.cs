@@ -31,9 +31,13 @@ public class LevelManager : MonoBehaviour
 
 
     private int currentCoinsCount;
-    public int CurrentCoinsCount    
+    public int CurrentCoinsCount
     {
-        set { currentCoinsCount = value; UIManager.Instance.UpdateCoinText(value); }
+        set
+        {
+            currentCoinsCount = value;
+            UIManager.Instance.UpdateCoinText(value);
+        }
         get => currentCoinsCount;
     }
 
@@ -108,9 +112,12 @@ public class LevelManager : MonoBehaviour
 
         if (Time.time >= CurrentLevel.GetSetting(Settings.Key.MaximumTime) / 1000.0f)
         {
-          //  Time.timeScale = 0.0f;
-           // throw new Exception("Game Over");
+            //  Time.timeScale = 0.0f;
+            // throw new Exception("Game Over");
+            UIManager.Instance.ViewLosePanel();
         }
+
+        UIManager.Instance.SetTime($"{Time.time} - {CurrentLevel.GetSetting(Settings.Key.MaximumTime)}");
     }
 
     public int NumberOfActiveEnemies { get; set; }
@@ -138,7 +145,7 @@ public class LevelManager : MonoBehaviour
         CurrentCoinsCount -= price;
         InstantiateObject(ChickenPrefab.gameObject, chickensParent);
 
-        try { CurrentLevel.AddProgressTo(TrackableType.ChickensCount); }
+        try { CurrentLevel.AddProgress(TrackableType.ChickensCount, 1); }
         catch (Exception exception) { if (!CurrentLevel.Contains(TrackableType.EggsCount)) throw exception; }
     }
 
@@ -150,7 +157,7 @@ public class LevelManager : MonoBehaviour
         CurrentCoinsCount -= price;
         InstantiateObject(CowPrefab.gameObject, cowsParent);
 
-        try { CurrentLevel.AddProgressTo(TrackableType.CowsCount); }
+        try { CurrentLevel.AddProgress(TrackableType.CowsCount, 1); }
         catch (Exception exception) { if (!CurrentLevel.Contains(TrackableType.MilksCount)) throw exception; }
     }
 
@@ -162,7 +169,7 @@ public class LevelManager : MonoBehaviour
         CurrentCoinsCount -= price;
         InstantiateObject(SheepPrefab.gameObject, sheepsParent);
 
-        try { CurrentLevel.AddProgressTo(TrackableType.SheepsCount); }
+        try { CurrentLevel.AddProgress(TrackableType.SheepsCount, 1); }
         catch (Exception exception) { if (!CurrentLevel.Contains(TrackableType.MeatsCount)) throw exception; }
     }
 

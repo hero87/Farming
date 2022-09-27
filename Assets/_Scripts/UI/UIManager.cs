@@ -15,9 +15,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TruckItem truckItemPrefab;
 
     [SerializeField] private TextMeshProUGUI coinsCountText;
+    [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private RectTransform viewsPanel;
 
     [SerializeField] private RectTransform winPanel;
+    [SerializeField] private RectTransform losePanel;
     [SerializeField] private RectTransform missionsList;
     [SerializeField] private RectTransform buttonsList;
     [SerializeField] private RectTransform storage;
@@ -119,4 +121,12 @@ public class UIManager : MonoBehaviour
         winPanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime);
         HideMainUI();
     }
+
+    public void ViewLosePanel()
+    {
+        winPanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime);
+        HideMainUI();
+    }
+
+    public void SetTime(string time) => timeText.text = time;
 }

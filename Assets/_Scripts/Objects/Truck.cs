@@ -51,6 +51,10 @@ public class Truck : MonoBehaviour
     public void ConfirmTrade()
     {
         LevelManager.Instance.CurrentCoinsCount += TotalPrice;
+
+        try { LevelManager.Instance.CurrentLevel.AddProgress(TrackableType.CoinsCount, TotalPrice); }
+        catch (Exception) { }
+
         foreach (var item in truck)
         {
             item.value = 0;

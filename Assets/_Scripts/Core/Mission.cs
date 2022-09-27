@@ -29,9 +29,9 @@ public class Mission : ScriptableObject
         Truck.Instance.AddToTruck(key);
     }
 
-    public void AddProgress()
+    public void AddProgress(int value)
     {
-        CurrentValue++;
+        CurrentValue += value;
         onAddProgress();
         Storage.Instance.AddToStorage(key);
     }

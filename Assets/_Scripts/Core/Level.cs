@@ -22,12 +22,12 @@ public class Level : ScriptableObject
 
     public int GetSetting(Settings.Key key) => settings.GetValue(key);
 
-    public void AddProgressTo(TrackableType key)
+    public void AddProgress(TrackableType key, int value)
     {
         var mission = missions.FirstOrDefault(m => m.Key == key);
         if (mission == null) throw new Exception($"ERROR | key {key} not found in the missions list");
 
-        mission.AddProgress();
+        mission.AddProgress(value);
 
         if (mission.Completed && !completedMissions.Contains(mission.Key))
             completedMissions.Add(mission.Key);
