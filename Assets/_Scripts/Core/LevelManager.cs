@@ -94,19 +94,21 @@ public class LevelManager : MonoBehaviour
 
     private void CheckLevelProgress()
     {
+        var time = $"{(int)Time.time}:{CurrentLevel.GetSetting(Settings.Key.MaximumTime) / 1000}";
+
         if (CurrentLevel.Completed)
         {
             if (Time.time <= CurrentLevel.GetSetting(Settings.Key.GoldTime) / 1000.0f)
             {
                 //Time.timeScale = 0.0f;
                 //throw new Exception("Gold Time Winning");
-                UIManager.Instance.ViewWinPanel();
+                UIManager.Instance.ViewWinPanel("æÞÊ ÐåÈí!", time);
             }
             else
             {
                 //Time.timeScale = 0.0f;
                 //throw new Exception("Normal Time Wining");
-                UIManager.Instance.ViewWinPanel();
+                UIManager.Instance.ViewWinPanel("ÃÍÓäÊ!", time);
             }
         }
 
@@ -117,7 +119,7 @@ public class LevelManager : MonoBehaviour
             UIManager.Instance.ViewLosePanel();
         }
 
-        UIManager.Instance.SetTime($"{Time.time} - {CurrentLevel.GetSetting(Settings.Key.MaximumTime)}");
+        UIManager.Instance.SetTime(time);
     }
 
     public int NumberOfActiveEnemies { get; set; }

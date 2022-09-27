@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI coinsCountText;
     [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private TextMeshProUGUI winText;
+    [SerializeField] private TextMeshProUGUI winTimeText;
     [SerializeField] private RectTransform viewsPanel;
 
     [SerializeField] private RectTransform winPanel;
@@ -116,15 +118,17 @@ public class UIManager : MonoBehaviour
         ViewMainUI();
     }
 
-    public void ViewWinPanel()
+    public void ViewWinPanel(string info, string time)
     {
-        winPanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime);
+        winPanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime).OnComplete( () => Time.timeScale = 0);
+        winText.text = info;
+        winTimeText.text = time;
         HideMainUI();
     }
 
     public void ViewLosePanel()
     {
-        winPanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime);
+        winPanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime).OnComplete(() => Time.timeScale = 0);
         HideMainUI();
     }
 

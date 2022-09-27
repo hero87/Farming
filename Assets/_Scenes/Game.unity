@@ -2997,6 +2997,11 @@ Transform:
   m_Father: {fileID: 875132011}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &625116192 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5262339281085375651, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+  m_PrefabInstance: {fileID: 1357594557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &639754337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4509296424702836, guid: cfcb6ecbdafd1c940b4dccdc2a3ae3ac, type: 3}
@@ -4911,6 +4916,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4841611530678610, guid: bc6a59c177fcfa1429ae39d1360e8544, type: 3}
   m_PrefabInstance: {fileID: 1865637674}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &918946561 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6003790742424449856, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+  m_PrefabInstance: {fileID: 1357594557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9839c2d141529145a431aef4d757ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &919210855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7181,6 +7197,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1673020200}
+    - target: {fileID: 6377978233963959634, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6377978234180108482, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7286,6 +7306,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 1773838436426036376, guid: c07244071dc3ec848ab523ff89db93bd, type: 3}
   m_PrefabInstance: {fileID: 1773838434924947428}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1409580633 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3241967267059399243, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+  m_PrefabInstance: {fileID: 1357594557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9839c2d141529145a431aef4d757ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1432101935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8394,6 +8425,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6377978232703482191, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
   m_PrefabInstance: {fileID: 1357594557}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1672252243 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2032950127231270210, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+  m_PrefabInstance: {fileID: 1357594557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9839c2d141529145a431aef4d757ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1673020199
 GameObject:
   m_ObjectHideFlags: 0
@@ -8433,8 +8475,12 @@ MonoBehaviour:
   storageItemPrefab: {fileID: 3246319001932455694, guid: fbcf8629a60570744b925726d6861d4f, type: 3}
   truckItemPrefab: {fileID: 3982626579905540064, guid: 41171bf6e2a170d44957dea09791f4df, type: 3}
   coinsCountText: {fileID: 211859259}
+  timeText: {fileID: 1672252243}
+  winText: {fileID: 918946561}
+  winTimeText: {fileID: 1409580633}
   viewsPanel: {fileID: 1856364139}
   winPanel: {fileID: 448372269}
+  losePanel: {fileID: 625116192}
   missionsList: {fileID: 315251788}
   buttonsList: {fileID: 719172861}
   storage: {fileID: 1652916265}
