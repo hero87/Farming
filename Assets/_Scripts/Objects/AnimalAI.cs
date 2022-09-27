@@ -11,7 +11,10 @@ public enum AnimalState { Patrolling, Chasing, Eating, Creating }
 
 public class AnimalAI : MonoBehaviour
 {
-    [SerializeField] private float lifTime;
+    [SerializeField] private Gradient gradient;
+    [SerializeField] private float lifeTime;
+    [SerializeField] private float hungerTime;
+    [SerializeField] private int eatingTime_MilliSecond;
     [SerializeField] private float productImpulse;
     [SerializeField] private float patrollingRange;
     [SerializeField] private Image healthBar;
@@ -22,6 +25,8 @@ public class AnimalAI : MonoBehaviour
 
     private Grass currentGrass;
     private float currentLifeLime;
+    private float currentHungerTime;
+    
 
     public AnimalState State { get; private set; }
 
@@ -29,13 +34,14 @@ public class AnimalAI : MonoBehaviour
     private void Awake()
     {
         State = AnimalState.Patrolling;
-        currentLifeLime = lifTime;
+        currentLifeLime = lifeTime;
+        currentHungerTime = hungerTime;
     }
 
     private void Update()
     {
         ManageState();
-        ManageLifeTime();
+        ManageTime();
     }
 
     private void ManageState()
@@ -56,14 +62,26 @@ public class AnimalAI : MonoBehaviour
         }
     }
 
-    private void ManageLifeTime()
+    private void ManageTime()
     {
-        if (State == AnimalState.Patrolling || State == AnimalState.Chasing) currentLifeLime -= Time.deltaTime;
-        else currentLifeLime = lifTime;
+        if (State == AnimalState.Patrolling)
+        {
+            currentHungerTime -= Time.deltaTime;
+        }
+        if (currentHungerTime <= 0) 
+        { 
+            currentLifeLime -=Time.deltaTime; 
+        }
 
-        if (currentLifeLime <= 0) Destroy(gameObject);
+        if (currentLifeLime <= 0)
+        {
+            navAgent.speed = 0;
+            animator.SetBool("Death", true);
+            Destroy(gameObject,2f);
+        }
 
-        healthBar.fillAmount = currentLifeLime/lifTime;
+        healthBar.fillAmount = currentLifeLime / lifeTime;
+        healthBar.color = gradient.Evaluate(currentLifeLime / lifeTime);
     }
 
     public void SetGrassTarget(Grass grass)
@@ -92,23 +110,29 @@ public class AnimalAI : MonoBehaviour
 
     private void Chasing()
     {
-        navAgent.SetDestination(currentGrass.transform.position);
-        navAgent.speed = 5;
-        animator.SetFloat("Move", navAgent.velocity.magnitude);
-
-        if (!navAgent.pathPending && navAgent.remainingDistance <= navAgent.stoppingDistance)
+        if(currentHungerTime <= 0)
         {
-            navAgent.isStopped = true;
-            navAgent.velocity = Vector3.zero;
-            State = AnimalState.Eating;
-            Eating();
+            navAgent.SetDestination(currentGrass.transform.position);
+            navAgent.speed = 5;
+            animator.SetFloat("Move", navAgent.velocity.magnitude);
+
+            if (!navAgent.pathPending && navAgent.remainingDistance <= navAgent.stoppingDistance)
+            {
+                navAgent.isStopped = true;
+                navAgent.velocity = Vector3.zero;
+                State = AnimalState.Eating;
+                Eating();
+            }
         }
+        else State = AnimalState.Patrolling;
     }
 
     private async void Eating()
     {
         animator.SetFloat("Move", -1);
-        await Task.Delay(7000);
+        currentLifeLime = lifeTime;
+        currentHungerTime = hungerTime;
+        await Task.Delay(5000);
         Destroy(currentGrass.gameObject);
         currentGrass = null;
         State = AnimalState.Creating;
