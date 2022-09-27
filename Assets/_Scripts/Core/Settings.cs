@@ -26,6 +26,7 @@ public class Settings : ScriptableObject
 
         TradeTime,
         EnemyTime,
+        MaxEnemyNumber,
     }
 
 
@@ -62,7 +63,8 @@ public class Settings : ScriptableObject
         new KeyValue(Key.MeatPrice, 75),
 
         new KeyValue(Key.TradeTime, 18_000),
-        new KeyValue(Key.EnemyTime, 30_000),
+        new KeyValue(Key.EnemyTime, 20_000),
+        new KeyValue(Key.MaxEnemyNumber, 2),
     };
 
     public int GetValue(Key key)

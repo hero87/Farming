@@ -443,7 +443,7 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   lifeTime: 10
-  hungerTime: 10
+  hungerTime: 0
   eatingTime_MilliSecond: 4
   productImpulse: 5
   patrollingRange: 8

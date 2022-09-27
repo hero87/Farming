@@ -16,13 +16,16 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] private NavMeshAgent navAgent;
     [SerializeField] private Animator animator;
-     private float animalDestroyTime=1.2f;
-    
+
 
     public EnemyState enemyState { get; private set; }
 
 
-    private void Start() => enemyState = EnemyState.Patrolling;
+    private void Start()
+    {
+        enemyState = EnemyState.Patrolling;
+        LevelManager.Instance.NumberOfActiveEnemies++;
+    }
 
     private void Update()
     {
@@ -38,7 +41,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-  
+
     private void Patrolling()
     {
         navAgent.isStopped = false;
@@ -72,7 +75,7 @@ public class EnemyAI : MonoBehaviour
             animalAi.GetComponent<NavMeshAgent>().enabled = false;
             animalAi.GetComponentInChildren<Animator>().SetBool("Death", true);
 
-            Destroy(animalAi.gameObject,animalDestroyTime);
+            animalAi.KilledByEnemy = true;
         }
     }
 
@@ -82,7 +85,5 @@ public class EnemyAI : MonoBehaviour
         enemyState = EnemyState.Patrolling;
     }
 
-
-
-
+    private void OnDestroy() => LevelManager.Instance.NumberOfActiveEnemies--;
 }

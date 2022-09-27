@@ -41,3 +41,5 @@ MonoBehaviour:
     value: 18000
   - key: 13
     value: 5000
+  - key: 14
+    value: 2

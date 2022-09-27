@@ -16,7 +16,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject cakeBakery;
     [SerializeField] private GameObject breadBakery;
     [SerializeField] private GameObject meatFactory;
-    //[SerializeField] private GameObject milkFactory;
     [SerializeField] private GameObject burgerResturant;
 
     [Header("Instantiation Points")]
@@ -71,7 +70,6 @@ public class LevelManager : MonoBehaviour
         CurrentCoinsCount = CurrentLevel.GetSetting(Settings.Key.CoinsCount);
         Well.Instance.Capacity = CurrentLevel.GetSetting(Settings.Key.WellCapacity);
 
-        //milkFactory.SetActive(CurrentLevel.Contains(Mission.Key.MilkCount));
         meatFactory.SetActive(CurrentLevel.Contains(TrackableType.MeatsCount));
         cakeBakery.SetActive(CurrentLevel.Contains(TrackableType.CakesCount));
         breadBakery.SetActive(CurrentLevel.Contains(TrackableType.BreadsCount));
@@ -96,13 +94,15 @@ public class LevelManager : MonoBehaviour
         {
             if (Time.time <= CurrentLevel.GetSetting(Settings.Key.GoldTime) / 1000.0f)
             {
-                Time.timeScale = 0.0f;
-                throw new Exception("Gold Time Winning");
+                //Time.timeScale = 0.0f;
+                //throw new Exception("Gold Time Winning");
+                UIManager.Instance.ViewWinPanel();
             }
             else
             {
-                Time.timeScale = 0.0f;
-                throw new Exception("Normal Time Wining");
+                //Time.timeScale = 0.0f;
+                //throw new Exception("Normal Time Wining");
+                UIManager.Instance.ViewWinPanel();
             }
         }
 
@@ -113,10 +113,14 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public int NumberOfActiveEnemies { get; set; }
     private float enemyLastTime;
     private void ManageEnemy()
     {
-        if (Time.time - enemyLastTime > CurrentLevel.GetSetting(Settings.Key.EnemyTime) / 1000.0f)
+        var shouldAddNewEnemy = Time.time - enemyLastTime > CurrentLevel.GetSetting(Settings.Key.EnemyTime) / 1000.0f &&
+            NumberOfActiveEnemies < CurrentLevel.GetSetting(Settings.Key.MaxEnemyNumber);
+
+        if (shouldAddNewEnemy)
         {
             InstantiateObject(EnemyPrefab.gameObject, enemyParent);
             enemyLastTime = Time.time;

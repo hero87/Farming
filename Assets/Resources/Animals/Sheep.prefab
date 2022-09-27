@@ -473,8 +473,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  lifeTime: 8
-  hungerTime: 8
+  lifeTime: 10
   eatingTime_MilliSecond: 4
   productImpulse: 5
   patrollingRange: 5
