@@ -5,6 +5,11 @@ using UnityEngine.AI;
 
 public static class Extensions
 {
+    public static Sprite GetSprite(TrackableType trackableType)
+    {
+        return Resources.Load<Sprite>($"Sprites/{System.Enum.GetName(typeof(TrackableType), trackableType)}");
+    }
+
     public static bool GetRandomPoint(Vector3 center, float range, out Vector3 result)
     {
         result = Vector3.zero;
@@ -27,6 +32,15 @@ public static class Extensions
             trackableType == TrackableType.SheepsCount ||
             trackableType == TrackableType.CoinsCount
                  );
+    }
+
+    public static Settings.Key GetTrackableSettingsKey(TrackableType trackableType)
+    {
+        if (trackableType == TrackableType.EggsCount) return Settings.Key.EggPrice;
+        else if (trackableType == TrackableType.MilksCount) return Settings.Key.MilkPrice;
+        else if (trackableType == TrackableType.MeatsCount) return Settings.Key.MeatPrice;
+
+        throw new System.Exception($"Cannot convert trackable item {trackableType}");
     }
 
     public static bool IsInsideUI(Canvas canvas, Vector2 point)

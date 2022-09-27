@@ -15,8 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TruckItem truckItemPrefab;
 
     [SerializeField] private TextMeshProUGUI coinsCountText;
-    [SerializeField] private Button viewMissionListButton;
-    [SerializeField] private Button viewTrackButton;
+    [SerializeField] private RectTransform viewsPanel;
 
     [SerializeField] private RectTransform missionsList;
     [SerializeField] private RectTransform buttonsList;
@@ -45,10 +44,10 @@ public class UIManager : MonoBehaviour
             if (Extensions.IsCollectable(mission.Key))
             {
                 var storageItem = Instantiate(storageItemPrefab, storage);
-                storageItem.Initiate(mission);
+                storageItem.Initiate(mission.Key);
 
                 var truckItem = Instantiate(truckItemPrefab, TruckContent);
-                truckItem.Initiate(mission);
+                truckItem.Initiate(mission.Key);
             }
 
             if (ButtonItem.GetFunction(mission.Key) == ButtonItem.Key.None) continue;
@@ -64,16 +63,14 @@ public class UIManager : MonoBehaviour
 
     private void HideMainUI()
     {
-        viewMissionListButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, 300, 0), animationTime);
-        viewTrackButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, 200, 0), animationTime);
+        viewsPanel.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-40, 300, 0), animationTime);
         buttonsList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-1800, 0, 0), animationTime);
         storage.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, -300, 0), animationTime);
     }
 
     private void ViewMainUI()
     {
-        viewMissionListButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, -38, 0), animationTime);
-        viewTrackButton.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-50, -138, 0), animationTime);
+        viewsPanel.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(-40, -20, 0), animationTime);
         buttonsList.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, 0, 0), animationTime);
         storage.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, 15, 0), animationTime);
     }
@@ -101,6 +98,7 @@ public class UIManager : MonoBehaviour
 
     public void HideTruck()
     {
+        Truck.Instance.MoveAllToStorage();
         truck.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, 855, 0), 1.0f);
         ViewMainUI();
     }
@@ -108,6 +106,7 @@ public class UIManager : MonoBehaviour
     public void Trade()
     {
         TruckLine.Instance.ActivateAnimation();
-        HideTruck();
+        truck.GetComponent<RectTransform>().DOAnchorPos3D(new Vector3(0, 855, 0), 1.0f);
+        ViewMainUI();
     }
 }

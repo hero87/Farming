@@ -4422,6 +4422,7 @@ Transform:
   - {fileID: 24762334}
   - {fileID: 676139764}
   - {fileID: 622385778}
+  - {fileID: 1754861047}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6668,17 +6669,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dbaa6c76f9d0dd48a84b99a8799a0d9, type: 3}
---- !u!114 &1221404465 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1484712167, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-  m_PrefabInstance: {fileID: 1357594557}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1242856022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7157,6 +7147,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1311914948, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1673020200}
+    - target: {fileID: 1357594562, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+      propertyPath: truckAnimator
+      value: 
+      objectReference: {fileID: 1386882661}
+    - target: {fileID: 1484712167, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1673020200}
+    - target: {fileID: 2814043216066085177, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1673020200}
+    - target: {fileID: 5074642257480591739, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1673020200}
+    - target: {fileID: 6377978232802045473, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1673020200}
     - target: {fileID: 6377978233963959634, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -7260,6 +7274,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4082123152994934, guid: 3b9e264b2edb6ab4b824de387d63bf0b, type: 3}
   m_PrefabInstance: {fileID: 1744443265}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1386882661 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1773838436426036376, guid: c07244071dc3ec848ab523ff89db93bd, type: 3}
+  m_PrefabInstance: {fileID: 1773838434924947428}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1432101935
 PrefabInstance:
@@ -8402,13 +8421,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0792e02fdb9be0f44a2ae0605f944d6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationTime: 0.5
   buttonItemPrefab: {fileID: -6612331608726086977, guid: 19a3c85cb042753428fa64321ec4ee34, type: 3}
   missionItemPrefab: {fileID: 5524649745619635988, guid: 166b87b40e080654ca06b045a7417192, type: 3}
   storageItemPrefab: {fileID: 3246319001932455694, guid: fbcf8629a60570744b925726d6861d4f, type: 3}
   truckItemPrefab: {fileID: 3982626579905540064, guid: 41171bf6e2a170d44957dea09791f4df, type: 3}
   coinsCountText: {fileID: 211859259}
-  viewMissionListButton: {fileID: 1843300358}
-  viewTrackButton: {fileID: 1221404465}
+  viewsPanel: {fileID: 1856364139}
   missionsList: {fileID: 315251788}
   buttonsList: {fileID: 719172861}
   storage: {fileID: 1652916265}
@@ -8432,6 +8451,7 @@ MonoBehaviour:
   meatFactory: {fileID: 964237997806695034}
   burgerResturant: {fileID: 97947615}
   instantiationRange: 0
+  enemyParent: {fileID: 1754861047}
   chickensParent: {fileID: 24762334}
   sheepsParent: {fileID: 676139764}
   cowsParent: {fileID: 622385778}
@@ -8471,6 +8491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8284579601846d848afc404b7eb46ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 2027120428}
+  holdTime: 0.2
 --- !u!4 &1673020205
 Transform:
   m_ObjectHideFlags: 0
@@ -8830,6 +8852,37 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 64308140522678488, guid: 3b9e264b2edb6ab4b824de387d63bf0b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3b9e264b2edb6ab4b824de387d63bf0b, type: 3}
+--- !u!1 &1754861046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1754861047}
+  m_Layer: 0
+  m_Name: EnemyParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1754861047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754861046}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.79, y: 0.25, z: -0.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 875132011}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1798520702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9127,21 +9180,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dbaa6c76f9d0dd48a84b99a8799a0d9, type: 3}
---- !u!114 &1843300358 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6377978232802045473, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-  m_PrefabInstance: {fileID: 1357594557}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1850651403 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 353355515686152262, guid: e389424641a13b54081abad33ac385d8, type: 3}
   m_PrefabInstance: {fileID: 1190641648}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1856364139 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1962913630655641360, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+  m_PrefabInstance: {fileID: 1357594557}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1865637674
 PrefabInstance:
@@ -9724,6 +9771,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94dac7c4e5d8a7e44b2c93a46b8eff6d, type: 3}
+--- !u!223 &2027120428 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 6377978234180108485, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
+  m_PrefabInstance: {fileID: 1357594557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2061538901 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 214434233714987030, guid: a249348c2190bef4e8af8f083188ff3d, type: 3}

@@ -44,11 +44,17 @@ public class Truck : MonoBehaviour
         onValueChanged(key, item.value);
     }
 
-    public int TotalPrice => truck.Sum(item => item.value);
+    public void MoveAllToStorage() => truck.ForEach(item => MoveToStorage(item.key));
+
+    public int TotalPrice => truck.Sum(item => item.value * LevelManager.Instance.CurrentLevel.GetSetting(Extensions.GetTrackableSettingsKey(item.key)));
 
     public void ConfirmTrade()
     {
         LevelManager.Instance.CurrentCoinsCount += TotalPrice;
-        truck.Clear();
+        foreach (var item in truck)
+        {
+            item.value = 0;
+            onValueChanged(item.key, item.value);
+        }
     }
 }

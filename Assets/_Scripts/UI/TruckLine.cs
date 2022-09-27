@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class TruckLine : MonoBehaviour
 {
+    [SerializeField] private Animator truckAnimator;
+
     [SerializeField] private RectTransform truck;
     [SerializeField] private RectTransform start;
     [SerializeField] private RectTransform end;
@@ -21,18 +23,22 @@ public class TruckLine : MonoBehaviour
 
     public bool Active { get; private set; }
 
-    public async void ActivateAnimation()
+    public void ActivateAnimation() => StartCoroutine(ActivateAnimationCoroutine());
+
+    private IEnumerator ActivateAnimationCoroutine()
     {
-        var time = LevelManager.Instance.CurrentLevel.GetSetting(Settings.Key.TradeSpeed);
+        var time = LevelManager.Instance.CurrentLevel.GetSetting(Settings.Key.TradeTime) / 1000.0f;
 
         Active = true;
         truck.localScale = new Vector3(1, 1, 1);
         truck.DOAnchorPos(end.anchoredPosition, time / 2.0f);
-        await Task.Delay(time / 2);
+        truckAnimator.Play("Go");
+        yield return new WaitForSeconds(2 * time / 3);
 
         truck.localScale = new Vector3(-1, 1, 1);
         truck.DOAnchorPos(start.anchoredPosition, time / 2.0f);
-        await Task.Delay(time / 2);
+        truckAnimator.Play("Back");
+        yield return new WaitForSeconds(time / 3);
         Active = false;
 
         Truck.Instance.ConfirmTrade();

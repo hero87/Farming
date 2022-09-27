@@ -10,17 +10,21 @@ public class StorageItem : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private RTLTextMeshPro number;
 
-    private Mission mission;
+    private TrackableType trackableType;
 
-    public void Initiate(Mission mission)
+    public void Initiate(TrackableType trackableType)
     {
-        this.mission = mission;
-        this.mission.onAddProgress += UpdateText;
-        image.sprite = Resources.Load<Sprite>($"Sprites/{Enum.GetName(typeof(TrackableType), mission.Key)}");
+        this.trackableType = trackableType;
+        Storage.Instance.onValueChanged += UpdateNumber;
+        image.sprite = Extensions.GetSprite(trackableType);
         number.text = $"X0";
     }
 
-    private void UpdateText() => number.text = $"X{mission.CurrentValue}";
+    private void UpdateNumber(TrackableType trackableType, int value)
+    {
+        if (trackableType != this.trackableType) return;
+        number.text = $"X{value}";
+    }
 
-    private void OnDisable() => mission.onAddProgress -= UpdateText;
+    private void OnDisable() => Storage.Instance.onValueChanged -= UpdateNumber;
 }

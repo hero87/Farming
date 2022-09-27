@@ -14,31 +14,31 @@ public class TruckItem : MonoBehaviour
     [SerializeField] private RTLTextMeshPro storageNumber;
     [SerializeField] private RTLTextMeshPro truckNumber;
 
-    private Mission mission;
+    private TrackableType trackableType;
 
-    public void Initiate(Mission mission)
+    public void Initiate(TrackableType trackableType)
     {
-        this.mission = mission;
+        this.trackableType = trackableType;
 
         Storage.Instance.onValueChanged += UpdateStorageNumber;
         Truck.Instance.onValueChanged += UpdateTruckNumber;
 
-        storageItem.sprite = Resources.Load<Sprite>($"Sprites/{Enum.GetName(typeof(TrackableType), mission.Key)}");
-        truckItem.sprite = Resources.Load<Sprite>($"Sprites/{Enum.GetName(typeof(TrackableType), mission.Key)}");
+        storageItem.sprite = Extensions.GetSprite(trackableType);
+        truckItem.sprite = Extensions.GetSprite(trackableType);
 
         truckNumber.text = $"x0";
         storageNumber.text = $"x0";
     }
 
-    private void UpdateTruckNumber(TrackableType key, int value)
+    private void UpdateTruckNumber(TrackableType trackableType, int value)
     {
-        if (key != mission.Key) return;
+        if (trackableType != this.trackableType) return;
         truckNumber.text = $"x{value}";
     }
 
-    private void UpdateStorageNumber(TrackableType key, int value)
+    private void UpdateStorageNumber(TrackableType trackableType, int value)
     {
-        if (key != mission.Key) return;
+        if (trackableType != this.trackableType) return;
         storageNumber.text = $"x{value}";
     }
 
@@ -48,7 +48,7 @@ public class TruckItem : MonoBehaviour
         Truck.Instance.onValueChanged -= UpdateTruckNumber;
     }
 
-    public void MoveToStorage() => Truck.Instance.MoveToStorage(mission.Key);
+    public void MoveToStorage() => Truck.Instance.MoveToStorage(trackableType);
 
-    public void MoveToTruck() => Storage.Instance.MoveToTruck(mission.Key);
+    public void MoveToTruck() => Storage.Instance.MoveToTruck(trackableType);
 }

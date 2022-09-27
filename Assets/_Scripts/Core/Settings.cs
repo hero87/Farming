@@ -24,7 +24,8 @@ public class Settings : ScriptableObject
         MilkPrice,
         MeatPrice,
 
-        TradeSpeed,
+        TradeTime,
+        EnemyTime,
     }
 
 
@@ -47,12 +48,21 @@ public class Settings : ScriptableObject
         new KeyValue(Key.CoinsCount, 300),
         new KeyValue(Key.WellCapacity, 5),
         new KeyValue(Key.WellFillPrice, 100),
-        new KeyValue(Key.GoldTime, 60),
-        new KeyValue(Key.MaximumTime, 120),
+
+        new KeyValue(Key.GoldTime, 60_000),
+        new KeyValue(Key.MaximumTime, 120_000),
+
         new KeyValue(Key.CollectableLifeTime, 20),
+
         new KeyValue(Key.ChicknPrice, 100),
         new KeyValue(Key.CowPrice, 200),
-        new KeyValue(Key.SheepPrice, 250),
+        new KeyValue(Key.SheepPrice, 300),
+        new KeyValue(Key.EggPrice, 25),
+        new KeyValue(Key.MilkPrice, 50),
+        new KeyValue(Key.MeatPrice, 75),
+
+        new KeyValue(Key.TradeTime, 18_000),
+        new KeyValue(Key.EnemyTime, 30_000),
     };
 
     public int GetValue(Key key)
