@@ -26,20 +26,20 @@ public class TruckItem : MonoBehaviour
         storageItem.sprite = Resources.Load<Sprite>($"Sprites/{Enum.GetName(typeof(TrackableType), mission.Key)}");
         truckItem.sprite = Resources.Load<Sprite>($"Sprites/{Enum.GetName(typeof(TrackableType), mission.Key)}");
 
-        truckNumber.text = $"X0";
-        storageNumber.text = $"X0";
+        truckNumber.text = $"x0";
+        storageNumber.text = $"x0";
     }
 
     private void UpdateTruckNumber(TrackableType key, int value)
     {
         if (key != mission.Key) return;
-        truckNumber.text = $"X{value}";
+        truckNumber.text = $"x{value}";
     }
 
     private void UpdateStorageNumber(TrackableType key, int value)
     {
         if (key != mission.Key) return;
-        storageNumber.text = $"X{value}";
+        storageNumber.text = $"x{value}";
     }
 
     private void OnDisable()
@@ -48,16 +48,7 @@ public class TruckItem : MonoBehaviour
         Truck.Instance.onValueChanged -= UpdateTruckNumber;
     }
 
+    public void MoveToStorage() => Truck.Instance.MoveToStorage(mission.Key);
 
-    public void MoveToStorage()
-    {
-        Storage.Instance.IncreaseValueOf(mission.Key);
-        Truck.Instance.DecreaseValueOf(mission.Key);
-    }
-
-    public void MoveToTruck()
-    {
-        Truck.Instance.IncreaseValueOf(mission.Key);
-        Storage.Instance.DecreaseValueOf(mission.Key);
-    }
+    public void MoveToTruck() => Storage.Instance.MoveToTruck(mission.Key);
 }

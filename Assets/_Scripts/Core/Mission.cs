@@ -23,17 +23,17 @@ public class Mission : ScriptableObject
     public void Initiate()
     {
         CurrentValue = 0;
-        if (Key == TrackableType.ChickensCount || Key == TrackableType.CowsCount || Key == TrackableType.SheepsCount || key == TrackableType.CoinsCount)
-            return;
+        if (!Extensions.IsCollectable(Key)) return;
+
         Storage.Instance.AddToStorage(key);
-        Truck.Instance.AddToStorage(key);
+        Truck.Instance.AddToTruck(key);
     }
 
     public void AddProgress()
     {
         CurrentValue++;
         onAddProgress();
-        Storage.Instance.IncreaseValueOf(key);
+        Storage.Instance.AddToStorage(key);
     }
 }
 

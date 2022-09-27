@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Storage : MonoBehaviour
@@ -15,19 +16,33 @@ public class Storage : MonoBehaviour
     public Action<TrackableType, int> onValueChanged;
     private List<Item> storage = new List<Item>();
 
-    public void AddToStorage(TrackableType key) => storage.Add(new Item(key, 0));
     public int GetValueOf(TrackableType key) => storage.Find(kv => kv.key == key).value;
 
-    public void IncreaseValueOf(TrackableType key)
+    public void AddToStorage(TrackableType key)
     {
-        var vr = storage.Find(kv => kv.key == key);
-        vr.value++;
-        onValueChanged(key, vr.value);
+        var item = storage.Find(temp => temp.key == key);
+
+        if (item != null)
+        {
+            item.value++;
+        }
+        else
+        {
+            item = new Item(key, 0);
+            storage.Add(item);
+        }
+
+        if (onValueChanged != null)
+            onValueChanged(key, item.value);
     }
-    public void DecreaseValueOf(TrackableType key)
+
+    public void MoveToTruck(TrackableType key)
     {
-        var vr = storage.Find(kv => kv.key == key);
-        vr.value--;
-        onValueChanged(key, vr.value);
+        var item = storage.Find(temp => temp.key == key);
+        if (item.value <= 0) return;
+
+        item.value--;
+        Truck.Instance.AddToTruck(item.key);
+        onValueChanged(key, item.value);
     }
 }
