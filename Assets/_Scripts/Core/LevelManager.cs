@@ -108,8 +108,8 @@ public class LevelManager : MonoBehaviour
 
         if (Time.time >= CurrentLevel.GetSetting(Settings.Key.MaximumTime) / 1000.0f)
         {
-            Time.timeScale = 0.0f;
-            throw new Exception("Game Over");
+          //  Time.timeScale = 0.0f;
+           // throw new Exception("Game Over");
         }
     }
 
