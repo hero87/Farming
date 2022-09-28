@@ -4,7 +4,7 @@
     EggsCount,
     MilksCount,
     MeatsCount,
-    BurgersCount,
+    HamburgersCount,
     BreadsCount,
     CakesCount,
     ChickensCount,

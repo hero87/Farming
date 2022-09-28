@@ -49,6 +49,9 @@ public static class Extensions
         if (trackableType == TrackableType.EggsCount) return LevelManager.Instance.GetSetting(Settings.Key.EggSize);
         else if (trackableType == TrackableType.MilksCount) return LevelManager.Instance.GetSetting(Settings.Key.MilkSize);
         else if (trackableType == TrackableType.MeatsCount) return LevelManager.Instance.GetSetting(Settings.Key.MeatSize);
+        else if (trackableType == TrackableType.BreadsCount) return LevelManager.Instance.GetSetting(Settings.Key.BreadSize);
+        else if (trackableType == TrackableType.CakesCount) return LevelManager.Instance.GetSetting(Settings.Key.CakeSize);
+        else if (trackableType == TrackableType.HamburgersCount) return LevelManager.Instance.GetSetting(Settings.Key.HamburgerSize);
         else throw new System.Exception($"Cannot find trackable item {trackableType} size");
     }
 

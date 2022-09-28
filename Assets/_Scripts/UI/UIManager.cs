@@ -31,6 +31,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RectTransform truckLine;
     [SerializeField] private RectTransform viewsPanel;
 
+    [Header("Images")]
+    [SerializeField] private Image storageSpaceFillImage;
+
+
 
     public RectTransform MissionListContent => missionsList.GetComponentInChildren<ScrollRect>().content;
     public RectTransform TruckContent => truck.GetChild(0).GetComponent<RectTransform>();
@@ -72,8 +76,9 @@ public class UIManager : MonoBehaviour
 
     // EVENTS
 
-
     public void UpdateCoinText(int value) => coinsCountText.text = $"{value}";
+
+    public void UpdateStorageSpace(float value) => storageSpaceFillImage.fillAmount = value;
 
     private void HideMainUI()
     {

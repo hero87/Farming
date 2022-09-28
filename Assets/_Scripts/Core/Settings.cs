@@ -20,10 +20,19 @@ public class Settings : ScriptableObject
         ChicknPrice,
         CowPrice,
         SheepPrice,
+
         EggPrice,
         MilkPrice,
         MeatPrice,
 
+        EggSize,
+        MilkSize,
+        MeatSize,
+        BreadSize,
+        CakeSize,
+        HamburgerSize,
+
+        StorageCapacity,
         TradeTime,
         EnemyTime,
         MaxEnemyNumber,
@@ -54,8 +63,7 @@ public class Settings : ScriptableObject
         ChickenEatingTime,
         SheepEatingTime,
         CowEatingTime,
-
-
+        
         ChickenHungerTime,
         SheepHungerTime,
         CowHungerTime,
@@ -78,7 +86,7 @@ public class Settings : ScriptableObject
     [SerializeField]
     private KeyValue[] keyValueList = new KeyValue[]
     {
-        new KeyValue(Key.CoinsCount, 300),
+        new KeyValue(Key.CoinsCount, 500),
         new KeyValue(Key.WellCapacity, 5),
         new KeyValue(Key.WellFillPrice, 100),
 
@@ -95,10 +103,18 @@ public class Settings : ScriptableObject
         new KeyValue(Key.MilkPrice, 50),
         new KeyValue(Key.MeatPrice, 75),
 
+        new KeyValue(Key.EggSize, 25),
+        new KeyValue(Key.MilkSize, 25),
+        new KeyValue(Key.MeatSize, 100),
+        new KeyValue(Key.BreadSize, 50),
+        new KeyValue(Key.CakeSize, 75),
+        new KeyValue(Key.HamburgerSize, 50),
+
+        new KeyValue(Key.StorageCapacity, 250),
         new KeyValue(Key.TradeTime, 18_000),
         new KeyValue(Key.EnemyTime, 20_000),
         new KeyValue(Key.MaxEnemyNumber, 2),
-        new KeyValue(Key.GrassRadius, 3),
+        new KeyValue(Key.GrassRadius, 5),
         new KeyValue(Key.GrassRefreshRate, 250),
         new KeyValue(Key.PlayerHitDamage, 2_000),
         new KeyValue(Key.ProductsLifeTime, 10_000),
@@ -134,7 +150,7 @@ public class Settings : ScriptableObject
     public int GetValue(Key key)
     {
         var keyValue = keyValueList.FirstOrDefault(m => m.key == key);
-        if (keyValue == null) throw new Exception($"ERROR | key {keyValue} not found in the settings list");
+        if (keyValue == null) throw new Exception($"ERROR | key {key} not found in the settings list");
         return keyValue.value;
     }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.Port;
 
 public class Storage : MonoBehaviour
 {
@@ -13,24 +14,34 @@ public class Storage : MonoBehaviour
         else throw new Exception("There is already a Storage object!");
     }
 
-    private void Start() => capacity = LevelManager.Instance.GetSetting(Settings.Key.StorageCapacity);
+    private void Start() => Capacity = LevelManager.Instance.GetSetting(Settings.Key.StorageCapacity);
 
     public Action<TrackableType, int> onValueChanged;
     private List<Item> storage = new List<Item>();
 
 
-    private int capacity;
+    public int Capacity { get; private set; }
+
+
     private int occupiedSpace;
-    public float OccupiedSpacePercentage => 1.0f * occupiedSpace / capacity;
+    public int OccupiedSpace { 
+        get => occupiedSpace;
+        private set
+        {
+            occupiedSpace = value;
+            var percentage = 1.0f * occupiedSpace / Capacity;
+            UIManager.Instance.UpdateStorageSpace(percentage);
+        }
+    }
 
     public int GetValueOf(TrackableType key) => storage.Find(kv => kv.key == key).value;
 
     public void AddToStorage(TrackableType key)
     {
-        if (Extensions.GetTrackableSize(key) + occupiedSpace > capacity) return;
+        if (Extensions.GetTrackableSize(key) + OccupiedSpace > Capacity) return;
 
         var item = storage.Find(temp => temp.key == key);
-        occupiedSpace += Extensions.GetTrackableSize(key);
+        OccupiedSpace += Extensions.GetTrackableSize(key);
 
         if (item != null)
         {
@@ -38,7 +49,7 @@ public class Storage : MonoBehaviour
         }
         else
         {
-            item = new Item(key, 0);
+            item = new Item(key, 1);
             storage.Add(item);
         }
 
@@ -51,7 +62,7 @@ public class Storage : MonoBehaviour
         if (item.value <= 0) return;
 
         item.value--;
-        occupiedSpace -= Extensions.GetTrackableSize(key);
+        OccupiedSpace -= Extensions.GetTrackableSize(key);
         Truck.Instance.AddToTruck(item.key);
         onValueChanged(key, item.value);
     }

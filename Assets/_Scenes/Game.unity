@@ -7131,30 +7131,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1311914948, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1357594562, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
       propertyPath: truckAnimator
       value: 
       objectReference: {fileID: 1386882661}
-    - target: {fileID: 1484712167, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2814043216066085177, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5074642257480591739, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6377978232802045473, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6377978233963959634, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0

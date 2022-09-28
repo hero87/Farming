@@ -54,10 +54,10 @@ public class LevelManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else throw new Exception("There is already a LevelManager object!");
 
-        CowPrefab = Resources.Load<Animal>("Animals/Cow");
-        SheepPrefab = Resources.Load<Animal>("Animals/Sheep");
-        ChickenPrefab = Resources.Load<Animal>("Animals/Chicken");
-        EnemyPrefab = Resources.Load<Enemy>("Enemy/Dog");
+        CowPrefab = Resources.Load<Animal>("NPCs/Cow");
+        SheepPrefab = Resources.Load<Animal>("NPCs/Sheep");
+        ChickenPrefab = Resources.Load<Animal>("NPCs/Chicken");
+        EnemyPrefab = Resources.Load<Enemy>("NPCs/Dog");
     }
 
     private void Update()
@@ -77,7 +77,7 @@ public class LevelManager : MonoBehaviour
         meatFactory.SetActive(CurrentLevel.Contains(TrackableType.MeatsCount));
         cakeBakery.SetActive(CurrentLevel.Contains(TrackableType.CakesCount));
         breadBakery.SetActive(CurrentLevel.Contains(TrackableType.BreadsCount));
-        burgerResturant.SetActive(CurrentLevel.Contains(TrackableType.BurgersCount));
+        burgerResturant.SetActive(CurrentLevel.Contains(TrackableType.HamburgersCount));
     }
 
     private void InstantiateObject(GameObject gameObject, Transform instantiationPoint)
