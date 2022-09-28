@@ -99,14 +99,16 @@ public class LevelManager : MonoBehaviour
 
         if (CurrentLevel.Completed)
         {
-            if (Time.time <= CurrentLevel.GetSetting(Settings.Key.GoldTime) / 1000.0f)
-                UIManager.Instance.ViewWinPanel("وقت ذهبي!", time);
-            else
-                UIManager.Instance.ViewWinPanel("أحسنت!", time);
+            if (Time.time <= CurrentLevel.GetSetting(Settings.Key.GoldTime) / 1000.0f) UIManager.Instance.ViewWinPanel("وقت ذهبي!", time);
+            else UIManager.Instance.ViewWinPanel("أحسنت!", time);
+            enabled = false;
         }
 
         if (Time.time >= CurrentLevel.GetSetting(Settings.Key.MaximumTime) / 1000.0f)
+        {
             UIManager.Instance.ViewLosePanel();
+            enabled = false;
+        }
 
         UIManager.Instance.SetTime(time);
     }

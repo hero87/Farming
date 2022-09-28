@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -80,6 +81,8 @@ public class UIManager : MonoBehaviour
 
     public void UpdateStorageSpace(float value) => storageSpaceFillImage.fillAmount = value;
 
+    public void ReloadScene() => SceneManager.LoadScene("Game");
+
     private void HideMainUI()
     {
         viewsPanel.DOAnchorPos3D(new Vector3(-40, 300, 0), animationTime);
@@ -131,7 +134,7 @@ public class UIManager : MonoBehaviour
 
     public void ViewWinPanel(string info, string time)
     {
-        winPanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime).OnComplete( () => Time.timeScale = 0);
+        winPanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime);
         winText.text = info;
         winTimeText.text = time;
         HideMainUI();
@@ -139,7 +142,7 @@ public class UIManager : MonoBehaviour
 
     public void ViewLosePanel()
     {
-        losePanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime).OnComplete(() => Time.timeScale = 0);
+        losePanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime);
         HideMainUI();
     }
 
