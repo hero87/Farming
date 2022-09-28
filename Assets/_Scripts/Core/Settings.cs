@@ -30,6 +30,7 @@ public class Settings : ScriptableObject
         GrassRadius,
         GrassRefreshRate,
         PlayerHitDamage,
+        ProductsLifeTime,
 
         ChickenMaxHealth,
         SheepMaxHealth,
@@ -99,7 +100,8 @@ public class Settings : ScriptableObject
         new KeyValue(Key.MaxEnemyNumber, 2),
         new KeyValue(Key.GrassRadius, 3),
         new KeyValue(Key.GrassRefreshRate, 250),
-        new KeyValue(Key.PlayerHitDamage, 2000),
+        new KeyValue(Key.PlayerHitDamage, 2_000),
+        new KeyValue(Key.ProductsLifeTime, 10_000),
 
          new KeyValue(Key.ChickenMaxHealth, 10_000),
          new KeyValue(Key.CowMaxHealth, 20_000),
