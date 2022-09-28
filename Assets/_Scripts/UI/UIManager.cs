@@ -9,17 +9,19 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private float animationTime;
 
+    [Header("Prefabs")]
     [SerializeField] private ButtonItem buttonItemPrefab;
     [SerializeField] private MissionItem missionItemPrefab;
     [SerializeField] private StorageItem storageItemPrefab;
     [SerializeField] private TruckItem truckItemPrefab;
 
+    [Header("Texts")]
     [SerializeField] private TextMeshProUGUI coinsCountText;
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI winText;
     [SerializeField] private TextMeshProUGUI winTimeText;
-    [SerializeField] private RectTransform viewsPanel;
 
+    [Header("Panel")]
     [SerializeField] private RectTransform winPanel;
     [SerializeField] private RectTransform losePanel;
     [SerializeField] private RectTransform missionsList;
@@ -27,6 +29,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RectTransform storage;
     [SerializeField] private RectTransform truck;
     [SerializeField] private RectTransform truckLine;
+    [SerializeField] private RectTransform viewsPanel;
+
 
     public RectTransform MissionListContent => missionsList.GetComponentInChildren<ScrollRect>().content;
     public RectTransform TruckContent => truck.GetChild(0).GetComponent<RectTransform>();
@@ -65,6 +69,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+
+    // EVENTS
+
+
     public void UpdateCoinText(int value) => coinsCountText.text = $"{value}";
 
     private void HideMainUI()
@@ -82,8 +90,6 @@ public class UIManager : MonoBehaviour
         storage.DOAnchorPos3D(new Vector3(0, 15, 0), animationTime);
         truckLine.DOAnchorPos3D(new Vector3(-30, 30, 0), animationTime);
     }
-
-
 
     public void ViewMissionList()
     {

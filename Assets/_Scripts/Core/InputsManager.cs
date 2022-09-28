@@ -64,12 +64,12 @@ public class InputsManager : MonoBehaviour
         }
         else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Eggs"))
         {
-            LevelManager.Instance.CurrentLevel.AddProgress(TrackableType.EggsCount, 1);
+            LevelManager.Instance.AddProgress(TrackableType.EggsCount, 1);
             Destroy(hit.collider.gameObject);
         }
         else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Milks"))
         {
-            LevelManager.Instance.CurrentLevel.AddProgress(TrackableType.MilksCount, 1);
+            LevelManager.Instance.AddProgress(TrackableType.MilksCount, 1);
             Destroy(hit.collider.gameObject);
         }
         else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
@@ -80,8 +80,6 @@ public class InputsManager : MonoBehaviour
 
 
     private int LayersToHit;
-
-
     private void Awake()
     {
         var groundLayer = 1 << LayerMask.NameToLayer("Ground");

@@ -10,6 +10,8 @@ public static class Extensions
         return Resources.Load<Sprite>($"Sprites/{System.Enum.GetName(typeof(TrackableType), trackableType)}");
     }
 
+
+    // TODO Gives Error Sometimes
     public static bool GetRandomPoint(Vector3 center, float range, out Vector3 result)
     {
         result = Vector3.zero;
@@ -34,13 +36,20 @@ public static class Extensions
                  );
     }
 
-    public static Settings.Key GetTrackableSettingsKey(TrackableType trackableType)
+    public static int GetTrackablePrice(TrackableType trackableType)
     {
-        if (trackableType == TrackableType.EggsCount) return Settings.Key.EggPrice;
-        else if (trackableType == TrackableType.MilksCount) return Settings.Key.MilkPrice;
-        else if (trackableType == TrackableType.MeatsCount) return Settings.Key.MeatPrice;
+        if (trackableType == TrackableType.EggsCount) return LevelManager.Instance.GetSetting(Settings.Key.EggPrice);
+        else if (trackableType == TrackableType.MilksCount) return LevelManager.Instance.GetSetting(Settings.Key.MilkPrice);
+        else if (trackableType == TrackableType.MeatsCount) return LevelManager.Instance.GetSetting(Settings.Key.MeatPrice);
+        else throw new System.Exception($"Cannot convert trackable item {trackableType}");
+    }
 
-        throw new System.Exception($"Cannot convert trackable item {trackableType}");
+    public static int GetTrackableSize(TrackableType trackableType)
+    {
+        if (trackableType == TrackableType.EggsCount) return LevelManager.Instance.GetSetting(Settings.Key.EggSize);
+        else if (trackableType == TrackableType.MilksCount) return LevelManager.Instance.GetSetting(Settings.Key.MilkSize);
+        else if (trackableType == TrackableType.MeatsCount) return LevelManager.Instance.GetSetting(Settings.Key.MeatSize);
+        else throw new System.Exception($"Cannot find trackable item {trackableType} size");
     }
 
     public static bool IsInsideUI(Canvas canvas, Vector2 point)

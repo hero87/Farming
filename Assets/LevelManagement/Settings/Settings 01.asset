@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyValueList:
   - key: 0
-    value: 20000
+    value: 500
   - key: 1
     value: 5
   - key: 2
@@ -40,11 +40,11 @@ MonoBehaviour:
   - key: 12
     value: 18000
   - key: 13
-    value: 1000
+    value: 20000
   - key: 14
-    value: 5
+    value: 2
   - key: 15
-    value: 10
+    value: 3
   - key: 16
     value: 250
   - key: 17

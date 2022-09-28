@@ -13,14 +13,24 @@ public class Storage : MonoBehaviour
         else throw new Exception("There is already a Storage object!");
     }
 
+    private void Start() => capacity = LevelManager.Instance.GetSetting(Settings.Key.StorageCapacity);
+
     public Action<TrackableType, int> onValueChanged;
     private List<Item> storage = new List<Item>();
+
+
+    private int capacity;
+    private int occupiedSpace;
+    public float OccupiedSpacePercentage => 1.0f * occupiedSpace / capacity;
 
     public int GetValueOf(TrackableType key) => storage.Find(kv => kv.key == key).value;
 
     public void AddToStorage(TrackableType key)
     {
+        if (Extensions.GetTrackableSize(key) + occupiedSpace > capacity) return;
+
         var item = storage.Find(temp => temp.key == key);
+        occupiedSpace += Extensions.GetTrackableSize(key);
 
         if (item != null)
         {
@@ -32,8 +42,7 @@ public class Storage : MonoBehaviour
             storage.Add(item);
         }
 
-        if (onValueChanged != null)
-            onValueChanged(key, item.value);
+        onValueChanged?.Invoke(key, item.value);
     }
 
     public void MoveToTruck(TrackableType key)
@@ -42,6 +51,7 @@ public class Storage : MonoBehaviour
         if (item.value <= 0) return;
 
         item.value--;
+        occupiedSpace -= Extensions.GetTrackableSize(key);
         Truck.Instance.AddToTruck(item.key);
         onValueChanged(key, item.value);
     }

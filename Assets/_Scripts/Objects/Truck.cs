@@ -16,6 +16,7 @@ public class Truck : MonoBehaviour
 
     public Action<TrackableType, int> onValueChanged;
     private List<Item> truck = new List<Item>();
+    public int TotalPrice => truck.Sum(item => item.value * Extensions.GetTrackablePrice(item.key));
 
     public void AddToTruck(TrackableType key)
     {
@@ -46,13 +47,11 @@ public class Truck : MonoBehaviour
 
     public void MoveAllToStorage() => truck.ForEach(item => MoveToStorage(item.key));
 
-    public int TotalPrice => truck.Sum(item => item.value * LevelManager.Instance.CurrentLevel.GetSetting(Extensions.GetTrackableSettingsKey(item.key)));
-
     public void ConfirmTrade()
     {
         LevelManager.Instance.CurrentCoinsCount += TotalPrice;
 
-        try { LevelManager.Instance.CurrentLevel.AddProgress(TrackableType.CoinsCount, TotalPrice); }
+        try { LevelManager.Instance.AddProgress(TrackableType.CoinsCount, TotalPrice); }
         catch (Exception) { }
 
         foreach (var item in truck)

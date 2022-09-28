@@ -12,7 +12,7 @@ public class HealthBar : MonoBehaviour
     public void SetValue(float percentage)
     {
         healthImage.fillAmount = percentage;
-        gradient.Evaluate(percentage);
+        healthImage.color = gradient.Evaluate(percentage);
     }
 
 }

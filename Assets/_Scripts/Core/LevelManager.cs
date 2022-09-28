@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -100,25 +100,13 @@ public class LevelManager : MonoBehaviour
         if (CurrentLevel.Completed)
         {
             if (Time.time <= CurrentLevel.GetSetting(Settings.Key.GoldTime) / 1000.0f)
-            {
-                //Time.timeScale = 0.0f;
-                //throw new Exception("Gold Time Winning");
-                UIManager.Instance.ViewWinPanel("æÞÊ ÐåÈí!", time);
-            }
+                UIManager.Instance.ViewWinPanel("ÙˆÙ‚Øª Ø°Ù‡Ø¨ÙŠ!", time);
             else
-            {
-                //Time.timeScale = 0.0f;
-                //throw new Exception("Normal Time Wining");
-                UIManager.Instance.ViewWinPanel("ÃÍÓäÊ!", time);
-            }
+                UIManager.Instance.ViewWinPanel("Ø£Ø­Ø³Ù†Øª!", time);
         }
 
         if (Time.time >= CurrentLevel.GetSetting(Settings.Key.MaximumTime) / 1000.0f)
-        {
-            //  Time.timeScale = 0.0f;
-            // throw new Exception("Game Over");
             UIManager.Instance.ViewLosePanel();
-        }
 
         UIManager.Instance.SetTime(time);
     }
@@ -138,6 +126,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public int GetSetting(Settings.Key key) => CurrentLevel.GetSetting(key);
+    public void AddProgress(TrackableType key, int value) => CurrentLevel.AddProgress(key, value);
 
 
     #region Events
