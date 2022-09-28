@@ -25,6 +25,7 @@ public class Grass : MonoBehaviour
                 if (isTakenByAnimal) return;
             }
 
+            if (!Application.isPlaying) {return; }
             await Task.Delay(LevelManager.Instance.GetSetting(Settings.Key.GrassRefreshRate));
         }
     }

@@ -49,6 +49,8 @@ public class LevelManager : MonoBehaviour
 
 
     public static LevelManager Instance { get; private set; }
+
+    private float time;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -58,6 +60,9 @@ public class LevelManager : MonoBehaviour
         SheepPrefab = Resources.Load<Animal>("NPCs/Sheep");
         ChickenPrefab = Resources.Load<Animal>("NPCs/Chicken");
         EnemyPrefab = Resources.Load<Enemy>("NPCs/Dog");
+
+
+        time =  CurrentLevel.GetSetting(Settings.Key.MaximumTime)/1000;
     }
 
     private void Update()
@@ -92,25 +97,31 @@ public class LevelManager : MonoBehaviour
         throw new Exception($"ERROR | Cannot Instantiate {gameObject.name}!");
     }
 
+
+ 
+
     private void CheckLevelProgress()
     {
-        var timeInt = CurrentLevel.GetSetting(Settings.Key.MaximumTime) / 1000 - (int)Time.time;
-        var time = $"{timeInt}";
+
+
+       this.time -=  Time.deltaTime;
+        
+        var timeString = $"{(int)time}";
 
         if (CurrentLevel.Completed)
         {
-            if (Time.time <= CurrentLevel.GetSetting(Settings.Key.GoldTime) / 1000.0f) UIManager.Instance.ViewWinPanel("وقت ذهبي!", time);
-            else UIManager.Instance.ViewWinPanel("أحسنت!", time);
+            if (time <= CurrentLevel.GetSetting(Settings.Key.GoldTime) / 1000.0f) UIManager.Instance.ViewWinPanel("وقت ذهبي!", timeString);
+            else UIManager.Instance.ViewWinPanel("أحسنت!", timeString);
             enabled = false;
         }
 
-        if (Time.time >= CurrentLevel.GetSetting(Settings.Key.MaximumTime) / 1000.0f)
-        {
-            UIManager.Instance.ViewLosePanel();
-            enabled = false;
-        }
+        //if (time >= 0)
+        //{
+        //    UIManager.Instance.ViewLosePanel();
+        //    enabled = false;
+        //}
 
-        UIManager.Instance.SetTime(time);
+        UIManager.Instance.SetTime(timeString);
     }
 
     public int NumberOfActiveEnemies { get; set; }
