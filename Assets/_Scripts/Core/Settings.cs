@@ -27,6 +27,37 @@ public class Settings : ScriptableObject
         TradeTime,
         EnemyTime,
         MaxEnemyNumber,
+        GrassRadius,
+        GrassRefreshRate,
+        PlayerHitDamage,
+
+        ChickenMaxHealth,
+        SheepMaxHealth,
+        CowMaxHealth,
+        EnemyMaxHealth,
+
+        ChickenPatrollingRange,
+        SheepPatrollingRange,
+        CowPatrollingRange,
+        EnemyPatrollingRange,
+
+        ChickenPatrollingSpeed,
+        SheepPatrollingSpeed,
+        CowPatrollingSpeed,
+        EnemyPatrollingSpeed,
+
+        ChickenChasingSpeed,
+        SheepChasingSpeed,
+        CowChasingSpeed,
+
+        ChickenEatingTime,
+        SheepEatingTime,
+        CowEatingTime,
+
+
+        ChickenHungerTime,
+        SheepHungerTime,
+        CowHungerTime,
     }
 
 
@@ -58,6 +89,7 @@ public class Settings : ScriptableObject
         new KeyValue(Key.ChicknPrice, 100),
         new KeyValue(Key.CowPrice, 200),
         new KeyValue(Key.SheepPrice, 300),
+
         new KeyValue(Key.EggPrice, 25),
         new KeyValue(Key.MilkPrice, 50),
         new KeyValue(Key.MeatPrice, 75),
@@ -65,6 +97,36 @@ public class Settings : ScriptableObject
         new KeyValue(Key.TradeTime, 18_000),
         new KeyValue(Key.EnemyTime, 20_000),
         new KeyValue(Key.MaxEnemyNumber, 2),
+        new KeyValue(Key.GrassRadius, 3),
+        new KeyValue(Key.GrassRefreshRate, 250),
+        new KeyValue(Key.PlayerHitDamage, 2000),
+
+         new KeyValue(Key.ChickenMaxHealth, 10_000),
+         new KeyValue(Key.CowMaxHealth, 20_000),
+         new KeyValue(Key.SheepMaxHealth, 30_000),
+         new KeyValue(Key.EnemyMaxHealth, 10_000),
+
+         new KeyValue(Key.ChickenPatrollingRange, 5),
+         new KeyValue(Key.CowPatrollingRange, 7),
+         new KeyValue(Key.SheepPatrollingRange, 7),
+         new KeyValue(Key.EnemyPatrollingRange, 15),
+
+         new KeyValue(Key.ChickenPatrollingSpeed, 2),
+         new KeyValue(Key.CowPatrollingSpeed, 2),
+         new KeyValue(Key.SheepPatrollingSpeed, 2),
+         new KeyValue(Key.EnemyPatrollingSpeed, 5),
+
+         new KeyValue(Key.ChickenChasingSpeed, 5),
+         new KeyValue(Key.SheepChasingSpeed, 5),
+         new KeyValue(Key.CowChasingSpeed, 5),
+
+         new KeyValue(Key.ChickenEatingTime, 4_000),
+         new KeyValue(Key.SheepEatingTime, 4_000),
+         new KeyValue(Key.CowEatingTime, 4_000),
+
+         new KeyValue(Key.ChickenHungerTime, 5_000),
+         new KeyValue(Key.SheepHungerTime, 10_000),
+         new KeyValue(Key.CowHungerTime, 15_000),
     };
 
     public int GetValue(Key key)

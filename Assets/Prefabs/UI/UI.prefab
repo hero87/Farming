@@ -4163,6 +4163,7 @@ GameObject:
   - component: {fileID: 6377978234180108485}
   - component: {fileID: 6377978234180108484}
   - component: {fileID: 6377978234180108487}
+  - component: {fileID: 6324721618794163123}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -4260,6 +4261,35 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6324721618794163123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6377978234180108486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0792e02fdb9be0f44a2ae0605f944d6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationTime: 0.5
+  buttonItemPrefab: {fileID: -6612331608726086977, guid: 19a3c85cb042753428fa64321ec4ee34, type: 3}
+  missionItemPrefab: {fileID: 5524649745619635988, guid: 166b87b40e080654ca06b045a7417192, type: 3}
+  storageItemPrefab: {fileID: 3246319001932455694, guid: fbcf8629a60570744b925726d6861d4f, type: 3}
+  truckItemPrefab: {fileID: 3982626579905540064, guid: 41171bf6e2a170d44957dea09791f4df, type: 3}
+  coinsCountText: {fileID: 6377978233664929544}
+  timeText: {fileID: 2032950127231270210}
+  winText: {fileID: 6003790742424449856}
+  winTimeText: {fileID: 3241967267059399243}
+  viewsPanel: {fileID: 1962913630655641360}
+  winPanel: {fileID: 3769731555984240605}
+  losePanel: {fileID: 5262339281085375651}
+  missionsList: {fileID: 7282759840538956839}
+  buttonsList: {fileID: 6377978232763811374}
+  storage: {fileID: 6377978232703482191}
+  truck: {fileID: 797088255}
+  truckLine: {fileID: 832442798734508734}
 --- !u!1 &6551616383907916568
 GameObject:
   m_ObjectHideFlags: 0

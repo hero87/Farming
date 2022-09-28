@@ -42,10 +42,10 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    public AnimalAI CowPrefab { get; private set; }
-    public AnimalAI SheepPrefab { get; private set; }
-    public AnimalAI ChickenPrefab { get; private set; }
-    public EnemyAI EnemyPrefab { get; private set; }
+    public Animal CowPrefab { get; private set; }
+    public Animal SheepPrefab { get; private set; }
+    public Animal ChickenPrefab { get; private set; }
+    public Enemy EnemyPrefab { get; private set; }
 
 
     public static LevelManager Instance { get; private set; }
@@ -54,10 +54,10 @@ public class LevelManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else throw new Exception("There is already a LevelManager object!");
 
-        CowPrefab = Resources.Load<AnimalAI>("Animals/Cow");
-        SheepPrefab = Resources.Load<AnimalAI>("Animals/Sheep");
-        ChickenPrefab = Resources.Load<AnimalAI>("Animals/Chicken");
-        EnemyPrefab = Resources.Load<EnemyAI>("Enemy/Dog");
+        CowPrefab = Resources.Load<Animal>("Animals/Cow");
+        SheepPrefab = Resources.Load<Animal>("Animals/Sheep");
+        ChickenPrefab = Resources.Load<Animal>("Animals/Chicken");
+        EnemyPrefab = Resources.Load<Enemy>("Enemy/Dog");
     }
 
     private void Update()
@@ -136,6 +136,8 @@ public class LevelManager : MonoBehaviour
             enemyLastTime = Time.time;
         }
     }
+
+    public int GetSetting(Settings.Key key) => CurrentLevel.GetSetting(key);
 
 
     #region Events

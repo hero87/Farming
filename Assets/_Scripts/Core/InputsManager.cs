@@ -74,7 +74,7 @@ public class InputsManager : MonoBehaviour
         }
         else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            hit.collider.GetComponent<EnemyAI>().AcceptDamage(2);
+            hit.collider.GetComponent<Enemy>().CurrentHealth -= LevelManager.Instance.GetSetting(Settings.Key.PlayerHitDamage);
         }
     }
 
