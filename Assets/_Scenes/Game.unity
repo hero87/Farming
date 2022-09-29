@@ -5665,7 +5665,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &990103689 stripped
 Transform:
@@ -7131,10 +7131,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1357594562, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
-      propertyPath: truckAnimator
-      value: 
-      objectReference: {fileID: 1386882661}
     - target: {fileID: 6377978233963959634, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -7149,7 +7145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6377978234180108482, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6377978234180108482, guid: d538eb04f70b38642afff45fafd3996c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7238,11 +7234,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4082123152994934, guid: 3b9e264b2edb6ab4b824de387d63bf0b, type: 3}
   m_PrefabInstance: {fileID: 1744443265}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1386882661 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1773838436426036376, guid: c07244071dc3ec848ab523ff89db93bd, type: 3}
-  m_PrefabInstance: {fileID: 1773838434924947428}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1386882663 stripped
 Transform:
@@ -8362,7 +8353,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1673020205}
   - component: {fileID: 1673020203}
-  - component: {fileID: 1673020202}
   - component: {fileID: 1673020204}
   - component: {fileID: 1673020201}
   m_Layer: 0
@@ -8395,18 +8385,7 @@ MonoBehaviour:
   chickensParent: {fileID: 24762334}
   sheepsParent: {fileID: 676139764}
   cowsParent: {fileID: 622385778}
---- !u!114 &1673020202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1673020199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 623cd73f86d58354e91986d297bd0d5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  numberOfActiveEnemies: 0
 --- !u!114 &1673020203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10352,18 +10331,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1994623984}
     m_Modifications:
-    - target: {fileID: 1773838436426036377, guid: c07244071dc3ec848ab523ff89db93bd, type: 3}
-      propertyPath: Mute
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1773838436426036377, guid: c07244071dc3ec848ab523ff89db93bd, type: 3}
-      propertyPath: m_Volume
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1773838436426036377, guid: c07244071dc3ec848ab523ff89db93bd, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1773838436426036382, guid: c07244071dc3ec848ab523ff89db93bd, type: 3}
       propertyPath: m_Name
       value: Truck
@@ -10795,7 +10762,7 @@ Transform:
   - {fileID: 1612206470}
   - {fileID: 335737040}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &3837239517811585352
 MeshRenderer:

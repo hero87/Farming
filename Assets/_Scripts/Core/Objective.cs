@@ -1,10 +1,10 @@
-﻿public enum TrackableType
+﻿public enum Objective
 {
     CoinsCount,
     EggsCount,
     MilksCount,
     MeatsCount,
-    HamburgersCount,
+    BurgersCount,
     BreadsCount,
     CakesCount,
     ChickensCount,

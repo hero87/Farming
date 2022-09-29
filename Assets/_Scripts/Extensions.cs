@@ -5,9 +5,9 @@ using UnityEngine.AI;
 
 public static class Extensions
 {
-    public static Sprite GetSprite(TrackableType trackableType)
+    public static Sprite GetSprite(Objective trackableType)
     {
-        return Resources.Load<Sprite>($"Sprites/{System.Enum.GetName(typeof(TrackableType), trackableType)}");
+        return Resources.Load<Sprite>($"Sprites/{System.Enum.GetName(typeof(Objective), trackableType)}");
     }
 
 
@@ -26,32 +26,32 @@ public static class Extensions
 
     public static Quaternion GetRandomRotation() => Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up);
 
-    public static bool IsCollectable(TrackableType trackableType)
+    public static bool IsCollectable(Objective trackableType)
     {
         return !(
-            trackableType == TrackableType.ChickensCount ||
-            trackableType == TrackableType.CowsCount ||
-            trackableType == TrackableType.SheepsCount ||
-            trackableType == TrackableType.CoinsCount
+            trackableType == Objective.ChickensCount ||
+            trackableType == Objective.CowsCount ||
+            trackableType == Objective.SheepsCount ||
+            trackableType == Objective.CoinsCount
                  );
     }
 
-    public static int GetTrackablePrice(TrackableType trackableType)
+    public static int GetTrackablePrice(Objective trackableType)
     {
-        if (trackableType == TrackableType.EggsCount) return LevelManager.Instance.GetSetting(Settings.Key.EggPrice);
-        else if (trackableType == TrackableType.MilksCount) return LevelManager.Instance.GetSetting(Settings.Key.MilkPrice);
-        else if (trackableType == TrackableType.MeatsCount) return LevelManager.Instance.GetSetting(Settings.Key.MeatPrice);
+        if (trackableType == Objective.EggsCount) return LevelManager.Instance.GetSetting(SettingsKey.EggPrice);
+        else if (trackableType == Objective.MilksCount) return LevelManager.Instance.GetSetting(SettingsKey.MilkPrice);
+        else if (trackableType == Objective.MeatsCount) return LevelManager.Instance.GetSetting(SettingsKey.MeatPrice);
         else throw new System.Exception($"Cannot convert trackable item {trackableType}");
     }
 
-    public static int GetTrackableSize(TrackableType trackableType)
+    public static int GetTrackableSize(Objective trackableType)
     {
-        if (trackableType == TrackableType.EggsCount) return LevelManager.Instance.GetSetting(Settings.Key.EggSize);
-        else if (trackableType == TrackableType.MilksCount) return LevelManager.Instance.GetSetting(Settings.Key.MilkSize);
-        else if (trackableType == TrackableType.MeatsCount) return LevelManager.Instance.GetSetting(Settings.Key.MeatSize);
-        else if (trackableType == TrackableType.BreadsCount) return LevelManager.Instance.GetSetting(Settings.Key.BreadSize);
-        else if (trackableType == TrackableType.CakesCount) return LevelManager.Instance.GetSetting(Settings.Key.CakeSize);
-        else if (trackableType == TrackableType.HamburgersCount) return LevelManager.Instance.GetSetting(Settings.Key.HamburgerSize);
+        if (trackableType == Objective.EggsCount) return LevelManager.Instance.GetSetting(SettingsKey.EggSize);
+        else if (trackableType == Objective.MilksCount) return LevelManager.Instance.GetSetting(SettingsKey.MilkSize);
+        else if (trackableType == Objective.MeatsCount) return LevelManager.Instance.GetSetting(SettingsKey.MeatSize);
+        else if (trackableType == Objective.BreadsCount) return LevelManager.Instance.GetSetting(SettingsKey.BreadSize);
+        else if (trackableType == Objective.CakesCount) return LevelManager.Instance.GetSetting(SettingsKey.CakeSize);
+        else if (trackableType == Objective.BurgersCount) return LevelManager.Instance.GetSetting(SettingsKey.BurgerSize);
         else throw new System.Exception($"Cannot find trackable item {trackableType} size");
     }
 

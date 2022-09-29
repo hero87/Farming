@@ -17,7 +17,7 @@ public class ButtonItem : MonoBehaviour
 
     public Key Function { get; private set; }
 
-    public void Initiate(TrackableType key)
+    public void Initiate(Objective key)
     {
         Function = GetFunction(key);
         switch (Function)
@@ -42,20 +42,20 @@ public class ButtonItem : MonoBehaviour
         }
     }
 
-    public static Key GetFunction(TrackableType key)
+    public static Key GetFunction(Objective key)
     {
         switch (key)
         {
-            case TrackableType.EggsCount:
-            case TrackableType.ChickensCount:
+            case Objective.EggsCount:
+            case Objective.ChickensCount:
                 return Key.AddChickn;
 
-            case TrackableType.MilksCount:
-            case TrackableType.CowsCount:
+            case Objective.MilksCount:
+            case Objective.CowsCount:
                 return Key.AddCow;
 
-            case TrackableType.MeatsCount:
-            case TrackableType.SheepsCount:
+            case Objective.MeatsCount:
+            case Objective.SheepsCount:
                 return Key.AddSheep;
         }
 

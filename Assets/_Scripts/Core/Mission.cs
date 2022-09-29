@@ -10,30 +10,31 @@ using System.Reflection;
 [CreateAssetMenu(fileName = "Mission 01", menuName = "Create New Mission")]
 public class Mission : ScriptableObject
 {
-    [SerializeField] private TrackableType key;
+    public Action onAddProgress;
+
+    [SerializeField] private Objective key;
     [SerializeField] private int targetValue;
 
-    public TrackableType Key => key;
+    public Objective Key => key;
     public int TargetValue => targetValue;
-    public bool Completed => CurrentValue >= targetValue;
+    public bool IsCompleted => CurrentValue >= targetValue;
     public int CurrentValue { get; private set; }
-
-    public Action onAddProgress;
 
     public void Initiate()
     {
         CurrentValue = 0;
         if (!Extensions.IsCollectable(Key)) return;
 
-        Storage.Instance.AddToStorage(key);
-        Truck.Instance.AddToTruck(key);
+        Storage.Instance.AddToStorage(key, 0);
+        Truck.Instance.AddToTruck(key, 0);
     }
 
     public void AddProgress(int value)
     {
         CurrentValue += value;
+        try { Storage.Instance.AddToStorage(key, value); }
+        catch { }
         onAddProgress();
-        Storage.Instance.AddToStorage(key);
     }
 }
 

@@ -1,4 +1,4 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using System.Collections.Generic;
 using System;
 using TMPro;
@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Parameters")]
     [SerializeField] private float animationTime;
 
     [Header("Prefabs")]
@@ -22,23 +23,25 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI winText;
     [SerializeField] private TextMeshProUGUI winTimeText;
 
-    [Header("Panel")]
+    [Header("Panels")]
     [SerializeField] private RectTransform winPanel;
     [SerializeField] private RectTransform losePanel;
-    [SerializeField] private RectTransform missionsList;
-    [SerializeField] private RectTransform buttonsList;
-    [SerializeField] private RectTransform storage;
-    [SerializeField] private RectTransform truck;
-    [SerializeField] private RectTransform truckLine;
-    [SerializeField] private RectTransform viewsPanel;
+    [SerializeField] private RectTransform missionsListPanel;
+    [SerializeField] private RectTransform buttonsListPanel;
+    [SerializeField] private RectTransform storagePanel;
+    [SerializeField] private RectTransform truckPanel;
+    [SerializeField] private RectTransform truckLinePanel;
+    [SerializeField] private RectTransform timePanel;
+    [SerializeField] private RectTransform coinsPanel;
+
+    [Header("Containers")]
+    [SerializeField] private RectTransform missionListContainer;
+    [SerializeField] private RectTransform buttonsListContainer;
+    [SerializeField] private RectTransform storageContainer;
+    [SerializeField] private RectTransform truckContainer;
 
     [Header("Images")]
     [SerializeField] private Image storageSpaceFillImage;
-
-
-
-    public RectTransform MissionListContent => missionsList.GetComponentInChildren<ScrollRect>().content;
-    public RectTransform TruckContent => truck.GetChild(0).GetComponent<RectTransform>();
 
 
     public static UIManager Instance { get; private set; }
@@ -48,103 +51,121 @@ public class UIManager : MonoBehaviour
         else throw new Exception("ERROR | There is already an UIManager object!");
     }
 
+
     public void Initiate()
     {
         var buttonItemsSet = new HashSet<ButtonItem.Key>();
-        foreach (var mission in LevelManager.Instance.CurrentLevel.Missions)
+        foreach (var objective in LevelManager.Instance.Objectives)
         {
-            var missionItem = Instantiate(missionItemPrefab, MissionListContent);
-            missionItem.Initiate(mission);
+            var missionItem = Instantiate(missionItemPrefab, missionListContainer);
+            missionItem.Initiate(LevelManager.Instance.GetMission(objective));
 
-            if (Extensions.IsCollectable(mission.Key))
+            if (Extensions.IsCollectable(objective))
             {
-                var storageItem = Instantiate(storageItemPrefab, storage);
-                storageItem.Initiate(mission.Key);
+                var storageItem = Instantiate(storageItemPrefab, storageContainer);
+                storageItem.Initiate(objective);
 
-                var truckItem = Instantiate(truckItemPrefab, TruckContent);
-                truckItem.Initiate(mission.Key);
+                var truckItem = Instantiate(truckItemPrefab, truckContainer);
+                truckItem.Initiate(objective);
             }
 
-            if (ButtonItem.GetFunction(mission.Key) == ButtonItem.Key.None) continue;
-            if (buttonItemsSet.Contains(ButtonItem.GetFunction(mission.Key))) continue;
+            if (ButtonItem.GetFunction(objective) == ButtonItem.Key.None) continue;
+            if (buttonItemsSet.Contains(ButtonItem.GetFunction(objective))) continue;
 
-            var buttonItem = Instantiate(buttonItemPrefab, buttonsList);
-            buttonItem.Initiate(mission.Key);
-            buttonItemsSet.Add(ButtonItem.GetFunction(mission.Key));
+            var buttonItem = Instantiate(buttonItemPrefab, buttonsListContainer);
+            buttonItem.Initiate(objective);
+            buttonItemsSet.Add(ButtonItem.GetFunction(objective));
         }
     }
 
 
-    // EVENTS
-
-    public void UpdateCoinText(int value) => coinsCountText.text = $"{value}";
-
-    public void UpdateStorageSpace(float value) => storageSpaceFillImage.fillAmount = value;
-
-    public void ReloadScene() => SceneManager.LoadScene("Game");
-
     private void HideMainUI()
     {
-        viewsPanel.DOAnchorPos3D(new Vector3(-40, 300, 0), animationTime);
-        buttonsList.DOAnchorPos3D(new Vector3(-1800, 0, 0), animationTime);
-        storage.DOAnchorPos3D(new Vector3(0, -300, 0), animationTime);
-        truckLine.DOAnchorPos3D(new Vector3(-30, -300, 0), animationTime);
+        timePanel.DOAnchorPos3D(new Vector3(-40, 300, 0), animationTime);
+        buttonsListPanel.DOAnchorPos3D(new Vector3(-1800, 0, 0), animationTime);
+        storagePanel.DOAnchorPos3D(new Vector3(0, -400, 0), animationTime);
+        truckLinePanel.DOAnchorPos3D(new Vector3(-30, -300, 0), animationTime);
+        coinsPanel.DOAnchorPos3D(new Vector3(0, -300, 0), animationTime);
     }
 
     private void ViewMainUI()
     {
-        viewsPanel.DOAnchorPos3D(new Vector3(-40, -20, 0), animationTime);
-        buttonsList.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime);
-        storage.DOAnchorPos3D(new Vector3(0, 15, 0), animationTime);
-        truckLine.DOAnchorPos3D(new Vector3(-30, 30, 0), animationTime);
+        timePanel.DOAnchorPos3D(new Vector3(-40, -20, 0), animationTime);
+        buttonsListPanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime);
+        storagePanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime);
+        truckLinePanel.DOAnchorPos3D(new Vector3(-30, 30, 0), animationTime);
+        coinsPanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime);
     }
 
-    public void ViewMissionList()
-    {
-        missionsList.DOAnchorPos3D(new Vector3(-50, -75, 0), animationTime);
-        HideMainUI();
-    }
 
-    public void HideMissionList()
-    {
-        missionsList.DOAnchorPos3D(new Vector3(600, -75, 0), animationTime);
-        ViewMainUI();
-    }
+    // EVENTS For LevelManager
 
-    public void ViewTruck()
-    {
-        if (TruckLine.Instance.Active) return;
-        truck.DOAnchorPos3D(new Vector3(0, -55, 0), animationTime);
-        HideMainUI();
-    }
+    public void UpdateCoinsCount(int value) => coinsCountText.text = $"{value}";
 
-    public void HideTruck()
-    {
-        Truck.Instance.MoveAllToStorage();
-        truck.DOAnchorPos3D(new Vector3(0, 855, 0), animationTime);
-        ViewMainUI();
-    }
+    public void UpdateStorageSpace(float value) => storageSpaceFillImage.fillAmount = value;
 
-    public void Trade()
-    {
-        TruckLine.Instance.ActivateAnimation();
-        truck.DOAnchorPos3D(new Vector3(0, 855, 0), animationTime);
-        ViewMainUI();
-    }
-
-    public void ViewWinPanel(string info, string time)
+    public void ViewWinPanel(int time, bool isGoldTime)
     {
         winPanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime);
-        winText.text = info;
-        winTimeText.text = time;
+
+        if (isGoldTime) winText.text = "وقت ذهبي!";
+        else winText.text = "أحسنت!";
+
         HideMainUI();
     }
 
     public void ViewLosePanel()
     {
         losePanel.DOAnchorPos3D(new Vector3(0, 0, 0), animationTime);
+
         HideMainUI();
     }
 
-    public void SetTime(string time) => timeText.text = time;
+    public void UpdateTime(int timeInt)
+    {
+        winTimeText.text = $"{timeInt}";
+        timeText.text = $"{timeInt}";
+    }
+
+
+
+    // EVENTS For Buttons
+
+    public void ReloadScene() => SceneManager.LoadScene("Game");
+
+    public void ViewMissionList()
+    {
+        missionsListPanel.DOAnchorPos3D(new Vector3(-50, -75, 0), animationTime);
+        HideMainUI();
+    }
+
+    public void HideMissionList()
+    {
+        missionsListPanel.DOAnchorPos3D(new Vector3(600, -75, 0), animationTime);
+        ViewMainUI();
+    }
+
+    public void ViewTruck()
+    {
+        if (Truck.Instance.IsTradingActive) return;
+        truckPanel.DOAnchorPos3D(new Vector3(0, -55, 0), animationTime);
+        HideMainUI();
+    }
+
+    public void HideTruck()
+    {
+        Truck.Instance.MoveAllToStorage();
+        truckPanel.DOAnchorPos3D(new Vector3(0, 855, 0), animationTime);
+        ViewMainUI();
+    }
+
+    public void Trade()
+    {
+        if (Truck.Instance.TotalPrice <= 0) return;
+
+        Truck.Instance.ConfirmTrade();
+        TruckLine.Instance.ActivateAnimation();
+        truckPanel.DOAnchorPos3D(new Vector3(0, 855, 0), animationTime);
+        ViewMainUI();
+    }
 }

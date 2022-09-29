@@ -1,11 +1,11 @@
 ﻿public class Item
 {
-    public TrackableType key;
-    public int value;
+    public Objective key;
+    public int amount;
 
-    public Item(TrackableType key, int value)
+    public Item(Objective key, int amount)
     {
         this.key = key;
-        this.value = value;
+        this.amount = amount;
     }
 }

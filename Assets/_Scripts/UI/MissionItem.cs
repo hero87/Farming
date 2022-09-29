@@ -15,7 +15,7 @@ public class MissionItem : MonoBehaviour
     {
         this.mission = mission;
         this.mission.onAddProgress += UpdateText;
-        image.sprite = Resources.Load<Sprite>($"Sprites/{Enum.GetName(typeof(TrackableType), mission.Key)}");
+        image.sprite = Resources.Load<Sprite>($"Sprites/{Enum.GetName(typeof(Objective), mission.Key)}");
         text.text = $"تم تجميع {mission.CurrentValue} من {mission.TargetValue}";
     }
 

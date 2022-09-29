@@ -11,21 +11,27 @@ public class Enemy : NPC
     public EnemyState State { get; private set; }
 
 
-    public override int MaxHealth => LevelManager.Instance.GetSetting(Settings.Key.EnemyMaxHealth);
-    public override int PatrollingRange => LevelManager.Instance.GetSetting(Settings.Key.EnemyPatrollingRange);
-    public override int PatrollingSpeed => LevelManager.Instance.GetSetting(Settings.Key.EnemyPatrollingSpeed);
+    public override int MaxHealth => LevelManager.Instance.GetSetting(SettingsKey.EnemyMaxHealth);
+    public override int PatrollingRange => LevelManager.Instance.GetSetting(SettingsKey.EnemyPatrollingRange);
+    public override int PatrollingSpeed => LevelManager.Instance.GetSetting(SettingsKey.EnemyPatrollingSpeed);
 
 
     #region Unity Callbacks
     protected void Start()
     {
         State = EnemyState.Patrolling;
-        LevelManager.Instance.NumberOfActiveEnemies++;
+        LevelManager.Instance.numberOfActiveEnemies++;
     }
 
     protected void Update() { if (IsDead) return; ManageStates(); }
 
-    protected void OnDestroy() => LevelManager.Instance.NumberOfActiveEnemies--;
+    protected void OnDestroy()
+    {
+        var reward = LevelManager.Instance.GetSetting(SettingsKey.EnemyKillAward);
+        LevelManager.Instance.numberOfActiveEnemies--;
+        LevelManager.Instance.CurrentCoinsCount += reward;
+        LevelManager.Instance.AddProgress(Objective.CoinsCount, reward);
+    }
 
     protected void OnTriggerEnter(Collider other)
     {
@@ -60,7 +66,7 @@ public class Enemy : NPC
         navAgent.isStopped = true;
         animator.SetFloat("Move", -1);
 
-        await Task.Delay(400); 
+        await Task.Delay(400);
         State = EnemyState.Patrolling;
     }
 
