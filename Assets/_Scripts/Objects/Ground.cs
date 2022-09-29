@@ -18,6 +18,7 @@ public class Ground : MonoBehaviour
 
     public void PlantGrass(Vector3 position)
     {
+        if (Well.Instance.IsFillingWater) return;
         if (!Well.Instance.UseWater()) return;
         Instantiate(grassPrefab, position, Quaternion.identity, grassParent);
     }

@@ -186,6 +186,8 @@ public class LevelManager : MonoBehaviour
 
     public void FillWell()
     {
+        if (Well.Instance.IsFillingWater) return;
+
         var fillPrice = GetSetting(SettingsKey.WellFillPrice);
         if (CurrentCoinsCount >= fillPrice && Well.Instance.Fill())
             CurrentCoinsCount -= fillPrice;

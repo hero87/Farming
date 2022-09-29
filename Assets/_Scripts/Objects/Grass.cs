@@ -8,10 +8,10 @@ public class Grass : MonoBehaviour
 {
     private bool isTakenByAnimal;
 
-    private void Awake() { transform.rotation = Extensions.GetRandomRotation(); SearchForAnimal(); }
+    private void Awake() { transform.rotation = Extensions.GetRandomRotation(); StartCoroutine(SearchForAnimal()); }
 
 
-    private async void SearchForAnimal()
+    private IEnumerator SearchForAnimal()
     {
         while (!isTakenByAnimal)
         {
@@ -22,17 +22,10 @@ public class Grass : MonoBehaviour
             {
                 var animal = colliders[i].GetComponent<Animal>();
                 if (animal != null) isTakenByAnimal = animal.StartChasing(this);
-                if (isTakenByAnimal) return;
+                if (isTakenByAnimal) yield break;
             }
 
-            if (!Application.isPlaying) return;
-            await Task.Delay(LevelManager.Instance.GetSetting(SettingsKey.GrassRefreshRate));
+            yield return new WaitForSeconds(LevelManager.Instance.GetSetting(SettingsKey.GrassRefreshRate) / 1000.0f);
         }
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.green;
-    //    Gizmos.DrawSphere(transform.position, LevelManager.Instance.GetSetting(Settings.Key.GrassRadius));
-    //}
 }
