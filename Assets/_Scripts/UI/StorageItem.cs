@@ -10,9 +10,9 @@ public class StorageItem : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private RTLTextMeshPro number;
 
-    private TrackableType trackableType;
+    private Objective trackableType;
 
-    public void Initiate(TrackableType trackableType)
+    public void Initiate(Objective trackableType)
     {
         this.trackableType = trackableType;
         Storage.Instance.onValueChanged += UpdateNumber;
@@ -20,7 +20,7 @@ public class StorageItem : MonoBehaviour
         number.text = $"X0";
     }
 
-    private void UpdateNumber(TrackableType trackableType, int value)
+    private void UpdateNumber(Objective trackableType, int value)
     {
         if (trackableType != this.trackableType) return;
         number.text = $"X{value}";

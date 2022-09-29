@@ -5,11 +5,13 @@ using UnityEngine.AI;
 
 public static class Extensions
 {
-    public static Sprite GetSprite(TrackableType trackableType)
+    public static Sprite GetSprite(Objective trackableType)
     {
-        return Resources.Load<Sprite>($"Sprites/{System.Enum.GetName(typeof(TrackableType), trackableType)}");
+        return Resources.Load<Sprite>($"Sprites/{System.Enum.GetName(typeof(Objective), trackableType)}");
     }
 
+
+    // TODO Gives Error Sometimes
     public static bool GetRandomPoint(Vector3 center, float range, out Vector3 result)
     {
         result = Vector3.zero;
@@ -24,23 +26,33 @@ public static class Extensions
 
     public static Quaternion GetRandomRotation() => Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up);
 
-    public static bool IsCollectable(TrackableType trackableType)
+    public static bool IsCollectable(Objective trackableType)
     {
         return !(
-            trackableType == TrackableType.ChickensCount ||
-            trackableType == TrackableType.CowsCount ||
-            trackableType == TrackableType.SheepsCount ||
-            trackableType == TrackableType.CoinsCount
+            trackableType == Objective.ChickensCount ||
+            trackableType == Objective.CowsCount ||
+            trackableType == Objective.SheepsCount ||
+            trackableType == Objective.CoinsCount
                  );
     }
 
-    public static Settings.Key GetTrackableSettingsKey(TrackableType trackableType)
+    public static int GetTrackablePrice(Objective trackableType)
     {
-        if (trackableType == TrackableType.EggsCount) return Settings.Key.EggPrice;
-        else if (trackableType == TrackableType.MilksCount) return Settings.Key.MilkPrice;
-        else if (trackableType == TrackableType.MeatsCount) return Settings.Key.MeatPrice;
+        if (trackableType == Objective.EggsCount) return LevelManager.Instance.GetSetting(SettingsKey.EggPrice);
+        else if (trackableType == Objective.MilksCount) return LevelManager.Instance.GetSetting(SettingsKey.MilkPrice);
+        else if (trackableType == Objective.MeatsCount) return LevelManager.Instance.GetSetting(SettingsKey.MeatPrice);
+        else throw new System.Exception($"Cannot convert trackable item {trackableType}");
+    }
 
-        throw new System.Exception($"Cannot convert trackable item {trackableType}");
+    public static int GetTrackableSize(Objective trackableType)
+    {
+        if (trackableType == Objective.EggsCount) return LevelManager.Instance.GetSetting(SettingsKey.EggSize);
+        else if (trackableType == Objective.MilksCount) return LevelManager.Instance.GetSetting(SettingsKey.MilkSize);
+        else if (trackableType == Objective.MeatsCount) return LevelManager.Instance.GetSetting(SettingsKey.MeatSize);
+        else if (trackableType == Objective.BreadsCount) return LevelManager.Instance.GetSetting(SettingsKey.BreadSize);
+        else if (trackableType == Objective.CakesCount) return LevelManager.Instance.GetSetting(SettingsKey.CakeSize);
+        else if (trackableType == Objective.BurgersCount) return LevelManager.Instance.GetSetting(SettingsKey.BurgerSize);
+        else throw new System.Exception($"Cannot find trackable item {trackableType} size");
     }
 
     public static bool IsInsideUI(Canvas canvas, Vector2 point)

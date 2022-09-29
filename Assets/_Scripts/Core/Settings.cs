@@ -1,74 +1,19 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "Settings 01", menuName = "Create New Settings")]
-public class Settings : ScriptableObject
+public partial class Settings : ScriptableObject
 {
-    public enum Key
-    {
-        CoinsCount,
-        WellCapacity,
-        WellFillPrice,
-
-        GoldTime,
-        MaximumTime,
-
-        CollectableLifeTime,
-
-        ChicknPrice,
-        CowPrice,
-        SheepPrice,
-        EggPrice,
-        MilkPrice,
-        MeatPrice,
-
-        TradeTime,
-        EnemyTime,
-        MaxEnemyNumber,
-        GrassRadius,
-        GrassRefreshRate,
-        PlayerHitDamage,
-        ProductsLifeTime,
-
-        ChickenMaxHealth,
-        SheepMaxHealth,
-        CowMaxHealth,
-        EnemyMaxHealth,
-
-        ChickenPatrollingRange,
-        SheepPatrollingRange,
-        CowPatrollingRange,
-        EnemyPatrollingRange,
-
-        ChickenPatrollingSpeed,
-        SheepPatrollingSpeed,
-        CowPatrollingSpeed,
-        EnemyPatrollingSpeed,
-
-        ChickenChasingSpeed,
-        SheepChasingSpeed,
-        CowChasingSpeed,
-
-        ChickenEatingTime,
-        SheepEatingTime,
-        CowEatingTime,
-
-
-        ChickenHungerTime,
-        SheepHungerTime,
-        CowHungerTime,
-    }
-
-
     [Serializable]
-    public class KeyValue
+    private class KeyValue
     {
-        public Key key;
+        public SettingsKey key;
         public int value;
 
-        public KeyValue(Key key, int value)
+        public KeyValue(SettingsKey key, int value)
         {
             this.key = key;
             this.value = value;
@@ -76,66 +21,83 @@ public class Settings : ScriptableObject
     }
 
     [SerializeField]
-    private KeyValue[] keyValueList = new KeyValue[]
+    private List<KeyValue> keyValueList = new List<KeyValue>
     {
-        new KeyValue(Key.CoinsCount, 300),
-        new KeyValue(Key.WellCapacity, 5),
-        new KeyValue(Key.WellFillPrice, 100),
+        new KeyValue(SettingsKey.CoinsCount, 500),
+        new KeyValue(SettingsKey.WellCapacity, 5),
+        new KeyValue(SettingsKey.WellFillPrice, 100),
 
-        new KeyValue(Key.GoldTime, 60_000),
-        new KeyValue(Key.MaximumTime, 120_000),
+        new KeyValue(SettingsKey.GoldTime, 60_000),
+        new KeyValue(SettingsKey.MaximumTime, 120_000),
 
-        new KeyValue(Key.CollectableLifeTime, 20),
+        new KeyValue(SettingsKey.CollectableLifeTime, 20),
 
-        new KeyValue(Key.ChicknPrice, 100),
-        new KeyValue(Key.CowPrice, 200),
-        new KeyValue(Key.SheepPrice, 300),
+        new KeyValue(SettingsKey.ChicknPrice, 100),
+        new KeyValue(SettingsKey.CowPrice, 200),
+        new KeyValue(SettingsKey.SheepPrice, 300),
 
-        new KeyValue(Key.EggPrice, 25),
-        new KeyValue(Key.MilkPrice, 50),
-        new KeyValue(Key.MeatPrice, 75),
+        new KeyValue(SettingsKey.EggPrice, 25),
+        new KeyValue(SettingsKey.MilkPrice, 50),
+        new KeyValue(SettingsKey.MeatPrice, 75),
 
-        new KeyValue(Key.TradeTime, 18_000),
-        new KeyValue(Key.EnemyTime, 20_000),
-        new KeyValue(Key.MaxEnemyNumber, 2),
-        new KeyValue(Key.GrassRadius, 3),
-        new KeyValue(Key.GrassRefreshRate, 250),
-        new KeyValue(Key.PlayerHitDamage, 2_000),
-        new KeyValue(Key.ProductsLifeTime, 10_000),
+        new KeyValue(SettingsKey.EggSize, 25),
+        new KeyValue(SettingsKey.MilkSize, 25),
+        new KeyValue(SettingsKey.MeatSize, 100),
+        new KeyValue(SettingsKey.BreadSize, 50),
+        new KeyValue(SettingsKey.CakeSize, 75),
+        new KeyValue(SettingsKey.BurgerSize, 50),
 
-         new KeyValue(Key.ChickenMaxHealth, 10_000),
-         new KeyValue(Key.CowMaxHealth, 20_000),
-         new KeyValue(Key.SheepMaxHealth, 30_000),
-         new KeyValue(Key.EnemyMaxHealth, 10_000),
+        new KeyValue(SettingsKey.StorageCapacity, 250),
+        new KeyValue(SettingsKey.TradeTime, 18_000),
+        new KeyValue(SettingsKey.EnemyTime, 20_000),
+        new KeyValue(SettingsKey.MaxEnemyNumber, 2),
+        new KeyValue(SettingsKey.GrassRadius, 5),
+        new KeyValue(SettingsKey.GrassRefreshRate, 250),
+        new KeyValue(SettingsKey.PlayerHitDamage, 2_000),
+        new KeyValue(SettingsKey.ProductsLifeTime, 10_000),
+        new KeyValue(SettingsKey.EnemyKillAward, 100),
 
-         new KeyValue(Key.ChickenPatrollingRange, 5),
-         new KeyValue(Key.CowPatrollingRange, 7),
-         new KeyValue(Key.SheepPatrollingRange, 7),
-         new KeyValue(Key.EnemyPatrollingRange, 15),
+        new KeyValue(SettingsKey.ChickenMaxHealth, 10_000),
+        new KeyValue(SettingsKey.CowMaxHealth, 20_000),
+        new KeyValue(SettingsKey.SheepMaxHealth, 30_000),
+        new KeyValue(SettingsKey.EnemyMaxHealth, 10_000),
 
-         new KeyValue(Key.ChickenPatrollingSpeed, 2),
-         new KeyValue(Key.CowPatrollingSpeed, 2),
-         new KeyValue(Key.SheepPatrollingSpeed, 2),
-         new KeyValue(Key.EnemyPatrollingSpeed, 5),
+        new KeyValue(SettingsKey.ChickenPatrollingRange, 5),
+        new KeyValue(SettingsKey.CowPatrollingRange, 7),
+        new KeyValue(SettingsKey.SheepPatrollingRange, 7),
+        new KeyValue(SettingsKey.EnemyPatrollingRange, 15),
 
-         new KeyValue(Key.ChickenChasingSpeed, 5),
-         new KeyValue(Key.SheepChasingSpeed, 5),
-         new KeyValue(Key.CowChasingSpeed, 5),
+        new KeyValue(SettingsKey.ChickenPatrollingSpeed, 2),
+        new KeyValue(SettingsKey.CowPatrollingSpeed, 2),
+        new KeyValue(SettingsKey.SheepPatrollingSpeed, 2),
+        new KeyValue(SettingsKey.EnemyPatrollingSpeed, 5),
 
-         new KeyValue(Key.ChickenEatingTime, 4_000),
-         new KeyValue(Key.SheepEatingTime, 4_000),
-         new KeyValue(Key.CowEatingTime, 4_000),
+        new KeyValue(SettingsKey.ChickenChasingSpeed, 5),
+        new KeyValue(SettingsKey.SheepChasingSpeed, 5),
+        new KeyValue(SettingsKey.CowChasingSpeed, 5),
 
-         new KeyValue(Key.ChickenHungerTime, 5_000),
-         new KeyValue(Key.SheepHungerTime, 10_000),
-         new KeyValue(Key.CowHungerTime, 15_000),
+        new KeyValue(SettingsKey.ChickenEatingTime, 4_000),
+        new KeyValue(SettingsKey.SheepEatingTime, 4_000),
+        new KeyValue(SettingsKey.CowEatingTime, 4_000),
+
+        new KeyValue(SettingsKey.ChickenHungerTime, 5_000),
+        new KeyValue(SettingsKey.SheepHungerTime, 10_000),
+        new KeyValue(SettingsKey.CowHungerTime, 15_000),
     };
 
-    public int GetValue(Key key)
+    private Dictionary<SettingsKey, int> settingsDict;
+    public void Initiate()
     {
-        var keyValue = keyValueList.FirstOrDefault(m => m.key == key);
-        if (keyValue == null) throw new Exception($"ERROR | key {keyValue} not found in the settings list");
-        return keyValue.value;
+        settingsDict = new Dictionary<SettingsKey, int>();
+        keyValueList.ForEach(kv => settingsDict.Add(kv.key, kv.value));
+    }
+
+    public int GetValue(SettingsKey key)
+    {
+        if (settingsDict.TryGetValue(key, out int value))
+            return value;
+
+        throw new Exception($"ERROR | key {key} not found in the settings list");
     }
 
 }

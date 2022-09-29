@@ -19,9 +19,6 @@ public class Well : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else throw new System.Exception("There is already a Well object!");
-
-
-
     }
 
 
@@ -32,11 +29,14 @@ public class Well : MonoBehaviour
         return true;
     }
 
+    public bool IsFillingWater { get; private set; }
+
     private IEnumerator FillWaterCoroutine()
     {
+        IsFillingWater = true;
         float value = currentWater;
         animator.SetBool("ShouldFill", true);
-        while (currentWater <= capacity)
+        while (currentWater < capacity)
         {
             value += fillingSpeed * Time.deltaTime;
             waterBar.fillAmount = value / capacity;
@@ -45,6 +45,7 @@ public class Well : MonoBehaviour
 
         }
         animator.SetBool("ShouldFill", false);
+        IsFillingWater = false;
     }
 
     public bool UseWater()

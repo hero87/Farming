@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Products : MonoBehaviour
 {
-    private int ProductsLifeTime => LevelManager.Instance.GetSetting(Settings.Key.ProductsLifeTime);
+    private int ProductsLifeTime => LevelManager.Instance.GetSetting(SettingsKey.ProductsLifeTime);
     private int currentProductLife;
     private Animator animator;
 

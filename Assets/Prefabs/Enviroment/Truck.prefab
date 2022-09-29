@@ -139,8 +139,9 @@ GameObject:
   - component: {fileID: 1773838436426036383}
   - component: {fileID: 1773838436426036376}
   - component: {fileID: 1773838436426036377}
+  - component: {fileID: 6662487579988073133}
   m_Layer: 0
-  m_Name: Car
+  m_Name: Truck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -280,6 +281,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6662487579988073133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773838436426036382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623cd73f86d58354e91986d297bd0d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  truckAnimator: {fileID: 1773838436426036376}
 --- !u!1 &1773838436791648205
 GameObject:
   m_ObjectHideFlags: 0

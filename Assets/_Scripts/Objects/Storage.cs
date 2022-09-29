@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.Port;
 
 public class Storage : MonoBehaviour
 {
@@ -13,36 +15,48 @@ public class Storage : MonoBehaviour
         else throw new Exception("There is already a Storage object!");
     }
 
-    public Action<TrackableType, int> onValueChanged;
+    private void Start() => Capacity = LevelManager.Instance.GetSetting(SettingsKey.StorageCapacity);
+
+    public Action<Objective, int> onValueChanged;
     private List<Item> storage = new List<Item>();
 
-    public int GetValueOf(TrackableType key) => storage.Find(kv => kv.key == key).value;
+    public int Capacity { get; private set; }
 
-    public void AddToStorage(TrackableType key)
+
+    private int occupiedSpace;
+    public int OccupiedSpace
     {
-        var item = storage.Find(temp => temp.key == key);
-
-        if (item != null)
+        get => occupiedSpace;
+        private set
         {
-            item.value++;
+            occupiedSpace = value;
+            var percentage = 1.0f * occupiedSpace / Capacity;
+            UIManager.Instance.UpdateStorageSpace(percentage);
         }
-        else
-        {
-            item = new Item(key, 0);
-            storage.Add(item);
-        }
-
-        if (onValueChanged != null)
-            onValueChanged(key, item.value);
     }
 
-    public void MoveToTruck(TrackableType key)
+
+    public void AddToStorage(Objective key, int amount)
+    {
+        if (Extensions.GetTrackableSize(key) * amount + OccupiedSpace > Capacity) return;
+        else OccupiedSpace += Extensions.GetTrackableSize(key) * amount;
+
+        var item = storage.Find(temp => temp.key == key);
+
+        if (item != null) item.amount += amount;
+        else storage.Add(new Item(key, amount));
+
+        onValueChanged?.Invoke(key, item != null ? item.amount : amount);
+    }
+
+    public void MoveToTruck(Objective key, int amount)
     {
         var item = storage.Find(temp => temp.key == key);
-        if (item.value <= 0) return;
+        if (item.amount - amount < 0) return;
 
-        item.value--;
-        Truck.Instance.AddToTruck(item.key);
-        onValueChanged(key, item.value);
+        Truck.Instance.AddToTruck(item.key, amount);
+        OccupiedSpace -= Extensions.GetTrackableSize(key) * amount;
+        item.amount -= amount;
+        onValueChanged(item.key, item.amount);
     }
 }

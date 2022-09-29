@@ -64,24 +64,22 @@ public class InputsManager : MonoBehaviour
         }
         else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Eggs"))
         {
-            LevelManager.Instance.CurrentLevel.AddProgress(TrackableType.EggsCount, 1);
+            LevelManager.Instance.AddProgress(Objective.EggsCount, 1);
             Destroy(hit.collider.gameObject);
         }
         else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Milks"))
         {
-            LevelManager.Instance.CurrentLevel.AddProgress(TrackableType.MilksCount, 1);
+            LevelManager.Instance.AddProgress(Objective.MilksCount, 1);
             Destroy(hit.collider.gameObject);
         }
         else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            hit.collider.GetComponent<Enemy>().CurrentHealth -= LevelManager.Instance.GetSetting(Settings.Key.PlayerHitDamage);
+            hit.collider.GetComponent<Enemy>().CurrentHealth -= LevelManager.Instance.GetSetting(SettingsKey.PlayerHitDamage);
         }
     }
 
 
     private int LayersToHit;
-
-
     private void Awake()
     {
         var groundLayer = 1 << LayerMask.NameToLayer("Ground");

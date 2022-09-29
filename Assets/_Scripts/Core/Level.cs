@@ -12,42 +12,40 @@ public class Level : ScriptableObject
     [SerializeField] private Settings settings;
     [SerializeField] private List<Mission> missions;
 
-
-    private HashSet<TrackableType> completedMissions = new HashSet<TrackableType>();
-
-
-    public List<Mission> Missions => missions;
-    public bool Completed => missions.Count == completedMissions.Count;
+    private HashSet<Objective> completedMissions;
+    private HashSet<Objective> activeMissions;
 
 
-    public int GetSetting(Settings.Key key) => settings.GetValue(key);
+    public bool IsCompleted => missions.Count == completedMissions.Count;
+    public Objective[] Objectives => activeMissions.ToArray();
 
-    public void AddProgress(TrackableType key, int value)
+
+    public int GetSetting(SettingsKey key) => settings.GetValue(key);
+    public Mission GetMission(Objective key) => missions.Find(mission => mission.Key == key);
+    public bool Contains(Objective key) => missions.Any(m => m.Key == key);
+
+    public void AddProgress(Objective key, int value)
     {
-        var mission = missions.FirstOrDefault(m => m.Key == key);
+        var mission = missions.First(m => m.Key == key);
         if (mission == null) throw new Exception($"ERROR | key {key} not found in the missions list");
 
         mission.AddProgress(value);
 
-        if (mission.Completed && !completedMissions.Contains(mission.Key))
+        if (mission.IsCompleted && !completedMissions.Contains(mission.Key))
             completedMissions.Add(mission.Key);
-    }
-
-    public int GetCurrentValueOf(TrackableType key)
-    {
-        var mission = missions.FirstOrDefault(m => m.Key == key);
-        if (mission == null) throw new Exception($"ERROR | key {key} not found in the missions list");
-        return mission.CurrentValue;
-    }
-
-    public bool Contains(TrackableType key)
-    {
-        return missions.Any(m => m.Key == key);
     }
 
     public void Initiate()
     {
-        completedMissions.Clear();
-        missions.ForEach(m => m.Initiate());
+        settings.Initiate();
+        completedMissions = new HashSet<Objective>();
+        activeMissions = new HashSet<Objective>();
+
+        missions.ForEach(mission =>
+        {
+            try { activeMissions.Add(mission.Key); }
+            catch { throw new Exception($"Mission {mission.Key} already exists in the mission list of the level {name}"); }
+            mission.Initiate();
+        });
     }
 }

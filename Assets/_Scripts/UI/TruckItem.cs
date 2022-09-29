@@ -14,9 +14,9 @@ public class TruckItem : MonoBehaviour
     [SerializeField] private RTLTextMeshPro storageNumber;
     [SerializeField] private RTLTextMeshPro truckNumber;
 
-    private TrackableType trackableType;
+    private Objective trackableType;
 
-    public void Initiate(TrackableType trackableType)
+    public void Initiate(Objective trackableType)
     {
         this.trackableType = trackableType;
 
@@ -30,13 +30,13 @@ public class TruckItem : MonoBehaviour
         storageNumber.text = $"x0";
     }
 
-    private void UpdateTruckNumber(TrackableType trackableType, int value)
+    private void UpdateTruckNumber(Objective trackableType, int value)
     {
         if (trackableType != this.trackableType) return;
         truckNumber.text = $"x{value}";
     }
 
-    private void UpdateStorageNumber(TrackableType trackableType, int value)
+    private void UpdateStorageNumber(Objective trackableType, int value)
     {
         if (trackableType != this.trackableType) return;
         storageNumber.text = $"x{value}";
@@ -48,7 +48,7 @@ public class TruckItem : MonoBehaviour
         Truck.Instance.onValueChanged -= UpdateTruckNumber;
     }
 
-    public void MoveToStorage() => Truck.Instance.MoveToStorage(trackableType);
+    public void MoveToStorage() => Truck.Instance.MoveToStorage(trackableType, 1);
 
-    public void MoveToTruck() => Storage.Instance.MoveToTruck(trackableType);
+    public void MoveToTruck() => Storage.Instance.MoveToTruck(trackableType, 1);
 }
