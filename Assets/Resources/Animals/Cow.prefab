@@ -60,7 +60,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4867993094390413256}
   - {fileID: 8937835984978913831}
@@ -87,7 +87,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.8
-  m_BaseOffset: 0
+  m_BaseOffset: -0.2
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!65 &3219523649159174337
@@ -1198,7 +1198,7 @@ Transform:
   m_GameObject: {fileID: 8943820493644745739}
   m_LocalRotation: {x: 0, y: 0.035893746, z: 0, w: 0.9993556}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8937845508479001431}
@@ -1779,7 +1779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6878831783675930163, guid: 49deafcc580ae2347b32d6f823adb880, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.15
+      value: 2.65
       objectReference: {fileID: 0}
     - target: {fileID: 6878831783675930163, guid: 49deafcc580ae2347b32d6f823adb880, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
