@@ -16,7 +16,7 @@ public class Grass : MonoBehaviour
         while (!isTakenByAnimal)
         {
             Collider[] colliders = new Collider[25];
-            int count = Physics.OverlapSphereNonAlloc(transform.position, LevelManager.Instance.GetSetting(Settings.Key.GrassRadius), colliders);
+            int count = Physics.OverlapSphereNonAlloc(transform.position, LevelManager.Instance.GetSetting(SettingsKey.GrassRadius), colliders);
 
             for (int i = 0; i < count; i++)
             {
@@ -25,8 +25,8 @@ public class Grass : MonoBehaviour
                 if (isTakenByAnimal) return;
             }
 
-            if (!Application.isPlaying) {return; }
-            await Task.Delay(LevelManager.Instance.GetSetting(Settings.Key.GrassRefreshRate));
+            if (!Application.isPlaying) return;
+            await Task.Delay(LevelManager.Instance.GetSetting(SettingsKey.GrassRefreshRate));
         }
     }
 
